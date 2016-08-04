@@ -8,8 +8,10 @@
 
 #import "ViewController.h"
 #import <Parse/Parse.h>
+@import ParseUI;
 
-@interface ViewController ()
+
+@interface ViewController ()<PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @end
 
@@ -39,6 +41,52 @@
 //        
 //    }];
 
+    [self login];
 }
+
+#pragma mark - Login
+
+-(void)login {
+    
+    if (![PFUser currentUser]) {
+        
+        PFLogInViewController *loginVC = [[PFLogInViewController alloc]init];
+        loginVC.delegate = self;
+        loginVC.signUpController.delegate = self;
+        UILabel *logoLabel = [[UILabel alloc]init];
+        logoLabel.text = @"Treasure Quest";
+        loginVC.logInView.logo = logoLabel;
+        
+        [self presentViewController:loginVC animated:YES completion:nil];
+        
+    } else {
+        [self setup];
+    }
+    
+}
+
+-(void)setup {
+    
+    UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc]initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(signOut)];
+    self.navigationItem.leftBarButtonItem = signOutButton;
+    
+}
+
+-(void)signOut {
+    [PFUser logOut];
+    [self login];
+}
+
+-(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setup];
+}
+-(void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self setup];
+}
+
+
+
 
 @end
