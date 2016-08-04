@@ -51,10 +51,13 @@
     if (![PFUser currentUser]) {
         
         PFLogInViewController *loginVC = [[PFLogInViewController alloc]init];
+        loginVC.view.backgroundColor = [UIColor darkGrayColor];
         loginVC.delegate = self;
         loginVC.signUpController.delegate = self;
         UILabel *logoLabel = [[UILabel alloc]init];
         logoLabel.text = @"Treasure Quest";
+        logoLabel.textColor = [UIColor whiteColor];
+        [logoLabel setFont:[UIFont boldSystemFontOfSize:36]];
         loginVC.logInView.logo = logoLabel;
         
         [self presentViewController:loginVC animated:YES completion:nil];
