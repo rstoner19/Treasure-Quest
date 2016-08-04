@@ -22,6 +22,12 @@
 		4C7D760F1D533D5200932D3A /* Parse.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C7D76081D533CDE00932D3A /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4C7D76111D534C6D00932D3A /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C7D76101D534C6D00932D3A /* ParseUI.framework */; };
 		4C7D76121D534D5600932D3A /* ParseUI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4C7D76101D534C6D00932D3A /* ParseUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4C7D76141D53F5E400932D3A /* Join.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C7D76131D53F5E400932D3A /* Join.storyboard */; };
+		4C7D76171D53FA1700932D3A /* ProgressListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76161D53FA1700932D3A /* ProgressListViewController.m */; };
+		4C7D761C1D53FD8B00932D3A /* Quest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D761B1D53FD8B00932D3A /* Quest.m */; };
+		4C7D761F1D5400A900932D3A /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D761E1D5400A900932D3A /* Player.m */; };
+		4C7D76221D54033900932D3A /* Playfield.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76211D54033900932D3A /* Playfield.m */; };
+		4C7D76251D54044F00932D3A /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76241D54044F00932D3A /* Route.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +65,17 @@
 		4C7D76071D533CDE00932D3A /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Carthage/Build/iOS/Bolts.framework; sourceTree = "<group>"; };
 		4C7D76081D533CDE00932D3A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Carthage/Build/iOS/Parse.framework; sourceTree = "<group>"; };
 		4C7D76101D534C6D00932D3A /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		4C7D76131D53F5E400932D3A /* Join.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Join.storyboard; sourceTree = "<group>"; };
+		4C7D76151D53FA1700932D3A /* ProgressListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressListViewController.h; sourceTree = "<group>"; };
+		4C7D76161D53FA1700932D3A /* ProgressListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressListViewController.m; sourceTree = "<group>"; };
+		4C7D761A1D53FD8B00932D3A /* Quest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quest.h; sourceTree = "<group>"; };
+		4C7D761B1D53FD8B00932D3A /* Quest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quest.m; sourceTree = "<group>"; };
+		4C7D761D1D5400A900932D3A /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		4C7D761E1D5400A900932D3A /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		4C7D76201D54033900932D3A /* Playfield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playfield.h; sourceTree = "<group>"; };
+		4C7D76211D54033900932D3A /* Playfield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playfield.m; sourceTree = "<group>"; };
+		4C7D76231D54044F00932D3A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		4C7D76241D54044F00932D3A /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +118,15 @@
 				4C7D75F41D53389C00932D3A /* AppDelegate.m */,
 				4C7D75F61D53389C00932D3A /* ViewController.h */,
 				4C7D75F71D53389C00932D3A /* ViewController.m */,
+				4C7D76231D54044F00932D3A /* Route.h */,
+				4C7D76241D54044F00932D3A /* Route.m */,
+				4C7D761A1D53FD8B00932D3A /* Quest.h */,
+				4C7D761B1D53FD8B00932D3A /* Quest.m */,
+				4C7D76201D54033900932D3A /* Playfield.h */,
+				4C7D76211D54033900932D3A /* Playfield.m */,
+				4C7D761D1D5400A900932D3A /* Player.h */,
+				4C7D761E1D5400A900932D3A /* Player.m */,
+				4C7D76181D53FA1C00932D3A /* Join Workflow */,
 				4C7D75F91D53389D00932D3A /* Main.storyboard */,
 				048DB94A1D5403FE00604726 /* SummaryViewController.h */,
 				048DB94B1D5403FE00604726 /* SummaryViewController.m */,
@@ -122,6 +148,24 @@
 				4C7D75F11D53389C00932D3A /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4C7D76181D53FA1C00932D3A /* Join Workflow */ = {
+			isa = PBXGroup;
+			children = (
+				4C7D76131D53F5E400932D3A /* Join.storyboard */,
+				4C7D76191D53FAA700932D3A /* Controller */,
+			);
+			name = "Join Workflow";
+			sourceTree = "<group>";
+		};
+		4C7D76191D53FAA700932D3A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C7D76151D53FA1700932D3A /* ProgressListViewController.h */,
+				4C7D76161D53FA1700932D3A /* ProgressListViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +228,7 @@
 			files = (
 				4C7D76001D53389D00932D3A /* LaunchScreen.storyboard in Resources */,
 				4C7D75FD1D53389D00932D3A /* Assets.xcassets in Resources */,
+				4C7D76141D53F5E400932D3A /* Join.storyboard in Resources */,
 				4C7D75FB1D53389D00932D3A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,12 +240,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C7D76221D54033900932D3A /* Playfield.m in Sources */,
+				4C7D76251D54044F00932D3A /* Route.m in Sources */,
 				048DB9461D53F65900604726 /* SetupViewController.m in Sources */,
 				4C7D75F81D53389C00932D3A /* ViewController.m in Sources */,
+				4C7D761C1D53FD8B00932D3A /* Quest.m in Sources */,
 				4C7D75F51D53389C00932D3A /* AppDelegate.m in Sources */,
 				4C7D75F21D53389C00932D3A /* main.m in Sources */,
+				4C7D761F1D5400A900932D3A /* Player.m in Sources */,
+				4C7D76171D53FA1700932D3A /* ProgressListViewController.m in Sources */,
 				048DB9491D54015C00604726 /* PlayfieldViewController.m in Sources */,
 				048DB94C1D5403FE00604726 /* SummaryViewController.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
