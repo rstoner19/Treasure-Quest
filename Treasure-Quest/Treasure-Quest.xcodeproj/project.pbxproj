@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		048DB9461D53F65900604726 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB9451D53F65900604726 /* SetupViewController.m */; };
+		048DB9491D54015C00604726 /* PlayfieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB9481D54015C00604726 /* PlayfieldViewController.m */; };
+		048DB94C1D5403FE00604726 /* SummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB94B1D5403FE00604726 /* SummaryViewController.m */; };
 		4C7D75F21D53389C00932D3A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D75F11D53389C00932D3A /* main.m */; };
 		4C7D75F51D53389C00932D3A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D75F41D53389C00932D3A /* AppDelegate.m */; };
 		4C7D75F81D53389C00932D3A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D75F71D53389C00932D3A /* ViewController.m */; };
@@ -43,6 +46,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		048DB9441D53F65900604726 /* SetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupViewController.h; sourceTree = "<group>"; };
+		048DB9451D53F65900604726 /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
+		048DB9471D54015C00604726 /* PlayfieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayfieldViewController.h; sourceTree = "<group>"; };
+		048DB9481D54015C00604726 /* PlayfieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayfieldViewController.m; sourceTree = "<group>"; };
+		048DB94A1D5403FE00604726 /* SummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummaryViewController.h; sourceTree = "<group>"; };
+		048DB94B1D5403FE00604726 /* SummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummaryViewController.m; sourceTree = "<group>"; };
 		4C7D75ED1D53389C00932D3A /* Treasure-Quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Treasure-Quest.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C7D75F11D53389C00932D3A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4C7D75F31D53389C00932D3A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -119,6 +128,12 @@
 				4C7D761E1D5400A900932D3A /* Player.m */,
 				4C7D76181D53FA1C00932D3A /* Join Workflow */,
 				4C7D75F91D53389D00932D3A /* Main.storyboard */,
+				048DB94A1D5403FE00604726 /* SummaryViewController.h */,
+				048DB94B1D5403FE00604726 /* SummaryViewController.m */,
+				048DB9471D54015C00604726 /* PlayfieldViewController.h */,
+				048DB9481D54015C00604726 /* PlayfieldViewController.m */,
+				048DB9441D53F65900604726 /* SetupViewController.h */,
+				048DB9451D53F65900604726 /* SetupViewController.m */,
 				4C7D75FC1D53389D00932D3A /* Assets.xcassets */,
 				4C7D75FE1D53389D00932D3A /* LaunchScreen.storyboard */,
 				4C7D76011D53389D00932D3A /* Info.plist */,
@@ -227,12 +242,16 @@
 			files = (
 				4C7D76221D54033900932D3A /* Playfield.m in Sources */,
 				4C7D76251D54044F00932D3A /* Route.m in Sources */,
+				048DB9461D53F65900604726 /* SetupViewController.m in Sources */,
 				4C7D75F81D53389C00932D3A /* ViewController.m in Sources */,
 				4C7D761C1D53FD8B00932D3A /* Quest.m in Sources */,
 				4C7D75F51D53389C00932D3A /* AppDelegate.m in Sources */,
 				4C7D75F21D53389C00932D3A /* main.m in Sources */,
 				4C7D761F1D5400A900932D3A /* Player.m in Sources */,
 				4C7D76171D53FA1700932D3A /* ProgressListViewController.m in Sources */,
+				048DB9491D54015C00604726 /* PlayfieldViewController.m in Sources */,
+				048DB94C1D5403FE00604726 /* SummaryViewController.m in Sources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +412,7 @@
 				4C7D76061D53389D00932D3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
