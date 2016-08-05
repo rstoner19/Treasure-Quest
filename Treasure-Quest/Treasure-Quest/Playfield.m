@@ -10,4 +10,15 @@
 
 @implementation Playfield
 
+
++(void)load{
+    [self registerSubclass];
+    
+}
+
++(NSString *)parseClassName{
+    return @"Playfield";
+}
+
+
 @end

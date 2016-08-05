@@ -13,7 +13,7 @@
 
 
 @interface ViewController ()<PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
-- (IBAction)joinButtonSelected:(UIButton *)sender;
+
 
 @end
 
@@ -93,6 +93,4 @@
 
 
 
-- (IBAction)joinButtonSelected:(UIButton *)sender {
-}
 @end
