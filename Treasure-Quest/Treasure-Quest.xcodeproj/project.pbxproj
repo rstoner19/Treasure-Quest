@@ -114,29 +114,9 @@
 		4C7D75EF1D53389C00932D3A /* Treasure-Quest */ = {
 			isa = PBXGroup;
 			children = (
-				4C7D75F31D53389C00932D3A /* AppDelegate.h */,
-				4C7D75F41D53389C00932D3A /* AppDelegate.m */,
-				4C7D75F61D53389C00932D3A /* ViewController.h */,
-				4C7D75F71D53389C00932D3A /* ViewController.m */,
-				4C7D76231D54044F00932D3A /* Route.h */,
-				4C7D76241D54044F00932D3A /* Route.m */,
-				4C7D761A1D53FD8B00932D3A /* Quest.h */,
-				4C7D761B1D53FD8B00932D3A /* Quest.m */,
-				4C7D76201D54033900932D3A /* Playfield.h */,
-				4C7D76211D54033900932D3A /* Playfield.m */,
-				4C7D761D1D5400A900932D3A /* Player.h */,
-				4C7D761E1D5400A900932D3A /* Player.m */,
+				4C7D762A1D5525F900932D3A /* Shared */,
+				4C7D76281D5525B700932D3A /* Create Workflow */,
 				4C7D76181D53FA1C00932D3A /* Join Workflow */,
-				4C7D75F91D53389D00932D3A /* Main.storyboard */,
-				048DB94A1D5403FE00604726 /* SummaryViewController.h */,
-				048DB94B1D5403FE00604726 /* SummaryViewController.m */,
-				048DB9471D54015C00604726 /* PlayfieldViewController.h */,
-				048DB9481D54015C00604726 /* PlayfieldViewController.m */,
-				048DB9441D53F65900604726 /* SetupViewController.h */,
-				048DB9451D53F65900604726 /* SetupViewController.m */,
-				4C7D75FC1D53389D00932D3A /* Assets.xcassets */,
-				4C7D75FE1D53389D00932D3A /* LaunchScreen.storyboard */,
-				4C7D76011D53389D00932D3A /* Info.plist */,
 				4C7D75F01D53389C00932D3A /* Supporting Files */,
 			);
 			path = "Treasure-Quest";
@@ -153,7 +133,8 @@
 		4C7D76181D53FA1C00932D3A /* Join Workflow */ = {
 			isa = PBXGroup;
 			children = (
-				4C7D76131D53F5E400932D3A /* Join.storyboard */,
+				4C7D76321D55276A00932D3A /* Model */,
+				4C7D76311D55276200932D3A /* View */,
 				4C7D76191D53FAA700932D3A /* Controller */,
 			);
 			name = "Join Workflow";
@@ -166,6 +147,121 @@
 				4C7D76161D53FA1700932D3A /* ProgressListViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		4C7D76261D55255200932D3A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4C7D76231D54044F00932D3A /* Route.h */,
+				4C7D76241D54044F00932D3A /* Route.m */,
+				4C7D761A1D53FD8B00932D3A /* Quest.h */,
+				4C7D761B1D53FD8B00932D3A /* Quest.m */,
+				4C7D76201D54033900932D3A /* Playfield.h */,
+				4C7D76211D54033900932D3A /* Playfield.m */,
+				4C7D761D1D5400A900932D3A /* Player.h */,
+				4C7D761E1D5400A900932D3A /* Player.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4C7D76281D5525B700932D3A /* Create Workflow */ = {
+			isa = PBXGroup;
+			children = (
+				4C7D762D1D55263200932D3A /* Model */,
+				4C7D762C1D55262300932D3A /* View */,
+				4C7D76291D5525DB00932D3A /* Controller */,
+			);
+			name = "Create Workflow";
+			sourceTree = "<group>";
+		};
+		4C7D76291D5525DB00932D3A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				048DB94A1D5403FE00604726 /* SummaryViewController.h */,
+				048DB94B1D5403FE00604726 /* SummaryViewController.m */,
+				048DB9441D53F65900604726 /* SetupViewController.h */,
+				048DB9451D53F65900604726 /* SetupViewController.m */,
+				048DB9471D54015C00604726 /* PlayfieldViewController.h */,
+				048DB9481D54015C00604726 /* PlayfieldViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		4C7D762A1D5525F900932D3A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				4C7D76301D55274600932D3A /* View */,
+				4C7D762E1D55271D00932D3A /* Utilities */,
+				4C7D762F1D55272900932D3A /* App Global */,
+				4C7D76261D55255200932D3A /* Model */,
+				4C7D762B1D55261600932D3A /* Controller */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		4C7D762B1D55261600932D3A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C7D75F61D53389C00932D3A /* ViewController.h */,
+				4C7D75F71D53389C00932D3A /* ViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		4C7D762C1D55262300932D3A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C7D75F91D53389D00932D3A /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		4C7D762D1D55263200932D3A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4C7D762E1D55271D00932D3A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4C7D75FC1D53389D00932D3A /* Assets.xcassets */,
+				4C7D76011D53389D00932D3A /* Info.plist */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		4C7D762F1D55272900932D3A /* App Global */ = {
+			isa = PBXGroup;
+			children = (
+				4C7D75F31D53389C00932D3A /* AppDelegate.h */,
+				4C7D75F41D53389C00932D3A /* AppDelegate.m */,
+			);
+			name = "App Global";
+			sourceTree = "<group>";
+		};
+		4C7D76301D55274600932D3A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C7D75FE1D53389D00932D3A /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		4C7D76311D55276200932D3A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C7D76131D53F5E400932D3A /* Join.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		4C7D76321D55276A00932D3A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,7 +347,6 @@
 				4C7D76171D53FA1700932D3A /* ProgressListViewController.m in Sources */,
 				048DB9491D54015C00604726 /* PlayfieldViewController.m in Sources */,
 				048DB94C1D5403FE00604726 /* SummaryViewController.m in Sources */,
-
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
