@@ -28,6 +28,7 @@
 		4C7D761F1D5400A900932D3A /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D761E1D5400A900932D3A /* Player.m */; };
 		4C7D76221D54033900932D3A /* Playfield.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76211D54033900932D3A /* Playfield.m */; };
 		4C7D76251D54044F00932D3A /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76241D54044F00932D3A /* Route.m */; };
+		4C7D76351D5546F700932D3A /* Objective.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76341D5546F700932D3A /* Objective.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -76,6 +77,8 @@
 		4C7D76211D54033900932D3A /* Playfield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playfield.m; sourceTree = "<group>"; };
 		4C7D76231D54044F00932D3A /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
 		4C7D76241D54044F00932D3A /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
+		4C7D76331D5546F700932D3A /* Objective.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Objective.h; sourceTree = "<group>"; };
+		4C7D76341D5546F700932D3A /* Objective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Objective.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +163,8 @@
 				4C7D76211D54033900932D3A /* Playfield.m */,
 				4C7D761D1D5400A900932D3A /* Player.h */,
 				4C7D761E1D5400A900932D3A /* Player.m */,
+				4C7D76331D5546F700932D3A /* Objective.h */,
+				4C7D76341D5546F700932D3A /* Objective.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 				4C7D75F21D53389C00932D3A /* main.m in Sources */,
 				4C7D761F1D5400A900932D3A /* Player.m in Sources */,
 				4C7D76171D53FA1700932D3A /* ProgressListViewController.m in Sources */,
+				4C7D76351D5546F700932D3A /* Objective.m in Sources */,
 				048DB9491D54015C00604726 /* PlayfieldViewController.m in Sources */,
 				048DB94C1D5403FE00604726 /* SummaryViewController.m in Sources */,
 			);
