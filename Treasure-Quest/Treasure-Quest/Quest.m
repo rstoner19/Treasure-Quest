@@ -11,12 +11,13 @@
 
 @implementation Quest
 
-@dynamic questName;
-@dynamic questInfo;
+@dynamic name;
+@dynamic info;
 @dynamic creator;
 @dynamic players;
 @dynamic maxplayers;
-@dynamic route;
+@synthesize route;
+
 
 +(void)load{
     [self registerSubclass];

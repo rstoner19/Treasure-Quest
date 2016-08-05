@@ -8,9 +8,10 @@
 
 #import <Parse/Parse.h>
 
-@interface Playfield : PFObject<PFSubclassing>
+//@interface Playfield : PFObject<PFSubclassing>
+@interface Playfield : NSObject
 
-@property (strong, nonatomic) PFGeoPoint *coordinate;
+@property CLLocationCoordinate2D coordinate;
 @property (strong, nonatomic) NSNumber *minRadius;
 @property (strong, nonatomic) NSNumber *maxRadius;
 

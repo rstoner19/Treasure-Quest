@@ -10,15 +10,9 @@
 
 @implementation Playfield
 
-
-+(void)load{
-    [self registerSubclass];
-    
-}
-
-+(NSString *)parseClassName{
-    return @"Playfield";
-}
+//@dynamic coordinate;
+//@dynamic minRadius;
+//@dynamic maxRadius;
 
 
 @end
