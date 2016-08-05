@@ -25,19 +25,19 @@
                                     <segue destination="D43-vg-krK" kind="show" identifier="SetupViewController" action="showDetailViewController:sender:" id="7Zh-bA-BOI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4l5-pO-bH6">
-                                <rect key="frame" x="285" y="384" width="30" height="30"/>
-                                <state key="normal" title="Join"/>
-                                <connections>
-                                    <action selector="joinButtonSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="i5k-e1-MyA"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main" translatesAutoresizingMaskIntoConstraints="NO" id="Wll-xx-SCx">
                                 <rect key="frame" x="0.0" y="64" width="600" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="io3-sd-t1Y"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4l5-pO-bH6">
+                                <rect key="frame" x="285" y="384" width="30" height="30"/>
+                                <state key="normal" title="Join"/>
+                                <connections>
+                                    <segue destination="4hq-lK-Wys" kind="show" id="KVP-Rg-RPm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -57,6 +57,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1177" y="276"/>
+        </scene>
+        <!--PlayVC-->
+        <scene sceneID="24R-Cc-V3f">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Join" referencedIdentifier="PlayVC" id="4hq-lK-Wys" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5GZ-cm-Nms" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1177.5" y="723"/>
         </scene>
         <!--Create A New Quest-->
         <scene sceneID="Z2X-6X-KPD">

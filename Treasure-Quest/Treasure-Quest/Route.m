@@ -10,4 +10,15 @@
 
 @implementation Route
 
+
++(void)load{
+    [self registerSubclass];
+    
+}
+
++(NSString *)parseClassName{
+    return @"Route";
+}
+
+
 @end

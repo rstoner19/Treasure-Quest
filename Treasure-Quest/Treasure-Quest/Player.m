@@ -10,4 +10,21 @@
 
 @implementation Player
 
+
+@dynamic currentLocation;
+@dynamic user;
+@dynamic speed;
+
+
+
++(void)load{
+    [self registerSubclass];
+    
+}
+
++(NSString *)parseClassName{
+    return @"Player";
+}
+
+
 @end
