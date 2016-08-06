@@ -29,6 +29,10 @@
 		4C7D76221D54033900932D3A /* Playfield.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76211D54033900932D3A /* Playfield.m */; };
 		4C7D76251D54044F00932D3A /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76241D54044F00932D3A /* Route.m */; };
 		4C7D76351D5546F700932D3A /* Objective.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76341D5546F700932D3A /* Objective.m */; };
+		4C7D76381D55A7D800932D3A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D76371D55A7D800932D3A /* MapViewController.m */; };
+		4C7D763B1D55A7E700932D3A /* LeaderBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D763A1D55A7E700932D3A /* LeaderBoardViewController.m */; };
+		4CBE87A81D55B8DE0034F19A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBE87A71D55B8DE0034F19A /* MapKit.framework */; };
+		4CBE87AB1D55BC8F0034F19A /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBE87AA1D55BC8F0034F19A /* LocationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,6 +83,13 @@
 		4C7D76241D54044F00932D3A /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		4C7D76331D5546F700932D3A /* Objective.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Objective.h; sourceTree = "<group>"; };
 		4C7D76341D5546F700932D3A /* Objective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Objective.m; sourceTree = "<group>"; };
+		4C7D76361D55A7D800932D3A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		4C7D76371D55A7D800932D3A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		4C7D76391D55A7E700932D3A /* LeaderBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderBoardViewController.h; sourceTree = "<group>"; };
+		4C7D763A1D55A7E700932D3A /* LeaderBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderBoardViewController.m; sourceTree = "<group>"; };
+		4CBE87A71D55B8DE0034F19A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4CBE87A91D55BC8F0034F19A /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		4CBE87AA1D55BC8F0034F19A /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +99,7 @@
 			files = (
 				4C7D76111D534C6D00932D3A /* ParseUI.framework in Frameworks */,
 				4C7D76091D533CDE00932D3A /* Bolts.framework in Frameworks */,
+				4CBE87A81D55B8DE0034F19A /* MapKit.framework in Frameworks */,
 				4C7D760A1D533CDE00932D3A /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,6 +110,7 @@
 		4C7D75E41D53389C00932D3A = {
 			isa = PBXGroup;
 			children = (
+				4CBE87A71D55B8DE0034F19A /* MapKit.framework */,
 				4C7D76101D534C6D00932D3A /* ParseUI.framework */,
 				4C7D76071D533CDE00932D3A /* Bolts.framework */,
 				4C7D76081D533CDE00932D3A /* Parse.framework */,
@@ -148,6 +161,10 @@
 			children = (
 				4C7D76151D53FA1700932D3A /* ProgressListViewController.h */,
 				4C7D76161D53FA1700932D3A /* ProgressListViewController.m */,
+				4C7D76361D55A7D800932D3A /* MapViewController.h */,
+				4C7D76371D55A7D800932D3A /* MapViewController.m */,
+				4C7D76391D55A7E700932D3A /* LeaderBoardViewController.h */,
+				4C7D763A1D55A7E700932D3A /* LeaderBoardViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -265,6 +282,8 @@
 		4C7D76321D55276A00932D3A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4CBE87A91D55BC8F0034F19A /* LocationController.h */,
+				4CBE87AA1D55BC8F0034F19A /* LocationController.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -301,6 +320,11 @@
 				TargetAttributes = {
 					4C7D75EC1D53389C00932D3A = {
 						CreatedOnToolsVersion = 7.3.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -346,8 +370,11 @@
 				048DB9461D53F65900604726 /* SetupViewController.m in Sources */,
 				4C7D75F81D53389C00932D3A /* ViewController.m in Sources */,
 				4C7D761C1D53FD8B00932D3A /* Quest.m in Sources */,
+				4CBE87AB1D55BC8F0034F19A /* LocationController.m in Sources */,
 				4C7D75F51D53389C00932D3A /* AppDelegate.m in Sources */,
+				4C7D763B1D55A7E700932D3A /* LeaderBoardViewController.m in Sources */,
 				4C7D75F21D53389C00932D3A /* main.m in Sources */,
+				4C7D76381D55A7D800932D3A /* MapViewController.m in Sources */,
 				4C7D761F1D5400A900932D3A /* Player.m in Sources */,
 				4C7D76171D53FA1700932D3A /* ProgressListViewController.m in Sources */,
 				4C7D76351D5546F700932D3A /* Objective.m in Sources */,

@@ -10,13 +10,15 @@
 #import "Quest.h"
 #import "Player.h"
 #import "Route.h"
+#import "Objective.h"
 @import Parse;
+#import "MapViewController.h"
 
 @interface ProgressListViewController () <UITableViewDelegate, UITableViewDataSource>
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) Quest *currentQuest;
+//@property (strong, nonatomic) Quest *currentQuest;
 
 @end
 
@@ -27,15 +29,11 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self setup];
-    NSLog(@"%lu", (unsigned long)self.currentQuest.route.waypoints.count);
-//    NSLog(@"NAME: %@", self.currentQuest.name);
-
 }
 
 
 -(void) setup {
     
-    NSLog(@"Function called");
     PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
     __weak typeof (self) weakSelf = self;
     
@@ -47,15 +45,13 @@
                 {
                     if ([quest.name isEqualToString:@"Rick's Pub Crawl"]) {
                         NSLog(@"%@", quest.name);
-                    
                         quest.route = [Route demoRoute];
-                       
-                        self.currentQuest = quest;
+                        strongSelf.currentQuest = quest;
                         NSLog(@"%lu", (unsigned long)quest.route.waypoints.count);
                         NSLog(@"%@", quest.route);
-                        [self.tableView reloadData];
+                        [strongSelf.tableView reloadData];
                     }
-//                    //                        NSLog(@"Reminder: %@", reminder.name );
+                    
 //                    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake( reminder.location.latitude, reminder.location.longitude);
 //                    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, 50.0, 50.0);
 //                    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
@@ -83,16 +79,22 @@
 //                [strongSelf.mapView showAnnotations:strongSelf.mapView.annotations animated:YES];
                 
             }];
+        } else {
+            NSLog(@"ERROR: %@", error.localizedDescription);
         }
     }];
-    
-    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    cell.textLabel.text = @"test";
+    
+//    cell.textLabel.text = self.currentQuest.route.waypoints[0];
+//    NSLog(@"TESTING: %@", self.currentQuest.route.waypoints[0]);
+    Objective *objective = self.currentQuest.route.waypoints[indexPath.row];
+    NSLog(@"Objective name: %@", objective.name);
+    cell.textLabel.text = objective.category;
     return cell;
    
 }
@@ -101,6 +103,8 @@
     
     return self.currentQuest.route.waypoints.count;
 }
+
+
 
 
 @end
