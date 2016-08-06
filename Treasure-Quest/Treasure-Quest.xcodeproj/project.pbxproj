@@ -33,6 +33,8 @@
 		4C7D763B1D55A7E700932D3A /* LeaderBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D763A1D55A7E700932D3A /* LeaderBoardViewController.m */; };
 		4CBE87A81D55B8DE0034F19A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBE87A71D55B8DE0034F19A /* MapKit.framework */; };
 		4CBE87AB1D55BC8F0034F19A /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBE87AA1D55BC8F0034F19A /* LocationController.m */; };
+		8BF2B1D41D567CBD0071DE20 /* JSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2B1D31D567CBD0071DE20 /* JSONParser.m */; };
+		8BF2B1D71D567DC10071DE20 /* FoursquareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2B1D61D567DC10071DE20 /* FoursquareAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -90,6 +92,10 @@
 		4CBE87A71D55B8DE0034F19A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4CBE87A91D55BC8F0034F19A /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
 		4CBE87AA1D55BC8F0034F19A /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
+		8BF2B1D21D567CBD0071DE20 /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
+		8BF2B1D31D567CBD0071DE20 /* JSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONParser.m; sourceTree = "<group>"; };
+		8BF2B1D51D567DC10071DE20 /* FoursquareAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoursquareAPI.h; sourceTree = "<group>"; };
+		8BF2B1D61D567DC10071DE20 /* FoursquareAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoursquareAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +148,8 @@
 			isa = PBXGroup;
 			children = (
 				4C7D75F11D53389C00932D3A /* main.m */,
+				8BF2B1D21D567CBD0071DE20 /* JSONParser.h */,
+				8BF2B1D31D567CBD0071DE20 /* JSONParser.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -241,6 +249,8 @@
 		4C7D762D1D55263200932D3A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8BF2B1D51D567DC10071DE20 /* FoursquareAPI.h */,
+				8BF2B1D61D567DC10071DE20 /* FoursquareAPI.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -368,6 +378,7 @@
 				4C7D76221D54033900932D3A /* Playfield.m in Sources */,
 				4C7D76251D54044F00932D3A /* Route.m in Sources */,
 				048DB9461D53F65900604726 /* SetupViewController.m in Sources */,
+				8BF2B1D71D567DC10071DE20 /* FoursquareAPI.m in Sources */,
 				4C7D75F81D53389C00932D3A /* ViewController.m in Sources */,
 				4C7D761C1D53FD8B00932D3A /* Quest.m in Sources */,
 				4CBE87AB1D55BC8F0034F19A /* LocationController.m in Sources */,
@@ -379,6 +390,7 @@
 				4C7D76171D53FA1700932D3A /* ProgressListViewController.m in Sources */,
 				4C7D76351D5546F700932D3A /* Objective.m in Sources */,
 				048DB9491D54015C00604726 /* PlayfieldViewController.m in Sources */,
+				8BF2B1D41D567CBD0071DE20 /* JSONParser.m in Sources */,
 				048DB94C1D5403FE00604726 /* SummaryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
