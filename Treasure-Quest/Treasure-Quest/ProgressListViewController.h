@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Quest.h"
 
 @interface ProgressListViewController : UIViewController
+
+@property (strong, nonatomic) Quest *currentQuest;
+
 
 @end
