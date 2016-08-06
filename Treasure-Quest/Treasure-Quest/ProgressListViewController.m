@@ -31,7 +31,6 @@
     [self setup];
 }
 
-
 -(void) setup {
     
     PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
