@@ -30,6 +30,7 @@
     self = [super init];
     
     if (self) {
+        
         _locationManager = [[CLLocationManager alloc]init];
         _locationManager.delegate = self;
         _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
