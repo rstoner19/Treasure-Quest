@@ -13,7 +13,7 @@
 
 @implementation FoursquareAPI
 
-+(void)getFoursquareData:(NSString *)userData completionHandler:(fourquareFetchCompletion)completionHandler
++(void)getFoursquareData:(NSString *)userData completionHandler:(foursquareFetchCompletion)completionHandler
 {
     NSDate *currDate = [NSDate date];
     NSDateFormatter *dateFormmer = [[NSDateFormatter alloc]init];
@@ -57,7 +57,7 @@
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         
-        [manager GET:response parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        [manager GET:URLString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
             
             //
             
@@ -78,5 +78,6 @@
         }];
     }
 }
+
 
 @end

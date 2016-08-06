@@ -35,6 +35,8 @@
 		4CBE87AB1D55BC8F0034F19A /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBE87AA1D55BC8F0034F19A /* LocationController.m */; };
 		8BF2B1D41D567CBD0071DE20 /* JSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2B1D31D567CBD0071DE20 /* JSONParser.m */; };
 		8BF2B1D71D567DC10071DE20 /* FoursquareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2B1D61D567DC10071DE20 /* FoursquareAPI.m */; };
+		8BF2B1D91D56A0F70071DE20 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF2B1D81D56A0F70071DE20 /* AFNetworking.framework */; };
+		8BF2B1DA1D56A16E0071DE20 /* AFNetworking.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8BF2B1D81D56A0F70071DE20 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +46,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8BF2B1DA1D56A16E0071DE20 /* AFNetworking.framework in CopyFiles */,
 				4C7D76121D534D5600932D3A /* ParseUI.framework in CopyFiles */,
 				4C7D760E1D533D5200932D3A /* Bolts.framework in CopyFiles */,
 				4C7D760F1D533D5200932D3A /* Parse.framework in CopyFiles */,
@@ -96,6 +99,7 @@
 		8BF2B1D31D567CBD0071DE20 /* JSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONParser.m; sourceTree = "<group>"; };
 		8BF2B1D51D567DC10071DE20 /* FoursquareAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoursquareAPI.h; sourceTree = "<group>"; };
 		8BF2B1D61D567DC10071DE20 /* FoursquareAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoursquareAPI.m; sourceTree = "<group>"; };
+		8BF2B1D81D56A0F70071DE20 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C7D76111D534C6D00932D3A /* ParseUI.framework in Frameworks */,
+				8BF2B1D91D56A0F70071DE20 /* AFNetworking.framework in Frameworks */,
 				4C7D76091D533CDE00932D3A /* Bolts.framework in Frameworks */,
 				4CBE87A81D55B8DE0034F19A /* MapKit.framework in Frameworks */,
 				4C7D760A1D533CDE00932D3A /* Parse.framework in Frameworks */,
@@ -116,6 +121,7 @@
 		4C7D75E41D53389C00932D3A = {
 			isa = PBXGroup;
 			children = (
+				8BF2B1D81D56A0F70071DE20 /* AFNetworking.framework */,
 				4CBE87A71D55B8DE0034F19A /* MapKit.framework */,
 				4C7D76101D534C6D00932D3A /* ParseUI.framework */,
 				4C7D76071D533CDE00932D3A /* Bolts.framework */,

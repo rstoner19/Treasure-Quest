@@ -7,8 +7,11 @@
 //
 
 #import "SummaryViewController.h"
+#import "FoursquareAPI.h"
 
 @interface SummaryViewController ()
+
+@property (strong, nonatomic) NSArray *searchResults;
 
 @end
 
@@ -24,14 +27,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    NSString *token = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
+    
+    if (token)
+    {
+        [FoursquareAPI getFoursquareData:@"query" completionHandler:^(NSArray *results, NSError *error) {
+            if (error)
+            {
+                NSLog(@"%@", error.localizedDescription);
+            }
+            self.searchResults = results;
+        }];
+    }
 }
-*/
 
 @end
