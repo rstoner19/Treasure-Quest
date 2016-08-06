@@ -13,7 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *gameCodeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gameDescriptionLabel;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
