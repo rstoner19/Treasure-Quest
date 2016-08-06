@@ -10,4 +10,9 @@
 
 @implementation Playfield
 
+//@dynamic coordinate;
+//@dynamic minRadius;
+//@dynamic maxRadius;
+
+
 @end

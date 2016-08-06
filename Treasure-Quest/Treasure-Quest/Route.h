@@ -6,14 +6,15 @@
 //  Copyright © 2016 Michael Sweeney. All rights reserved.
 //
 
-#import <Parse/Parse.h>
+
 #import "Playfield.h"
 
-@interface Route : PFObject <PFSubclassing>
+@interface Route : NSObject
 
-@property (strong, nonatomic) PFGeoPoint *finalDestination;
+@property CLLocationCoordinate2D finalDestination;
 @property (strong, nonatomic) Playfield *playfield;
 @property (strong, nonatomic) NSMutableArray *waypoints;
++(Route *)demoRoute;
 
 
 @end

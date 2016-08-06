@@ -8,7 +8,16 @@
 
 #import "Quest.h"
 
+
 @implementation Quest
+
+@dynamic name;
+@dynamic info;
+@dynamic creator;
+@dynamic players;
+@dynamic maxplayers;
+@synthesize route;
+
 
 +(void)load{
     [self registerSubclass];
