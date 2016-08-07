@@ -8,6 +8,7 @@
 
 #import "WaitPageViewController.h"
 #import "Route.h"
+#import "Quest.h"
 
 @interface WaitPageViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
@@ -49,6 +50,40 @@
     self.questNameLabel.text = @"Quest Name Variable Here";
     self.gameCodeLabel.text = @"game Code var";
     self.gameDescriptionLabel.text = @"description here";
+    
+    int players = 3;
+    
+    for (int i = 0; i < players; i++) {
+        NSLog(@"%i", i);
+        switch (i) {
+            case 0:
+            case 1:
+                self.waitingTeamOne.hidden = NO;
+                self.waitingImageOne.hidden = NO;
+                self.waitingTeamTwo.hidden = YES;
+//                if (team1joined) {
+//                    self.waitingTeamOne.layer.opacity = 1.0;
+//                    self.waitingImageOne.layer.opacity = 1.0;
+//                }
+            case 2:
+                self.waitingTeamTwo.hidden = NO;
+                self.waitingImageTwo.hidden = NO;
+                self.waitingTeamThree.hidden = YES;
+            case 3:
+                self.waitingTeamThree.hidden = NO;
+                self.waitingImageThree.hidden = NO;
+                self.waitingTeamFour.hidden = YES;
+            case 4:
+                self.waitingTeamFour.hidden = NO;
+                self.waitingImageFour.hidden = NO;
+                self.waitingTeamFive.hidden = YES;
+            case 5:
+                self.waitingTeamFive.hidden = NO;
+                self.waitingImageFive.hidden = NO;
+            default:
+                break;
+        }
+    }
     
 }
 
