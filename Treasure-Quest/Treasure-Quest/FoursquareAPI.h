@@ -14,6 +14,7 @@ typedef void(^foursquareFetchCompletion)(NSArray *results, NSError *error);
 
 @property (strong, nonatomic)NSString* name;
 @property (strong, nonatomic)NSString* location;
+@property (strong, nonatomic)NSString* id;
 
 +(void)getFoursquareData:(NSString *)userData completionHandler:(foursquareFetchCompletion)completionHandler;
 
