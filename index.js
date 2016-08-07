@@ -15,6 +15,7 @@ if (process.env.APNS_ENABLE) {
   pushConfig['ios'] = [
     {
       pfx: 'certs/treasure-quest.p12', // P12 file only
+      passphrase: '2storyboards',
       bundleId: 'com.derekgraham.treasurequest',  // change to match bundleId
       production: false // dev certificate
     }
