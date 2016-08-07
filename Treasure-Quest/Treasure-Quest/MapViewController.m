@@ -28,7 +28,7 @@
     [self.mapView setShowsUserLocation:YES];
     [self.mapView setDelegate:self];
 
-    
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -39,26 +39,26 @@
 //    NSLog(@"MAPS CURRENT OBJECTIVES: %@", self.currentQuest.route.waypoints);
     [self setupObjectiveAnnotations];
 
-    
+
 }
 
 
 -(void)setupObjectiveAnnotations{
-    
+
     NSArray *objectives = self.currentQuest.route.waypoints;
-    
+
     Objective *firstCompleted = objectives[0];
     firstCompleted.completed = YES;
-    
+
     for (Objective *objective in objectives) {
-        
+
         if(objective.completed == YES){
-            
-            CLLocationCoordinate2D loc = objective.location;
-            MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
-            newPoint.coordinate = loc;
-            newPoint.title = objective.name;
-            [self.mapView addAnnotation:newPoint];
+
+          CLLocationCoordinate2D loc = objective.location.coordinate;
+          MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+          newPoint.coordinate = loc;
+          newPoint.title = objective.name;
+          [self.mapView addAnnotation:newPoint];
 
         }
     }
@@ -66,27 +66,27 @@
 
 -(void)setRegionForCoordinate:(MKCoordinateRegion)region {
     [self.mapView setRegion:region animated:YES];
-    
+
 }
 
 -(void)locationControllerDidUpdateLocation:(CLLocation *)location{
-    
+
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 500, 500) animated:YES];
-    
+
 }
 
 -(void)locationControllerDidUpdateHeading:(CLHeading *)heading{
-    
+
     NSLog(@"Heading changed... implement more codez");
-    
+
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    
+
     if ([annotation isKindOfClass:[MKUserLocation class]]) { return nil; }
-    
+
     MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"annotationView"];
-    
+
     if (!annotationView) {
         annotationView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"annotationView"];
     }
