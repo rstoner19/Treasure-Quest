@@ -53,17 +53,51 @@
     return totalDistance;
 }
 
-//+ (Route *)randomizeRoute:(Route *)originalRoute {
-//    Route *copyRoute = [Route mutableCopy];
-//    NSMutableArray *randomizedArray = [[NSMutableArray alloc]init];
-//    while (copyArray.count > 1) {
-//        int index = (int)(arc4random() * copyArray.count % ( copyArray.count - 1 ));
-//        [randomizedArray addObject:[copyArray objectAtIndex:index]];
-//        [copyArray removeObjectAtIndex:index];
-//    }
-//    [randomizedArray addObject:copyArray.lastObject];
-//    return randomizedArray;
-//}
++ (Route *)randomizeRoute:(Route *)originalRoute {
+    Route *copyRoute = [[Route alloc]init];
+    copyRoute.finalDestination = originalRoute.finalDestination;
+    copyRoute.playfield.coordinate = originalRoute.playfield.coordinate;
+    copyRoute.playfield.minRadius = originalRoute.playfield.minRadius;
+    copyRoute.playfield.maxRadius = originalRoute.playfield.maxRadius;
+    copyRoute.waypoints = [[NSMutableArray alloc]init];
+
+    NSMutableArray *objectivesCopy = [originalRoute.waypoints mutableCopy];
+
+    while (objectivesCopy.count > 1) {
+        int index = (int)(arc4random() * objectivesCopy.count % ( objectivesCopy.count - 1 ));
+        [copyRoute.waypoints addObject:[objectivesCopy objectAtIndex:index]];
+        [objectivesCopy removeObjectAtIndex:index];
+    }
+    [copyRoute.waypoints addObject:objectivesCopy.lastObject];
+    return copyRoute;
+}
+
++ (NSMutableArray *)verifyDistanceRange:(Route *)originalRoute players:(int)players{
+    
+    NSMutableArray *fairObjectives = [[NSMutableArray alloc]init];
+    double averageDistance = 0;
+    int othercount = 0;
+    for (int i = 0; i < 25; i++) {
+        averageDistance += [self totalDistanceCrowFlies:[self randomizeRoute:originalRoute]];
+        othercount ++;
+    }
+    
+    averageDistance = averageDistance/25;
+    NSLog(@"%d and average: %f", othercount, averageDistance);
+    while (fairObjectives.count < players) {
+        Route *randomRoute = [self randomizeRoute:originalRoute];
+        if (averageDistance * 0.925 < [self totalDistanceCrowFlies:randomRoute] && averageDistance * 1.075 > [self totalDistanceCrowFlies:randomRoute]) {
+            [fairObjectives addObject:randomRoute];
+        }
+    }
+    //FOR TESTING PURPOSES.. CAN BE DELETED IF TEST ARE DONE AND IT WORKS
+    int count = 1;
+    for (Route *objective in fairObjectives) {
+        NSLog(@"Player %i,: %f", count, [self totalDistanceCrowFlies:objective]);
+        count ++;
+    }
+    return fairObjectives;
+}
 
 
 @end

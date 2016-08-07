@@ -35,6 +35,9 @@
     [super viewDidLoad];
     [self setupViewController];
     NSLog(@"Distance: %f", [Route totalDistanceCrowFlies:[Route demoRoute]]);
+    NSLog(@"Distance2: %f", [Route totalDistanceCrowFlies:[Route randomizeRoute:[Route demoRoute]]]);
+    NSLog(@"Distance: %f", [Route totalDistanceCrowFlies:[Route demoRoute]]);
+    [Route verifyDistanceRange:[Route demoRoute] players:5];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -51,7 +51,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Questinations" id="eNh-cu-gs2">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="k6s-Nz-rmO"/>
+                        <barButtonItem key="rightBarButtonItem" id="k6s-Nz-rmO"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
