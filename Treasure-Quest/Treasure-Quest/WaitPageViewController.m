@@ -51,35 +51,35 @@
     self.gameCodeLabel.text = @"game Code var";
     self.gameDescriptionLabel.text = @"description here";
     
-    int players = 3;
+    int players = 5;
     
     for (int i = 0; i < players; i++) {
-        NSLog(@"%i", i);
         switch (i) {
             case 0:
             case 1:
-                self.waitingTeamOne.hidden = NO;
-                self.waitingImageOne.hidden = NO;
-                self.waitingTeamTwo.hidden = YES;
+                self.waitingTeamOne.layer.hidden = NO;
+                self.waitingImageOne.layer.hidden = NO;
 //                if (team1joined) {
 //                    self.waitingTeamOne.layer.opacity = 1.0;
 //                    self.waitingImageOne.layer.opacity = 1.0;
 //                }
+                break;
             case 2:
-                self.waitingTeamTwo.hidden = NO;
-                self.waitingImageTwo.hidden = NO;
-                self.waitingTeamThree.hidden = YES;
+                self.waitingTeamTwo.layer.hidden = NO;
+                self.waitingImageTwo.layer.hidden = NO;
+                break;
             case 3:
-                self.waitingTeamThree.hidden = NO;
-                self.waitingImageThree.hidden = NO;
-                self.waitingTeamFour.hidden = YES;
+                self.waitingTeamThree.layer.hidden = NO;
+                self.waitingImageThree.layer.hidden = NO;
+                break;
             case 4:
-                self.waitingTeamFour.hidden = NO;
-                self.waitingImageFour.hidden = NO;
-                self.waitingTeamFive.hidden = YES;
+                self.waitingTeamFour.layer.hidden = NO;
+                self.waitingImageFour.layer.hidden = NO;
+                break;
             case 5:
-                self.waitingTeamFive.hidden = NO;
-                self.waitingImageFive.hidden = NO;
+                self.waitingTeamFive.layer.hidden = NO;
+                self.waitingImageFive.layer.hidden = NO;
+                break;
             default:
                 break;
         }
