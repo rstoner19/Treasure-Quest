@@ -47,12 +47,20 @@
     
     NSArray *objectives = self.currentQuest.route.waypoints;
     
+    Objective *firstCompleted = objectives[0];
+    firstCompleted.completed = YES;
+    
     for (Objective *objective in objectives) {
-        CLLocationCoordinate2D loc = objective.location;
-        MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
-        newPoint.coordinate = loc;
-        newPoint.title = objective.name;
-        [self.mapView addAnnotation:newPoint];
+        
+        if(objective.completed == YES){
+            
+            CLLocationCoordinate2D loc = objective.location;
+            MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+            newPoint.coordinate = loc;
+            newPoint.title = objective.name;
+            [self.mapView addAnnotation:newPoint];
+
+        }
     }
 }
 

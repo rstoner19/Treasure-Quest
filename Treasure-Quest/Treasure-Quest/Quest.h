@@ -21,6 +21,4 @@
 @property (strong, nonatomic) NSNumber *maxplayers;
 @property (strong, nonatomic) Route *route;
 
-
-
 @end

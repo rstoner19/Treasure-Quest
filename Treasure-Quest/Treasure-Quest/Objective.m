@@ -18,6 +18,7 @@
     newObjective.info = info;
     newObjective.category = category;
     newObjective.location = location;
+    newObjective.completed = NO;
     
 
     return newObjective;

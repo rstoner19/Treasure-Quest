@@ -147,7 +147,7 @@
 			children = (
 				4C7D762A1D5525F900932D3A /* Shared */,
 				4C7D76281D5525B700932D3A /* Create Workflow */,
-				4C7D76181D53FA1C00932D3A /* Join Workflow */,
+				4C7D76181D53FA1C00932D3A /* Play Workflow */,
 				048DB94D1D553AD600604726 /* Wait WorkFlow */,
 				4C7D75F01D53389C00932D3A /* Supporting Files */,
 			);
@@ -162,14 +162,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4C7D76181D53FA1C00932D3A /* Join Workflow */ = {
+		4C7D76181D53FA1C00932D3A /* Play Workflow */ = {
 			isa = PBXGroup;
 			children = (
 				4C7D76321D55276A00932D3A /* Model */,
 				4C7D76311D55276200932D3A /* View */,
 				4C7D76191D53FAA700932D3A /* Controller */,
 			);
-			name = "Join Workflow";
+			name = "Play Workflow";
 			sourceTree = "<group>";
 		};
 		4C7D76191D53FAA700932D3A /* Controller */ = {

@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSString *category;
 @property (strong, nonatomic) NSNumber *range;
 @property CLLocationCoordinate2D location;
+@property Boolean completed;
 
 +(instancetype)initWith: (NSString *)name imageURL:(NSString *)imageURL info:(NSString *)info category: (NSString *)category range: (NSNumber *)range location:(CLLocationCoordinate2D)location;
     
