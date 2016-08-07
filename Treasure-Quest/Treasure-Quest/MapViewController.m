@@ -48,7 +48,7 @@
     NSArray *objectives = self.currentQuest.route.waypoints;
     
     for (Objective *objective in objectives) {
-        CLLocationCoordinate2D loc = objective.location;
+        CLLocationCoordinate2D loc = objective.location.coordinate;
         MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
         newPoint.coordinate = loc;
         newPoint.title = objective.name;
