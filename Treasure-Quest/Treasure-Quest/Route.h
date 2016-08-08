@@ -16,6 +16,8 @@
 @property (strong, nonatomic) NSMutableArray *waypoints;
 +(Route *)demoRoute;
 +(double)totalDistanceCrowFlies:(Route *)route;
++(Route *)randomizeRoute:(Route *)originalRoute;
++(NSMutableArray *)verifyDistanceRange:(Route *)originalRoute players:(int)players;
 
 
 
