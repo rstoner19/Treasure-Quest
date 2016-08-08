@@ -46,15 +46,14 @@
 }
 
 - (void)setupViewController {
-    self.questNameLabel.text = @"Quest Name Variable Here";
+    self.questNameLabel.text = self.questName;
     self.gameCodeLabel.text = @"game Code var";
-    self.gameDescriptionLabel.text = @"description here";
+    self.gameDescriptionLabel.text = self.gameDescription;
     
-    int players = 5;
+    int players = [self.players intValue];
     
     for (int i = 0; i < players; i++) {
         switch (i) {
-            case 0:
             case 1:
                 self.waitingTeamOne.layer.hidden = NO;
                 self.waitingImageOne.layer.hidden = NO;
@@ -64,6 +63,8 @@
 //                }
                 break;
             case 2:
+                self.waitingTeamOne.layer.hidden = NO;
+                self.waitingImageOne.layer.hidden = NO;
                 self.waitingTeamTwo.layer.hidden = NO;
                 self.waitingImageTwo.layer.hidden = NO;
                 break;

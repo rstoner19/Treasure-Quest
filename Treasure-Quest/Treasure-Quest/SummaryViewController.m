@@ -8,10 +8,15 @@
 
 #import "SummaryViewController.h"
 #import "FoursquareAPI.h"
+#import "WaitPageViewController.h"
 
 @interface SummaryViewController ()
 
 @property (strong, nonatomic) NSArray *searchResults;
+@property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numberOfPlayersLabel;
+@property (weak, nonatomic) IBOutlet UILabel *objectivesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @end
 
@@ -19,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setupView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +47,24 @@
             }
             self.searchResults = results;
         }];
+    }
+}
+
+- (void)setupView {
+    self.questNameLabel.text = self.questName;
+    self.numberOfPlayersLabel.text = [NSString stringWithFormat:@"Players: %@", self.players];
+    self.objectivesLabel.text = [NSString stringWithFormat:@"Total Objectives: %@", self.objectives];
+    self.descriptionLabel.text = self.gameDescription;
+}
+
+/// Waiting will pull from the server, instead of this will need to populate Objective and push to server.
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"WaitStoryBoard"]) {
+        
+        WaitPageViewController *waitPageViewController = (WaitPageViewController *)segue.destinationViewController;
+        waitPageViewController.players = self.players;
+        waitPageViewController.questName = self.questName;
+        waitPageViewController.gameDescription = self.gameDescription;
     }
 }
 
