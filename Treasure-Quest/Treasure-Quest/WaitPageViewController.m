@@ -8,7 +8,6 @@
 
 #import "WaitPageViewController.h"
 #import "Route.h"
-#import "Quest.h"
 
 @interface WaitPageViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
