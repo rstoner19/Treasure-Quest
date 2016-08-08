@@ -20,5 +20,6 @@
 @property(strong, nonatomic)NSString *currentLat;
 @property(strong, nonatomic)NSString *currentLong;
 @property (strong, nonatomic) CLLocation *currentUserLocation;
+@property (nonatomic,readwrite,assign) CLLocationCoordinate2D coordinate;
 
 @end

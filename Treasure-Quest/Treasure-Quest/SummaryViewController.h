@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlayfieldViewController.h"
+#import "LocationController.h"
 
 @interface SummaryViewController : UIViewController
 
