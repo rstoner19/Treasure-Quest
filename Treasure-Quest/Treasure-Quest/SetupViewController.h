@@ -10,4 +10,7 @@
 
 @interface SetupViewController : UIViewController
 
+@property(strong, nonatomic)NSArray *playersPickerData;
+
+
 @end

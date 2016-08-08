@@ -18,32 +18,41 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) Quest *currentQuest;
 
+
 @end
 
 @implementation MapViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setShowsUserLocation:YES];
     [self.mapView setDelegate:self];
-
+    [self.mapView setZoomEnabled:NO];
+    [self.mapView setScrollEnabled:NO];
+    [self.mapView setRotateEnabled:YES];
+    [self.mapView setShowsBuildings:YES];
+    [self.mapView setPitchEnabled:YES];
+    [self.mapView setShowsPointsOfInterest:YES];
+    [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
+    self.mapView.camera.pitch = 70;
 
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     [[LocationController sharedController]setDelegate:self];
     [[[LocationController sharedController]locationManager]startUpdatingLocation];
+    [[[LocationController sharedController] locationManager]startUpdatingHeading];
     ProgressListViewController *progressListVC = (ProgressListViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
     self.currentQuest = progressListVC.currentQuest;
 //    NSLog(@"MAPS CURRENT OBJECTIVES: %@", self.currentQuest.route.waypoints);
     [self setupObjectiveAnnotations];
 
-
 }
 
-
--(void)setupObjectiveAnnotations{
+-(void)setupObjectiveAnnotations {
 
     NSArray *objectives = self.currentQuest.route.waypoints;
 
@@ -70,15 +79,18 @@
 }
 
 -(void)locationControllerDidUpdateLocation:(CLLocation *)location{
-
-    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 500, 500) animated:YES];
-
+    
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 125, 125) animated:YES];
+    
 }
 
--(void)locationControllerDidUpdateHeading:(CLHeading *)heading{
+-(void)locationControllerDidUpdateHeading:(CLHeading *)heading {
 
-    NSLog(@"Heading changed... implement more codez");
-
+    NSLog(@"mapview current heading: %f", _currentHeading);
+    //self.mapView.camera.heading = _currentHeading;
+    self.mapView.camera.pitch = 70;
+    self.mapView.camera.altitude = 100;
+    
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -96,5 +108,6 @@
     annotationView.rightCalloutAccessoryView = calloutButton;
     return annotationView;
 }
+
 
 @end

@@ -35,6 +35,9 @@
     [super viewDidLoad];
     [self setupViewController];
     NSLog(@"Distance: %f", [Route totalDistanceCrowFlies:[Route demoRoute]]);
+    NSLog(@"Distance2: %f", [Route totalDistanceCrowFlies:[Route randomizeRoute:[Route demoRoute]]]);
+    NSLog(@"Distance: %f", [Route totalDistanceCrowFlies:[Route demoRoute]]);
+    [Route verifyDistanceRange:[Route demoRoute] players:5];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,6 +49,40 @@
     self.questNameLabel.text = @"Quest Name Variable Here";
     self.gameCodeLabel.text = @"game Code var";
     self.gameDescriptionLabel.text = @"description here";
+    
+    int players = 5;
+    
+    for (int i = 0; i < players; i++) {
+        switch (i) {
+            case 0:
+            case 1:
+                self.waitingTeamOne.layer.hidden = NO;
+                self.waitingImageOne.layer.hidden = NO;
+//                if (team1joined) {
+//                    self.waitingTeamOne.layer.opacity = 1.0;
+//                    self.waitingImageOne.layer.opacity = 1.0;
+//                }
+                break;
+            case 2:
+                self.waitingTeamTwo.layer.hidden = NO;
+                self.waitingImageTwo.layer.hidden = NO;
+                break;
+            case 3:
+                self.waitingTeamThree.layer.hidden = NO;
+                self.waitingImageThree.layer.hidden = NO;
+                break;
+            case 4:
+                self.waitingTeamFour.layer.hidden = NO;
+                self.waitingImageFour.layer.hidden = NO;
+                break;
+            case 5:
+                self.waitingTeamFive.layer.hidden = NO;
+                self.waitingImageFive.layer.hidden = NO;
+                break;
+            default:
+                break;
+        }
+    }
     
 }
 

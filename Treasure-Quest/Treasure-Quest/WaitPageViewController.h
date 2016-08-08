@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Quest.h"
+
 
 @interface WaitPageViewController : UIViewController
+
+@property(strong, nonatomic)Quest *createdQuest;
 
 @end
