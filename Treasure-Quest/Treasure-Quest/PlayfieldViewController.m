@@ -98,10 +98,15 @@
         
         MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
         newPoint.coordinate = touchMapCoordinate;
-        NSLog(@"%f", newPoint.coordinate);
-        pinLocation = newpoint.coordinate;
         newPoint.title = @"Select Final Location!";
         newPoint.subtitle = @"End the quest here.";
+        
+        CLLocation *tempLocal = [[CLLocation alloc]initWithLatitude:newPoint.coordinate.latitude longitude:newPoint.coordinate.longitude];
+        
+        [LocationController sharedController].pinLocation = tempLocal;
+        
+        
+        //newPoint.coordinate = CLLocationCoordinate2DMake(tempLocal.coordinate.latitude, tempLocal.coordinate.longitude);
         
         [self.mapView addAnnotation:newPoint];
         
