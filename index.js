@@ -29,7 +29,6 @@ var api = new ParseServer({
   appId: process.env.APP_ID || 'tresQ',
   masterKey: process.env.MASTER_KEY || 'bestGroup', //Add your master key here. Keep it secret!
   push: pushConfig,
-  filesAdapter: filesAdapter,
   serverURL: process.env.SERVER_URL || 'http://localhost/parse'  // needed for Parse Cloud and push notifications
 });
 
