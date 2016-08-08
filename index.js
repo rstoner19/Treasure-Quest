@@ -4,6 +4,7 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
+var pushConfig = [];
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -11,11 +12,11 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
+console.log('TREASURE-QUEST was here!');
 if (process.env.APNS_ENABLE) {
   pushConfig['ios'] = [
     {
       pfx: 'certs/treasure-quest.p12', // P12 file only
-      passphrase: '2storyboards',
       bundleId: 'com.derekgraham.treasurequest',  // change to match bundleId
       production: false // dev certificate
     }
