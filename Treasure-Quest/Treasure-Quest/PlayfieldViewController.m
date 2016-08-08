@@ -13,11 +13,12 @@
 @interface PlayfieldViewController () <MKMapViewDelegate, MKAnnotation, LocationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-- (IBAction)handleLongPress:(UILongPressGestureRecognizer *)sender;
+
 
 @end
 
 @implementation PlayfieldViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -66,25 +67,26 @@
     }
 }
 
--(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
-{
-    if ([annotation isKindOfClass:[MKUserLocation class]]) { return nil; }
+//-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+//{
+//    if ([annotation isKindOfClass:[MKUserLocation class]]) { return nil; }
+//
+//    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"annotationView"];
+//
+//    if (!annotationView)
+//    {
+//        annotationView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"annotationView"];
+//    }
+//
+//    annotationView.canShowCallout = YES;
+//
+//    UIButton *rightcalloutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//
+//    annotationView.rightCalloutAccessoryView = rightcalloutButton;
+//
+//    return annotationView;
+//}
 
-    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"annotationView"];
-
-    if (!annotationView)
-    {
-        annotationView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"annotationView"];
-    }
-
-    annotationView.canShowCallout = YES;
-
-    UIButton *rightcalloutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-
-    annotationView.rightCalloutAccessoryView = rightcalloutButton;
-
-    return annotationView;
-}
 
 - (IBAction)handleLongPress:(UILongPressGestureRecognizer *)sender
 {
@@ -96,10 +98,14 @@
         
         MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
         newPoint.coordinate = touchMapCoordinate;
+        NSLog(@"%f", newPoint.coordinate);
+        pinLocation = newpoint.coordinate;
         newPoint.title = @"Select Final Location!";
+        newPoint.subtitle = @"End the quest here.";
         
         [self.mapView addAnnotation:newPoint];
         
     }
 }
+
 @end

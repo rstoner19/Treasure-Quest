@@ -32,20 +32,22 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)locationControllerDidUpdateHeading:(CLHeading *)heading
-{
-    //
-}
-
--(void)locationControllerDidUpdateLocation:(CLLocation *)location
-{
-    self.finalLat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-    self.finalLong = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
-}
+//-(void)locationControllerDidUpdateHeading:(CLHeading *)heading
+//{
+//    //
+//}
+//
+//-(void)locationControllerDidUpdateLocation:(CLLocation *)location
+//{
+//    self.finalLat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+//    self.finalLong = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+//}
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    
     
     NSString *token = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
     
