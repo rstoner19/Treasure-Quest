@@ -59,6 +59,7 @@
             self.searchResults = results;
         }];
     }
+
 }
 
 - (void)setupView {
