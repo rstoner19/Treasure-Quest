@@ -229,12 +229,12 @@
 		4C7D76291D5525DB00932D3A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				048DB94A1D5403FE00604726 /* SummaryViewController.h */,
-				048DB94B1D5403FE00604726 /* SummaryViewController.m */,
 				048DB9441D53F65900604726 /* SetupViewController.h */,
 				048DB9451D53F65900604726 /* SetupViewController.m */,
 				048DB9471D54015C00604726 /* PlayfieldViewController.h */,
 				048DB9481D54015C00604726 /* PlayfieldViewController.m */,
+				048DB94A1D5403FE00604726 /* SummaryViewController.h */,
+				048DB94B1D5403FE00604726 /* SummaryViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
