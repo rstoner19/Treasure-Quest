@@ -34,7 +34,7 @@
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
     
-    [self registerForNotification];
+//    [self registerForNotification];
     
     return YES;
 }
