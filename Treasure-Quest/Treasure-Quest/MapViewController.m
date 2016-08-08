@@ -55,8 +55,9 @@
     self.currentQuest = progressListVC.currentQuest;
 //    NSLog(@"MAPS CURRENT OBJECTIVES: %@", self.currentQuest.route.waypoints);
     [self setupObjectiveAnnotations];
-
+   
 }
+
 
 -(void)setupObjectiveAnnotations {
 
