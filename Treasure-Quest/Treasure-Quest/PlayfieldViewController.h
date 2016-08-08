@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Quest.h"
+#import "LocationController.h"
+@import MapKit;
 
 @interface PlayfieldViewController : UIViewController
 
@@ -15,6 +17,8 @@
 @property(strong, nonatomic)NSString *gameDescription;
 @property(strong, nonatomic)NSNumber *players;
 @property(strong, nonatomic)NSNumber *objectives;
-
+@property(strong, nonatomic)NSString *currentLat;
+@property(strong, nonatomic)NSString *currentLong;
+@property (strong, nonatomic) CLLocation *currentUserLocation;
 
 @end

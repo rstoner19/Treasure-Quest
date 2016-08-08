@@ -10,7 +10,7 @@
 #import "FoursquareAPI.h"
 #import "WaitPageViewController.h"
 
-@interface SummaryViewController ()
+@interface SummaryViewController ()  <LocationControllerDelegate>
 
 @property (strong, nonatomic) NSArray *searchResults;
 @property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
@@ -32,22 +32,34 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)locationControllerDidUpdateHeading:(CLHeading *)heading
+{
+    //
+}
+
+-(void)locationControllerDidUpdateLocation:(CLLocation *)location
+{
+    self.finalLat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+    self.finalLong = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
     NSString *token = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
     
-//    if (token)
-//    {
-//        [FoursquareAPI getFoursquareData:@"query" completionHandler:^(NSArray *results, NSError *error) {
-//            if (error)
-//            {
-//                NSLog(@"%@", error.localizedDescription);
-//            }
-//            self.searchResults = results;
-//        }];
-//    }
+    if (token)
+    {
+        [FoursquareAPI getFoursquareData:@"query" finalLat:self.finalLat finalLong:self.finalLong completionHandler:^(NSArray *results, NSError *error) {
+            if (error)
+            {
+                NSLog(@"%@", error.localizedDescription);
+            }
+            self.searchResults = results;
+        }];
+    }
+
 }
 
 - (void)setupView {
