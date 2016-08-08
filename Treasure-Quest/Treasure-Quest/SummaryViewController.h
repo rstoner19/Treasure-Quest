@@ -14,5 +14,7 @@
 @property(strong, nonatomic)NSString *gameDescription;
 @property(strong, nonatomic)NSNumber *players;
 @property(strong, nonatomic)NSNumber *objectives;
+@property(strong, nonatomic)NSString *finalLat;
+@property(strong, nonatomic)NSString *finalLong;
 
 @end
