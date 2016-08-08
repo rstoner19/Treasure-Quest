@@ -31,12 +31,12 @@
     [self.mapView setDelegate:self];
     [self.mapView setZoomEnabled:NO];
     [self.mapView setScrollEnabled:NO];
-    [self.mapView setRotateEnabled:YES];
+    [self.mapView setRotateEnabled:NO];
     [self.mapView setShowsBuildings:YES];
     [self.mapView setPitchEnabled:YES];
     [self.mapView setShowsPointsOfInterest:YES];
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
-    self.mapView.camera.pitch = 70;
+    self.mapView.camera.pitch = 80;
 
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -80,16 +80,20 @@
 
 -(void)locationControllerDidUpdateLocation:(CLLocation *)location{
     
-    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 125, 125) animated:YES];
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 50, 50) animated:YES];
     
+   // self.mapView.camera.centerCoordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+
 }
 
 -(void)locationControllerDidUpdateHeading:(CLHeading *)heading {
 
-    NSLog(@"mapview current heading: %f", _currentHeading);
-    //self.mapView.camera.heading = _currentHeading;
+    NSLog(@"mapview current heading: %f", heading.trueHeading);
+    self.mapView.camera.heading = heading.trueHeading;
+    
     self.mapView.camera.pitch = 70;
-    self.mapView.camera.altitude = 100;
+    self.mapView.camera.altitude = 250;
+//    self.mapView.camera.heading = 90;
     
 }
 

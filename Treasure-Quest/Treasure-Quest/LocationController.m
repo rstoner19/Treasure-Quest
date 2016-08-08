@@ -60,8 +60,10 @@
     [self.delegate locationControllerDidUpdateHeading:newHeading];
 
     NSLog(@"New Heading: %f", newHeading.trueHeading);
-    MapViewController *mapVC = [[MapViewController alloc]init];
-    mapVC.currentHeading = newHeading.trueHeading;
+//    MapViewController *mapVC = [[MapViewController alloc]init];
+//    mapVC.currentHeading = newHeading.trueHeading;
+//    
+    [self.delegate locationControllerDidUpdateHeading:newHeading];
     
 }
 
