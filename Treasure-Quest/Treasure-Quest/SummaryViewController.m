@@ -38,16 +38,16 @@
     
     NSString *token = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
     
-    if (token)
-    {
-        [FoursquareAPI getFoursquareData:@"query" completionHandler:^(NSArray *results, NSError *error) {
-            if (error)
-            {
-                NSLog(@"%@", error.localizedDescription);
-            }
-            self.searchResults = results;
-        }];
-    }
+//    if (token)
+//    {
+//        [FoursquareAPI getFoursquareData:@"query" completionHandler:^(NSArray *results, NSError *error) {
+//            if (error)
+//            {
+//                NSLog(@"%@", error.localizedDescription);
+//            }
+//            self.searchResults = results;
+//        }];
+//    }
 }
 
 - (void)setupView {
