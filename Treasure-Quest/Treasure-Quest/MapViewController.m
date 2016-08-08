@@ -17,7 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) Quest *currentQuest;
-
+@property float degreesAdjust;
 
 @end
 
@@ -37,6 +37,7 @@
     [self.mapView setShowsPointsOfInterest:YES];
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
     self.mapView.camera.pitch = 80;
+    
 
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -81,7 +82,8 @@
 -(void)locationControllerDidUpdateLocation:(CLLocation *)location{
     
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 50, 50) animated:YES];
-    
+    self.mapView.camera.altitude = 250;
+
    // self.mapView.camera.centerCoordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
 
 }
@@ -113,5 +115,37 @@
     return annotationView;
 }
 
+-(void) calculateAngleToNewObjective:(CLLocation *)userLocation objectiveLocation: (CLLocation *)objectiveLocation {
+    //demo objective
+    [Objective initWith:@"World Class Coffee" imageURL:@"picture.com" info:@"sweet objective" category:@"Resturant" range:@10.0 latitude:47.617212 longitude:-122.3536802];
+    
+    
+    //Quadrant 1
+    if (objectiveLocation.coordinate.latitude > userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude > userLocation.coordinate.longitude) {
+        
+        NSLog(@"quadrant 1");
+        
+    }
+    
+    if (objectiveLocation.coordinate.latitude > userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude < userLocation.coordinate.longitude) {
+        
+        NSLog(@"quadrant 2");
+        
+    }
+    
+    if (objectiveLocation.coordinate.latitude < userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude < userLocation.coordinate.longitude) {
+        
+        NSLog(@"quadrant 3");
+        
+    }
+    
+    if (objectiveLocation.coordinate.latitude < userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude > userLocation.coordinate.longitude) {
+        
+        NSLog(@"quadrant 4");
+        
+    }
+    
+    
+}
 
 @end
