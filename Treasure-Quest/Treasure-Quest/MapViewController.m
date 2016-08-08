@@ -17,7 +17,8 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) Quest *currentQuest;
-@property float degreesAdjust;
+@property float angleToNextObjective;
+@property (strong, nonatomic) Objective *nextObjective;
 
 @end
 
@@ -38,6 +39,10 @@
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
     self.mapView.camera.pitch = 80;
     
+    //demo objective
+    self.nextObjective = [Objective initWith:@"World Class Coffee" imageURL:@"picture.com" info:@"sweet objective" category:@"Resturant" range:@10.0 latitude:47.617212 longitude:-122.3536802];
+//    self.nextObjective = [Objective initWith:@"Space Needle Park" imageURL:@"2ndPicture.com" info:@"kinda cool" category:@"Landmark" range:@10.0 latitude:47.6192848 longitude:-122.3503663];
+//    
 
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -83,7 +88,9 @@
     
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 50, 50) animated:YES];
     self.mapView.camera.altitude = 250;
-
+    [self calculateAngleToNewObjective:location objectiveLocation:self.nextObjective.location];
+    self.currentUserLocation = location;
+    
    // self.mapView.camera.centerCoordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
 
 }
@@ -95,8 +102,7 @@
     
     self.mapView.camera.pitch = 70;
     self.mapView.camera.altitude = 250;
-//    self.mapView.camera.heading = 90;
-    
+    [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:self.nextObjective.location];
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -116,10 +122,7 @@
 }
 
 -(void) calculateAngleToNewObjective:(CLLocation *)userLocation objectiveLocation: (CLLocation *)objectiveLocation {
-    //demo objective
-    [Objective initWith:@"World Class Coffee" imageURL:@"picture.com" info:@"sweet objective" category:@"Resturant" range:@10.0 latitude:47.617212 longitude:-122.3536802];
-    
-    
+   
     //Quadrant 1
     if (objectiveLocation.coordinate.latitude > userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude > userLocation.coordinate.longitude) {
         
@@ -127,25 +130,27 @@
         
     }
     
-    if (objectiveLocation.coordinate.latitude > userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude < userLocation.coordinate.longitude) {
+    else if (objectiveLocation.coordinate.latitude > userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude < userLocation.coordinate.longitude) {
         
         NSLog(@"quadrant 2");
         
     }
     
-    if (objectiveLocation.coordinate.latitude < userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude < userLocation.coordinate.longitude) {
+    else if (objectiveLocation.coordinate.latitude < userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude < userLocation.coordinate.longitude) {
         
         NSLog(@"quadrant 3");
         
     }
     
-    if (objectiveLocation.coordinate.latitude < userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude > userLocation.coordinate.longitude) {
+    else if (objectiveLocation.coordinate.latitude < userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude > userLocation.coordinate.longitude) {
         
         NSLog(@"quadrant 4");
         
     }
     
-    
+    else {
+        NSLog(@"ERROR: quadrant undefined. Check relationship between points");
+    }
 }
 
 @end
