@@ -540,7 +540,7 @@
 				);
 				INFOPLIST_FILE = "Treasure-Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.derekgraham.treasurequest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sweeney.treasurequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -556,7 +556,7 @@
 				);
 				INFOPLIST_FILE = "Treasure-Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.derekgraham.treasurequest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sweeney.treasurequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
