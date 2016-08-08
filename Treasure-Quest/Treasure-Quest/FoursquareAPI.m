@@ -11,22 +11,19 @@
 @import UIKit;
 @import AFNetworking;
 
+
 static NSString * const BaseURLString = @"https://api.foursquare.com/v2/venues/";
 
 @implementation FoursquareAPI
 
-+(void)getFoursquareData:(NSString *)userData completionHandler:(foursquareFetchCompletion)completionHandler
+
++(void)getFoursquareData:(NSString *)userData currentLat:(NSString *)currentLat currentLong:(NSString *)currentLong completionHandler:(foursquareFetchCompletion)completionHandler
 {
     NSString *clientID = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
     NSString *clientSecret = @"HP0YY4ORAIF1Q1DKM4C24EUYHXG0SZBI5CYFZD030APKYIVL";
-    NSString *v = @"20160613";
+    //NSString *v = @"20160613";
    // NSString *venueID = "";
-    NSString *searchURL = [NSString stringWithFormat:@"%@search?ll=40.7,-74&client_id=%@,&client_secret=%@&v=20160613&radius=1000", BaseURLString, clientID, clientSecret];
-    
-//    NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
-//    [params setObject:@"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY" forKey:@"client_id"];
-//    [params setObject:@"HP0YY4ORAIF1Q1DKM4C24EUYHXG0SZBI5CYFZD030APKYIVL "forKey:@"client_secret"];
-//    [params setObject:@"4d4b7104d754a06370d81259" forKey:@"query"];
+    NSString *searchURL = [NSString stringWithFormat:@"%@search?ll=%@%@&client_id=%@&client_secret=%@&v=20160613&radius=1000", BaseURLString, currentLat, currentLong, clientID, clientSecret];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
