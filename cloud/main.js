@@ -34,8 +34,7 @@ Parse.Cloud.define('currentPlayers', function(request, response) {
   var query = new Parse.Query('Quest');
   console.log('calling Current Players!!!');
   console.log(request.params.objectId);
-
-  query.equalTo('objectId', request.params.objectId);
+  query.getElementById(request.params.objectId);
   query.find({
     success: function(results) {
       var players = results[0].get('players');
