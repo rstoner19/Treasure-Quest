@@ -38,7 +38,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self parseQuery];
-    [self setUserItems:3];
 
 }
 
@@ -55,11 +54,16 @@
     self.questNameLabel.text = self.questName;
     self.gameCodeLabel.text = [NSString stringWithFormat:@"Code: %@", self.gameCode];
     self.gameDescriptionLabel.text = self.gameDescription;
+
+    int players = [self.maxPlayers intValue];
     
-    
-    
-    int players = [self.players intValue];
-    
+    [self setWaitingPlayers:players];
+    NSLog(@"Player count: %d",(int)self.players.count);
+    [self setUserItems:(int)self.players.count currentTeam:[self.teamNumber intValue]];
+
+}
+
+- (void)setWaitingPlayers:(int)players {
     for (int i = 0; i <= players; i++) {
         switch (i) {
             case 1:
@@ -100,67 +104,68 @@
                 break;
             default:
                 break;
-            
+                
         }
-       
-    }
-    
-}
-- (void)setUserItems:(int)teamNumber {
-    switch(teamNumber){
-        case 1:
-            self.userTeam.text = @"Blue Team";
-            self.userImage.image = [UIImage imageNamed:@"blueTeam"];
-            self.waitingTeamOne.layer.opacity = 1.0;
-            self.waitingImageOne.layer.opacity = 1.0;
-            break;
-        case 2:
-            self.userTeam.text = @"Red Team";
-            self.userImage.image = [UIImage imageNamed:@"redTeam"];
-            self.waitingTeamTwo.layer.opacity = 1.0;
-            self.waitingImageTwo.layer.opacity = 1.0;
-            break;
-        case 3:
-            self.userTeam.text = @"Green Team";
-            self.userImage.image = [UIImage imageNamed:@"greenTeam"];
-            self.waitingTeamThree.layer.opacity = 1.0;
-            self.waitingImageThree.layer.opacity = 1.0;
-            break;
-        case 4:
-            self.userTeam.text = @"Orange Team";
-            self.userImage.image = [UIImage imageNamed:@"orangeTeam"];
-            self.waitingTeamFour.layer.opacity = 1.0;
-            self.waitingImageFour.layer.opacity = 1.0;
-            break;
-        case 5:
-            self.userTeam.text = @"Purple Team";
-            self.userImage.image = [UIImage imageNamed:@"purpleTeam"];
-            self.waitingTeamFive.layer.opacity = 1.0;
-            self.waitingImageFive.layer.opacity = 1.0;
-            break;
-        case 6:
-            self.userTeam.text = @"Black Team";
-            self.userImage.image = [UIImage imageNamed:@"blackTeam"];
-            self.waitingTeamSix.layer.opacity = 1.0;
-            self.waitingImageSix.layer.opacity = 1.0;
-            break;
-        default:
-            break;
+        
     }
 }
 
-- (void)saveToParse{
-    PFObject *quest = [PFObject objectWithClassName:@"Quest"];
-    quest[@"name"] = self.questName;
-    quest[@"info"] = self.gameDescription;
-    quest[@"maxplayers"] = self.players;
-    NSMutableArray *currentPlayers = [[NSMutableArray alloc]init];
-    [currentPlayers addObject:[PFUser currentUser].objectId];
-    [quest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (!error) {
-            NSLog(@"Saved successfully");
+- (void)setUserItems:(int)registeredTeams currentTeam:(int)currentTeam {
+    for (int i = 0; i <= registeredTeams; i++) {
+        NSLog(@"i: %d, regiesterTeams: %i, currentTeam: %i", i, registeredTeams, currentTeam);
+        switch(i){
+            case 1:
+                if (currentTeam == i) {
+                    self.userTeam.text = @"Blue Team";
+                    self.userImage.image = [UIImage imageNamed:@"blueTeam"];
+                }
+                self.waitingTeamOne.layer.opacity = 1.0;
+                self.waitingImageOne.layer.opacity = 1.0;
+                break;
+            case 2:
+                if (currentTeam == i) {
+                    self.userTeam.text = @"Red Team";
+                    self.userImage.image = [UIImage imageNamed:@"redTeam"];
+                }
+                self.waitingTeamTwo.layer.opacity = 1.0;
+                self.waitingImageTwo.layer.opacity = 1.0;
+                break;
+            case 3:
+                if (currentTeam == i) {
+                    self.userTeam.text = @"Green Team";
+                    self.userImage.image = [UIImage imageNamed:@"greenTeam"];
+                }
+                self.waitingTeamThree.layer.opacity = 1.0;
+                self.waitingImageThree.layer.opacity = 1.0;
+                break;
+            case 4:
+                if (currentTeam == i) {
+                    self.userTeam.text = @"Orange Team";
+                    self.userImage.image = [UIImage imageNamed:@"orangeTeam"];
+                }
+                self.waitingTeamFour.layer.opacity = 1.0;
+                self.waitingImageFour.layer.opacity = 1.0;
+                break;
+            case 5:
+                if (currentTeam == i) {
+                    self.userTeam.text = @"Purple Team";
+                    self.userImage.image = [UIImage imageNamed:@"purpleTeam"];
+                }
+                self.waitingTeamFive.layer.opacity = 1.0;
+                self.waitingImageFive.layer.opacity = 1.0;
+                break;
+            case 6:
+                if (currentTeam == i) {
+                    self.userTeam.text = @"Black Team";
+                    self.userImage.image = [UIImage imageNamed:@"blackTeam"];
+                }
+                self.waitingTeamSix.layer.opacity = 1.0;
+                self.waitingImageSix.layer.opacity = 1.0;
+                break;
+            default:
+                break;
         }
-    }];
+    }
 }
 
 
@@ -175,9 +180,13 @@
                 for (Quest *quest in objects)
                 {
                     if ([quest.name isEqualToString:strongSelf.questName]) {
-                        self.gameCode = quest.objectId;
-                        self.players = quest.maxplayers;
-                        self.gameDescription = quest.info;
+                        self.gameCode= quest.objectId;
+                        self.maxPlayers = quest.maxplayers;
+                        self.gameDescription= quest.info;
+                        self.players = quest.players;
+                        if ([self.players containsObject:[PFUser currentUser].objectId]) {
+                            self.teamNumber = [NSNumber numberWithInt:(int)([self.players indexOfObject:[PFUser currentUser].objectId] + 1)];
+                        }
                         
                         [self setupViewController];
                     }

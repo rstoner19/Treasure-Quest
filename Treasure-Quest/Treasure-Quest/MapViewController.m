@@ -19,6 +19,7 @@
 @property (strong, nonatomic) Quest *currentQuest;
 @property float angleToNextObjective;
 @property (strong, nonatomic) Objective *nextObjective;
+@property (strong, nonatomic) MKPinAnnotationView *userPin;
 
 @end
 
@@ -91,9 +92,9 @@
     self.mapView.camera.altitude = 250;
     [self calculateAngleToNewObjective:location objectiveLocation:self.nextObjective.location];
     self.currentUserLocation = location;
+    [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:self.nextObjective.location];
+    [self changeUserAnnotationColor:self.userPin];
     
-   // self.mapView.camera.centerCoordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-
 }
 
 -(void)locationControllerDidUpdateHeading:(CLHeading *)heading {
@@ -103,12 +104,20 @@
     
     self.mapView.camera.pitch = 70;
     self.mapView.camera.altitude = 250;
+    self.currentHeading = heading.trueHeading;
     [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:self.nextObjective.location];
-}
+    [self changeUserAnnotationColor:self.userPin];
+ }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
 
-    if ([annotation isKindOfClass:[MKUserLocation class]]) { return nil; }
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        
+       self.userPin = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"userAnno"];
+        self.userPin.pinTintColor = [UIColor purpleColor];
+        
+        return [self changeUserAnnotationColor:self.userPin];
+    }
 
     MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"annotationView"];
 
@@ -124,34 +133,43 @@
 
 -(void) calculateAngleToNewObjective:(CLLocation *)userLocation objectiveLocation: (CLLocation *)objectiveLocation {
    
-    //Quadrant 1
-    if (objectiveLocation.coordinate.latitude > userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude > userLocation.coordinate.longitude) {
-        
-        NSLog(@"quadrant 1");
-        
-    }
+    float userLat = userLocation.coordinate.latitude;
+    float userLong = userLocation.coordinate.longitude;
     
-    else if (objectiveLocation.coordinate.latitude > userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude < userLocation.coordinate.longitude) {
-        
-        NSLog(@"quadrant 2");
-        
-    }
+    float objectiveLat = objectiveLocation.coordinate.latitude;
+    float objectiveLong = objectiveLocation.coordinate.longitude;
     
-    else if (objectiveLocation.coordinate.latitude < userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude < userLocation.coordinate.longitude) {
-        
-        NSLog(@"quadrant 3");
-        
-    }
+    float deltaLong = objectiveLong - userLong;
+    float y = sin(deltaLong) * cos(objectiveLat);
+    float x = cos(userLat) * sin(objectiveLat) - sin(userLat) * cos(objectiveLat) * cos(deltaLong);
+    float bearingInRadians = atan2f(y, x);
     
-    else if (objectiveLocation.coordinate.latitude < userLocation.coordinate.latitude && objectiveLocation.coordinate.longitude > userLocation.coordinate.longitude) {
-        
-        NSLog(@"quadrant 4");
+    self.angleToNextObjective = bearingInRadians * 180 / M_PI;
+    
+    NSLog(@"Angle to next objective: %f", self.angleToNextObjective);
+}
+
+-(MKPinAnnotationView*)changeUserAnnotationColor: (MKPinAnnotationView *)userPin {
+    
+     NSLog(@"current heading: %f      objective heading: %f", self.currentHeading, self.angleToNextObjective);
+    if (self.currentHeading <= self.angleToNextObjective + 10 && self.currentHeading >= self.angleToNextObjective - 10) {
+    
+       
+       self.userPin.pinTintColor = [UIColor greenColor];
+        return userPin;
         
     }
     
     else {
-        NSLog(@"ERROR: quadrant undefined. Check relationship between points");
+        
+        self.userPin.pinTintColor = [UIColor yellowColor];
+        return userPin;
     }
+
+}
+
+-(void) compareHeadings:(float)userHeading destinationHeading:(float)destinationHeading  {
+    
 }
 
 @end

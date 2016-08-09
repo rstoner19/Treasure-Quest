@@ -15,8 +15,10 @@
 @property(strong, nonatomic)NSString *questName;
 @property(strong, nonatomic)NSString *gameDescription;
 @property(strong, nonatomic)NSString *gameCode;
-@property(strong, nonatomic)NSNumber *players;
+@property(strong, nonatomic)NSNumber *maxPlayers;
+@property(strong, nonatomic)NSMutableArray *players;
 @property(strong, nonatomic)NSNumber *objectives;
+@property(strong, nonatomic)NSNumber *teamNumber;
 @property(strong, nonatomic)Quest *createdQuest;
 
 @end
