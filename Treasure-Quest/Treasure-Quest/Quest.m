@@ -16,6 +16,7 @@
 @dynamic creator;
 @dynamic players;
 @dynamic maxplayers;
+@dynamic code;
 @synthesize route;
 
 

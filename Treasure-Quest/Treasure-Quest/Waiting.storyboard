@@ -240,7 +240,7 @@
         <!--Enter Code View Controller-->
         <scene sceneID="s6s-Jn-uqe">
             <objects>
-                <viewController id="bFj-So-Eea" customClass="EnterCodeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnterCodeViewController" id="bFj-So-Eea" customClass="EnterCodeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fDU-7f-uSY"/>
                         <viewControllerLayoutGuide type="bottom" id="cTJ-4R-rKL"/>

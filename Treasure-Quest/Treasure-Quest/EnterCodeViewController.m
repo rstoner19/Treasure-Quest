@@ -42,7 +42,7 @@
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 for (Quest *quest in objects)
                 {
-                    if ([quest.code isEqualToString:self.codeTextField.text]) {
+                    if ([quest.objectId isEqualToString:self.codeTextField.text]) {
                         self.questName = quest.name;
                         self.players = quest.players;
                         
@@ -51,8 +51,8 @@
                             [self.players addObject:[PFUser currentUser].objectId];
                         }
                         
-                        PFObject *updateQuest = [PFObject objectWithoutDataWithClassName:@"Quest" objectId:quest.code];
-                        [updateQuest setObject:self.players forKey:@"players"];
+                        PFObject *updateQuest = [PFObject objectWithoutDataWithClassName:@"Quest" objectId:quest.objectId];
+                        updateQuest[@"players"] = self.players;
                         [updateQuest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                             if(!error) {
                                 WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
@@ -79,6 +79,8 @@
             }];
         }
     }];
+    [[self.view viewWithTag:12] stopAnimating];
+
 }
 
 - (IBAction)joinButtonSelected:(UIButton *)sender {
