@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04594DF91D599695007AAAB6 /* EnterCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04594DF81D599695007AAAB6 /* EnterCodeViewController.m */; };
 		048DB9461D53F65900604726 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB9451D53F65900604726 /* SetupViewController.m */; };
 		048DB9491D54015C00604726 /* PlayfieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB9481D54015C00604726 /* PlayfieldViewController.m */; };
 		048DB94C1D5403FE00604726 /* SummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB94B1D5403FE00604726 /* SummaryViewController.m */; };
@@ -58,6 +59,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04594DF71D599695007AAAB6 /* EnterCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterCodeViewController.h; sourceTree = "<group>"; };
+		04594DF81D599695007AAAB6 /* EnterCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterCodeViewController.m; sourceTree = "<group>"; };
 		048DB9441D53F65900604726 /* SetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupViewController.h; sourceTree = "<group>"; };
 		048DB9451D53F65900604726 /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		048DB9471D54015C00604726 /* PlayfieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayfieldViewController.h; sourceTree = "<group>"; };
@@ -123,12 +126,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04594DFA1D5996A2007AAAB6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04594DF71D599695007AAAB6 /* EnterCodeViewController.h */,
+				04594DF81D599695007AAAB6 /* EnterCodeViewController.m */,
+				048DB9501D5544EE00604726 /* WaitPageViewController.h */,
+				048DB9511D5544EE00604726 /* WaitPageViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		048DB94D1D553AD600604726 /* Wait WorkFlow */ = {
 			isa = PBXGroup;
 			children = (
 				048DB94E1D553B0700604726 /* Waiting.storyboard */,
-				048DB9501D5544EE00604726 /* WaitPageViewController.h */,
-				048DB9511D5544EE00604726 /* WaitPageViewController.m */,
+				04594DFA1D5996A2007AAAB6 /* Controller */,
 			);
 			name = "Wait WorkFlow";
 			sourceTree = "<group>";
@@ -416,6 +429,7 @@
 				4C7D76381D55A7D800932D3A /* MapViewController.m in Sources */,
 				4C7D761F1D5400A900932D3A /* Player.m in Sources */,
 				4C7D76171D53FA1700932D3A /* ProgressListViewController.m in Sources */,
+				04594DF91D599695007AAAB6 /* EnterCodeViewController.m in Sources */,
 				4C7D76351D5546F700932D3A /* Objective.m in Sources */,
 				048DB9491D54015C00604726 /* PlayfieldViewController.m in Sources */,
 				8BF2B1D41D567CBD0071DE20 /* JSONParser.m in Sources */,
