@@ -7,10 +7,15 @@
 //
 
 #import "LeaderBoardViewController.h"
-#import <Parse/Parse.h>
+//#import <Parse/Parse.h>
+#import "Quest.h"
+
+@import Parse;
+
 
 @interface LeaderBoardViewController ()
 @property (strong, nonatomic) IBOutlet UIView *pushTestButton;
+@property (strong, nonatomic) Quest *currentQuest;
 
 @end
 
@@ -18,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setup];
 }
 
 - (IBAction)pushTestButtonPressed:(id)sender {
@@ -32,6 +38,21 @@
                                     }
                                 }];
 }
+
+- (void) setup {
+    
+    PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
+    [query getObjectWithId:@"LuX5l9Yirp"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
+        PFObject *obj = [objects firstObject];
+        NSLog(@"%@", obj);
+    }];
+    query
+
+    
+}
+
 
 
 @end
