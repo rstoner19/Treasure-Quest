@@ -18,7 +18,6 @@ Parse.Cloud.define('iosPushTest', function(request, response) {
 
   Parse.Push.send({
     where: pushQuery, // Set our Installation query
-    channels: [user.currentQuestId],
     data: {
       alert: messageText
     }
