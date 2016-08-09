@@ -29,3 +29,20 @@ Parse.Cloud.define('iosPushTest', function(request, response) {
 
   response.success('success');
 });
+
+Parse.Cloud.define('currentPlayers', function(request, response) {
+  var query = new Parse.Query('Quest');
+  query.equalTo('objectId', request.params.objectId);
+  query.find({
+    success: function(results) {
+      var players = results[0].get('players');
+      for (var i = 0; i < players.length; ++i) {
+        myString += players[i];
+      }
+      response.success(myString);
+    },
+    error: function() {
+      response.error(' lookup failed' + results.length + results[0].get('players'));
+    }
+  });
+});
