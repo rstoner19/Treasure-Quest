@@ -8,10 +8,17 @@
 
 #import "SummaryViewController.h"
 #import "FoursquareAPI.h"
+#import "WaitPageViewController.h"
+@import Parse;
 
-@interface SummaryViewController ()
+@interface SummaryViewController ()  <LocationControllerDelegate>
 
 @property (strong, nonatomic) NSArray *searchResults;
+@property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numberOfPlayersLabel;
+@property (weak, nonatomic) IBOutlet UILabel *objectivesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+- (IBAction)createButtonSelected:(UIButton *)sender;
 
 @end
 
@@ -19,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setupView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,15 +34,31 @@
     // Dispose of any resources that can be recreated.
 }
 
+//-(void)locationControllerDidUpdateHeading:(CLHeading *)heading
+//{
+//    //
+//}
+//
+//-(void)locationControllerDidUpdateLocation:(CLLocation *)location
+//{
+//    self.finalLat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+//    self.finalLong = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+//}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
     NSString *token = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
     
+    self.finalLat = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.latitude];
+    
+    self.finalLong = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.longitude];
+    
+    
     if (token)
     {
-        [FoursquareAPI getFoursquareData:@"query" completionHandler:^(NSArray *results, NSError *error) {
+        [FoursquareAPI getFoursquareData:@"query" finalLat:self.finalLat finalLong:self.finalLong completionHandler:^(NSArray *results, NSError *error) {
             if (error)
             {
                 NSLog(@"%@", error.localizedDescription);
@@ -43,6 +66,38 @@
             self.searchResults = results;
         }];
     }
+
 }
 
+- (void)setupView {
+    self.questNameLabel.text = self.questName;
+    self.numberOfPlayersLabel.text = [NSString stringWithFormat:@"Players: %@", self.players];
+    self.objectivesLabel.text = [NSString stringWithFormat:@"Total Objectives: %@", self.objectives];
+    self.descriptionLabel.text = self.gameDescription;
+}
+
+
+- (IBAction)createButtonSelected:(UIButton *)sender {
+    PFObject *quest = [PFObject objectWithClassName:@"Quest"];
+    quest[@"name"] = self.questName;
+    quest[@"info"] = self.gameDescription;
+    quest[@"maxplayers"] = self.players;
+    NSLog(@"Players: %@", self.players);
+    NSMutableArray *currentPlayers = [[NSMutableArray alloc]init];
+    [currentPlayers addObject:[PFUser currentUser].objectId];
+    [quest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (!error) {
+     
+            WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
+
+            NSLog(@"Saved successfully");
+            viewController.questName = self.questName;
+          
+            [self.navigationController pushViewController:viewController animated:YES];
+            
+        } else {
+            NSLog(@"ERROR!!!");
+        }
+    }];
+}
 @end

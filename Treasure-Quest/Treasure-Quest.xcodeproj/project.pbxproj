@@ -229,12 +229,12 @@
 		4C7D76291D5525DB00932D3A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				048DB94A1D5403FE00604726 /* SummaryViewController.h */,
-				048DB94B1D5403FE00604726 /* SummaryViewController.m */,
 				048DB9441D53F65900604726 /* SetupViewController.h */,
 				048DB9451D53F65900604726 /* SetupViewController.m */,
 				048DB9471D54015C00604726 /* PlayfieldViewController.h */,
 				048DB9481D54015C00604726 /* PlayfieldViewController.m */,
+				048DB94A1D5403FE00604726 /* SummaryViewController.h */,
+				048DB94B1D5403FE00604726 /* SummaryViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -352,8 +352,12 @@
 				TargetAttributes = {
 					4C7D75EC1D53389C00932D3A = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = ABJU8Z7J96;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -529,6 +533,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -536,8 +542,9 @@
 				);
 				INFOPLIST_FILE = "Treasure-Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "sweeney.Treasure-Quest";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sweeney.treasurequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -545,6 +552,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -552,8 +561,9 @@
 				);
 				INFOPLIST_FILE = "Treasure-Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "sweeney.Treasure-Quest";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sweeney.treasurequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

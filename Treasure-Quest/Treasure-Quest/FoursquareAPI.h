@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LocationController.h"
 
 typedef void(^foursquareFetchCompletion)(NSArray *results, NSError *error);
 
@@ -14,8 +15,9 @@ typedef void(^foursquareFetchCompletion)(NSArray *results, NSError *error);
 
 @property (strong, nonatomic)NSString* name;
 @property (strong, nonatomic)NSString* location;
+@property (strong, nonatomic)NSString* id;
 
-+(void)getFoursquareData:(NSString *)userData completionHandler:(foursquareFetchCompletion)completionHandler;
++(void)getFoursquareData:(NSString *)userData finalLat:(NSString *)finalLat finalLong:(NSString *)finalLong completionHandler:(foursquareFetchCompletion)completionHandler;
 
 
 @end

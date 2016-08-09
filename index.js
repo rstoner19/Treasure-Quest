@@ -4,6 +4,7 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
+var pushConfig = [];
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -11,12 +12,13 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
+console.log('TREASURE-QUEST was here!');
 if (process.env.APNS_ENABLE) {
   pushConfig['ios'] = [
     {
       pfx: 'certs/treasure-quest.p12', // P12 file only
-      // passphrase: '2storyboards',
-      // bundleId: 'com.derekgraham.treasurequest',  // change to match bundleId
+
+      bundleId: 'com.derekgraham.treasurequest',  // change to match bundleId
       production: false // dev certificate
     }
   ];
@@ -28,7 +30,6 @@ var api = new ParseServer({
   appId: process.env.APP_ID || 'tresQ',
   masterKey: process.env.MASTER_KEY || 'bestGroup', //Add your master key here. Keep it secret!
   push: pushConfig,
-  filesAdapter: filesAdapter,
   serverURL: process.env.SERVER_URL || 'http://localhost/parse'  // needed for Parse Cloud and push notifications
 });
 

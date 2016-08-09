@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@import MapKit;
 
 @interface MapViewController : UIViewController
+
+@property CLLocationDirection currentHeading;
+@property (strong, nonatomic) CLLocation *currentUserLocation;
 
 @end
