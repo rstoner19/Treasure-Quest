@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04594DF91D599695007AAAB6 /* EnterCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04594DF81D599695007AAAB6 /* EnterCodeViewController.m */; };
+		04594DFD1D5A8C04007AAAB6 /* CountDownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04594DFC1D5A8C04007AAAB6 /* CountDownViewController.m */; };
 		048DB9461D53F65900604726 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB9451D53F65900604726 /* SetupViewController.m */; };
 		048DB9491D54015C00604726 /* PlayfieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB9481D54015C00604726 /* PlayfieldViewController.m */; };
 		048DB94C1D5403FE00604726 /* SummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048DB94B1D5403FE00604726 /* SummaryViewController.m */; };
@@ -61,6 +62,8 @@
 /* Begin PBXFileReference section */
 		04594DF71D599695007AAAB6 /* EnterCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterCodeViewController.h; sourceTree = "<group>"; };
 		04594DF81D599695007AAAB6 /* EnterCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterCodeViewController.m; sourceTree = "<group>"; };
+		04594DFB1D5A8C04007AAAB6 /* CountDownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountDownViewController.h; sourceTree = "<group>"; };
+		04594DFC1D5A8C04007AAAB6 /* CountDownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountDownViewController.m; sourceTree = "<group>"; };
 		048DB9441D53F65900604726 /* SetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupViewController.h; sourceTree = "<group>"; };
 		048DB9451D53F65900604726 /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		048DB9471D54015C00604726 /* PlayfieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayfieldViewController.h; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 		04594DFA1D5996A2007AAAB6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				04594DFB1D5A8C04007AAAB6 /* CountDownViewController.h */,
+				04594DFC1D5A8C04007AAAB6 /* CountDownViewController.m */,
 				04594DF71D599695007AAAB6 /* EnterCodeViewController.h */,
 				04594DF81D599695007AAAB6 /* EnterCodeViewController.m */,
 				048DB9501D5544EE00604726 /* WaitPageViewController.h */,
@@ -427,6 +432,7 @@
 				4C7D763B1D55A7E700932D3A /* LeaderBoardViewController.m in Sources */,
 				4C7D75F21D53389C00932D3A /* main.m in Sources */,
 				4C7D76381D55A7D800932D3A /* MapViewController.m in Sources */,
+				04594DFD1D5A8C04007AAAB6 /* CountDownViewController.m in Sources */,
 				4C7D761F1D5400A900932D3A /* Player.m in Sources */,
 				4C7D76171D53FA1700932D3A /* ProgressListViewController.m in Sources */,
 				04594DF91D599695007AAAB6 /* EnterCodeViewController.m in Sources */,

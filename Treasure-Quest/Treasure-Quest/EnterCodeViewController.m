@@ -59,7 +59,6 @@
                                 WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
                                 NSLog(@"Saved successfully");
                                 [spinner stopAnimating];
-                                [[self.view viewWithTag:12] stopAnimating];
 
                                 viewController.questName = self.questName;
                                 
@@ -67,8 +66,6 @@
                                 
                             }
                         }];
-
-                        
                     } else {
                         [[self.view viewWithTag:12] stopAnimating];
                         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Invalid Code"
@@ -76,7 +73,6 @@
                                                                                           preferredStyle:UIAlertControllerStyleAlert];
                         UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
                         [alertController addAction:actionOk];
-                        [self presentViewController:alertController animated:YES completion:nil];
                     }
                 }
             }];
