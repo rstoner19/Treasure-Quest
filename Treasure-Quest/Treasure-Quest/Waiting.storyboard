@@ -9,7 +9,7 @@
         <!--Wait Page View Controller-->
         <scene sceneID="qcL-Co-etM">
             <objects>
-                <viewController storyboardIdentifier="waitingStoryboard" id="6VG-gx-1WK" customClass="WaitPageViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="waitingStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6VG-gx-1WK" customClass="WaitPageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="M4E-E3-mv8"/>
                         <viewControllerLayoutGuide type="bottom" id="D0f-tZ-7eh"/>
