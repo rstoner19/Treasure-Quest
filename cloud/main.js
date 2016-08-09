@@ -54,8 +54,9 @@ Parse.Cloud.define('getPlayersNow', function(request, response){
 
   var Quest = Parse.Object.extend('Quest');
   var query = new Parse.Query(Quest);
+  console.log('incoming object id: ', request.params.objectId);
   query.get(request.params.objectId, {
-    success: function(gameScore) {
+    success: function(results) {
     // The object was retrieved successfully.
       console.log('found something', results);
       console.log('Cloud: ', results[0].players);
@@ -66,6 +67,7 @@ Parse.Cloud.define('getPlayersNow', function(request, response){
     // The object was not retrieved successfully.
     // error is a Parse.Error with an error code and message.
       response.error('Quest lookup failed');
+      console.log('quest lookup failed');
     }
   });
 });
