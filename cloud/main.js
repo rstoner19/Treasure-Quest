@@ -61,7 +61,7 @@ Parse.Cloud.define("averageStars", function(request, response) {
       for (var i = 0; i < results.length; ++i) {
         sum += results[i].get("stars");
       }
-      response.success(request.params.objectId);
+      response.success(request.params.objectId.players);
     },
     error: function() {
       response.error("movie lookup failed");
