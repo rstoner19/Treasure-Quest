@@ -19,7 +19,7 @@
 @property (strong, nonatomic) Quest *currentQuest;
 @property float angleToNextObjective;
 @property (strong, nonatomic) Objective *nextObjective;
-@property (strong, nonatomic) MKPinAnnotationView *userLocation;
+@property (strong, nonatomic) MKPinAnnotationView *userPin;
 
 @end
 
@@ -93,6 +93,7 @@
     [self calculateAngleToNewObjective:location objectiveLocation:self.nextObjective.location];
     self.currentUserLocation = location;
     [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:self.nextObjective.location];
+    [self changeUserAnnotationColor:self.userPin];
     
 }
 
@@ -105,17 +106,17 @@
     self.mapView.camera.altitude = 250;
     self.currentHeading = heading.trueHeading;
     [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:self.nextObjective.location];
-    [self changeUserAnnotationColor:self.userLocation];
+    [self changeUserAnnotationColor:self.userPin];
  }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
 
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         
-       self.userLocation = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"userAnno"];
-        self.userLocation.pinTintColor = [UIColor purpleColor];
+       self.userPin = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"userAnno"];
+        self.userPin.pinTintColor = [UIColor purpleColor];
         
-        return [self changeUserAnnotationColor:self.userLocation];
+        return [self changeUserAnnotationColor:self.userPin];
     }
 
     MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"annotationView"];
@@ -154,14 +155,14 @@
     if (self.currentHeading <= self.angleToNextObjective + 10 && self.currentHeading >= self.angleToNextObjective - 10) {
     
        
-       self.userLocation.pinTintColor = [UIColor greenColor];
+       self.userPin.pinTintColor = [UIColor greenColor];
         return userPin;
         
     }
     
     else {
         
-        self.userLocation.pinTintColor = [UIColor yellowColor];
+        self.userPin.pinTintColor = [UIColor yellowColor];
         return userPin;
     }
 
