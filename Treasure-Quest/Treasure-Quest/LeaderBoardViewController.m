@@ -29,8 +29,12 @@
 - (IBAction)pushTestButtonPressed:(id)sender {
     NSLog(@"got it");
     
-    [PFCloud callFunctionInBackground:@"currentPlayers"
-                       withParameters:@{@"objectId": @"eWCJIWiL4B"}
+//    @"LuX5l9Yirp"
+//    [[PFUser currentUser] fetch];
+    
+    NSString *message = [NSString stringWithFormat:@"%@ has joined the quest!", [PFUser currentUser].username];
+    [PFCloud callFunctionInBackground:@"iosPushTest"
+                       withParameters:@{@"text": message }
                                 block:^(NSString *response, NSError *error) {
                                     if (!error) {
                                         // ratings is 4.5
