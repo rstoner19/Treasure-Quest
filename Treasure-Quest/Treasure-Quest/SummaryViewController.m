@@ -7,8 +7,18 @@
 //
 
 #import "SummaryViewController.h"
+#import "FoursquareAPI.h"
+#import "WaitPageViewController.h"
+@import Parse;
 
-@interface SummaryViewController ()
+@interface SummaryViewController ()  <LocationControllerDelegate>
+
+@property (strong, nonatomic) NSArray *searchResults;
+@property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numberOfPlayersLabel;
+@property (weak, nonatomic) IBOutlet UILabel *objectivesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+- (IBAction)createButtonSelected:(UIButton *)sender;
 
 @end
 
@@ -16,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setupView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +34,88 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+//-(void)locationControllerDidUpdateHeading:(CLHeading *)heading
+//{
+//    //
+//}
+//
+//-(void)locationControllerDidUpdateLocation:(CLLocation *)location
+//{
+//    self.finalLat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+//    self.finalLong = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+//}
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    NSString *token = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
+    
+    self.finalLat = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.latitude];
+    
+    self.finalLong = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.longitude];
+    
+    
+    if (token)
+    {
+        [FoursquareAPI getFoursquareData:@"query" finalLat:self.finalLat finalLong:self.finalLong completionHandler:^(NSArray *results, NSError *error) {
+            if (error)
+            {
+                NSLog(@"%@", error.localizedDescription);
+            }
+            self.searchResults = results;
+        }];
+    }
+
 }
-*/
 
+- (void)setupView {
+    self.questNameLabel.text = self.questName;
+    self.numberOfPlayersLabel.text = [NSString stringWithFormat:@"Players: %@", self.players];
+    self.objectivesLabel.text = [NSString stringWithFormat:@"Total Objectives: %@", self.objectives];
+    self.descriptionLabel.text = self.gameDescription;
+}
+
+
+- (IBAction)createButtonSelected:(UIButton *)sender {
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.color = [UIColor darkGrayColor];
+    [self.view addSubview:spinner];
+    spinner.center = CGPointMake(160, 250);
+    spinner.tag = 12;
+    [spinner startAnimating];
+    
+    PFObject *quest = [PFObject objectWithClassName:@"Quest"];
+    quest[@"name"] = self.questName;
+    quest[@"info"] = self.gameDescription;
+    quest[@"maxplayers"] = self.players;
+    NSMutableArray *currentPlayers = [[NSMutableArray alloc]init];
+    [currentPlayers addObject:[PFUser currentUser].objectId];
+    quest[@"players"] = currentPlayers;
+    
+    [quest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (!error) {
+     
+            WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
+
+            NSLog(@"Saved successfully");
+            viewController.questName = self.questName;
+            
+            [[self.view viewWithTag:12] stopAnimating];
+            [self.navigationController pushViewController:viewController animated:YES];
+            
+        } else {
+            [[self.view viewWithTag:12] stopAnimating];
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error Saving"
+                                                                                     message:@"Quest unable to save, please try again."
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:actionOk];
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+            NSLog(@"ERROR: %@:", error);
+        }
+    }];
+}
 @end

@@ -31,9 +31,9 @@
     [self setup];
 }
 
-
 -(void) setup {
     
+   self.objectivesDisplayed = [[NSMutableArray alloc]init];
     PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
     __weak typeof (self) weakSelf = self;
     
@@ -47,8 +47,11 @@
                         NSLog(@"%@", quest.name);
                         quest.route = [Route demoRoute];
                         strongSelf.currentQuest = quest;
-                        NSLog(@"%lu", (unsigned long)quest.route.waypoints.count);
-                        NSLog(@"%@", quest.route);
+                        strongSelf.currentObjective = quest.route.waypoints[0];
+                        NSLog(@"Initial objective = %@", quest.route.waypoints[0]);
+                        [strongSelf.objectivesDisplayed addObject:strongSelf.currentObjective];
+//                        NSLog(@"%lu", (unsigned long)quest.route.waypoints.count);
+//                        NSLog(@"%@", quest.route);
                         [strongSelf.tableView reloadData];
                     }
                     
@@ -89,9 +92,6 @@
     
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    
-//    cell.textLabel.text = self.currentQuest.route.waypoints[0];
-//    NSLog(@"TESTING: %@", self.currentQuest.route.waypoints[0]);
     Objective *objective = self.currentQuest.route.waypoints[indexPath.row];
     NSLog(@"Objective name: %@", objective.name);
     cell.textLabel.text = objective.category;
@@ -101,9 +101,21 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.currentQuest.route.waypoints.count;
+    
+    return self.objectivesDisplayed.count;
 }
 
+-(void)userDidCompleteCurrentObjective {
+    
+    if ([self.currentQuest.route.waypoints indexOfObject:self.currentObjective] < [self.currentQuest.route.waypoints count]) {
+        
+        NSInteger nextObjIndex = [self.currentQuest.route.waypoints indexOfObject:self.currentObjective] + 1;
+        
+        Objective *nextObjective = [self.currentQuest.route.waypoints objectAtIndex:nextObjIndex];
+        [self.objectivesDisplayed addObject:nextObjective];
+        NSLog(@"your next objective is %@", nextObjective.name);
+    }
+}
 
 
 
