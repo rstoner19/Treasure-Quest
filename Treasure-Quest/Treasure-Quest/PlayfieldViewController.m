@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *setButton;
 @property (weak, nonatomic) IBOutlet UITextField *minDistanceTextField;
 - (IBAction)set:(UIButton *)sender;
-- (IBAction)maxTextFieldEnter:(UITextField *)sender;
 
 
 @end
@@ -133,13 +132,13 @@
     
 }
 
-- (IBAction)maxTextFieldEnter:(UITextField *)sender {
-    [self set:self.setButton];
-}
 
 #pragma mark - TextField Delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([textField isEqual:self.maxDistanceTextField]) {
+        [self set:self.setButton];
+    }
     [textField resignFirstResponder];
     return YES;
 }
