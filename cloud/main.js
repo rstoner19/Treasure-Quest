@@ -58,6 +58,7 @@ Parse.Cloud.define('getPlayersNow', function(request, response){
     success: function(gameScore) {
     // The object was retrieved successfully.
       console.log('found something', results);
+      console.log('Cloud: ', results[0].players);
       response.success('Got Something at Server');
 
     },
