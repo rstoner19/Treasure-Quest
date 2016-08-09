@@ -8,6 +8,8 @@
 
 #import "WaitPageViewController.h"
 #import "Route.h"
+@import Parse;
+
 
 @interface WaitPageViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
@@ -35,22 +37,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupViewController];
+    [self parseQuery];
     [self setUserItems:3];
-    NSLog(@"Distance: %f", [Route totalDistanceCrowFlies:[Route demoRoute]]);
-    NSLog(@"Distance2: %f", [Route totalDistanceCrowFlies:[Route randomizeRoute:[Route demoRoute]]]);
-    NSLog(@"Distance: %f", [Route totalDistanceCrowFlies:[Route demoRoute]]);
-    [Route verifyDistanceRange:[Route demoRoute] players:5];
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
 }
 
 - (void)setupViewController {
     self.questNameLabel.text = self.questName;
-    self.gameCodeLabel.text = @"game Code var";
+    self.gameCodeLabel.text = [NSString stringWithFormat:@"Code: %@", self.gameCode];
     self.gameDescriptionLabel.text = self.gameDescription;
     
     
@@ -144,6 +147,44 @@
         default:
             break;
     }
+}
+
+- (void)saveToParse{
+    PFObject *quest = [PFObject objectWithClassName:@"Quest"];
+    quest[@"name"] = self.questName;
+    quest[@"info"] = self.gameDescription;
+    quest[@"maxplayers"] = self.players;
+    NSMutableArray *currentPlayers = [[NSMutableArray alloc]init];
+    [currentPlayers addObject:[PFUser currentUser].objectId];
+    [quest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (!error) {
+            NSLog(@"Saved successfully");
+        }
+    }];
+}
+
+
+- (void)parseQuery {
+    PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
+    __weak typeof (self) weakSelf = self;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error){
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                for (Quest *quest in objects)
+                {
+                    if ([quest.name isEqualToString:strongSelf.questName]) {
+                        self.gameCode = quest.objectId;
+                        self.players = quest.maxplayers;
+                        self.gameDescription = quest.info;
+                        
+                        [self setupViewController];
+                    }
+                }
+            }];
+        }
+    }];
 }
 
 

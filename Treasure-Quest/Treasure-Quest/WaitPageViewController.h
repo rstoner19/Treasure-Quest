@@ -14,6 +14,7 @@
 
 @property(strong, nonatomic)NSString *questName;
 @property(strong, nonatomic)NSString *gameDescription;
+@property(strong, nonatomic)NSString *gameCode;
 @property(strong, nonatomic)NSNumber *players;
 @property(strong, nonatomic)NSNumber *objectives;
 @property(strong, nonatomic)Quest *createdQuest;
