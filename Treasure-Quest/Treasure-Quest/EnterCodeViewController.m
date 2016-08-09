@@ -33,7 +33,7 @@
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     spinner.color = [UIColor darkGrayColor];
     [self.view addSubview:spinner];
-    spinner.center = CGPointMake(160, 250);
+    spinner.center = CGPointMake(self.view.center.x, self.view.center.y);
     spinner.tag = 12;
     [spinner startAnimating];
     PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
@@ -57,9 +57,11 @@
                             if(!error) {
                                 WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
                                 NSLog(@"Saved successfully");
+                                [spinner stopAnimating];
+                                [[self.view viewWithTag:12] stopAnimating];
+
                                 viewController.questName = self.questName;
                                 
-                                [[self.view viewWithTag:12] stopAnimating];
                                 [self.navigationController pushViewController:viewController animated:YES];
                                 
                             }
