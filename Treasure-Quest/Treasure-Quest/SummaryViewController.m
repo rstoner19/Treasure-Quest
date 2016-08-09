@@ -78,13 +78,21 @@
 
 
 - (IBAction)createButtonSelected:(UIButton *)sender {
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.color = [UIColor darkGrayColor];
+    [self.view addSubview:spinner];
+    spinner.center = CGPointMake(160, 250);
+    spinner.tag = 12;
+    [spinner startAnimating];
+    
     PFObject *quest = [PFObject objectWithClassName:@"Quest"];
     quest[@"name"] = self.questName;
     quest[@"info"] = self.gameDescription;
     quest[@"maxplayers"] = self.players;
-    NSLog(@"Players: %@", self.players);
     NSMutableArray *currentPlayers = [[NSMutableArray alloc]init];
     [currentPlayers addObject:[PFUser currentUser].objectId];
+    quest[@"players"] = currentPlayers;
+    
     [quest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (!error) {
      
@@ -92,11 +100,21 @@
 
             NSLog(@"Saved successfully");
             viewController.questName = self.questName;
-          
+            
+            [[self.view viewWithTag:12] stopAnimating];
             [self.navigationController pushViewController:viewController animated:YES];
             
         } else {
-            NSLog(@"ERROR!!!");
+            [[self.view viewWithTag:12] stopAnimating];
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error Saving"
+                                                                                     message:@"Quest unable to save, please try again."
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:actionOk];
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+            NSLog(@"ERROR: %@:", error);
         }
     }];
 }
