@@ -33,6 +33,7 @@ Parse.Cloud.define('iosPushTest', function(request, response) {
 Parse.Cloud.define('currentPlayers', function(request, response) {
   var query = new Parse.Query('Quest');
   console.log('calling Current Players!!!');
+  console.log(request.params.objectId);
 
   query.equalTo('objectId', request.params.objectId);
   query.find({
