@@ -38,6 +38,9 @@
     self.playersPickerView.delegate = self;
     self.playersPickerView.dataSource = self;
     self.playersPickerData = @[@"1", @"2", @"3", @"4", @"5", @"6"];
+    self.questNameTextField.delegate = self;
+    self.questDesciptionTextField.delegate = self;
+    self.objectivesNumberTextField.delegate = self;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

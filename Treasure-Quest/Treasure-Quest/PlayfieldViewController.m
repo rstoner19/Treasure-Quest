@@ -30,6 +30,8 @@
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setShowsUserLocation:YES];
     [self.mapView setDelegate:self];
+    self.maxDistanceTextField.delegate = self;
+    self.minDistanceTextField.delegate = self;
     
 }
 
