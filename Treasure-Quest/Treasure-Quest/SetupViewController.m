@@ -10,7 +10,7 @@
 #import "ViewController.h"
 #import "PlayfieldViewController.h"
 
-@interface SetupViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate>
+@interface SetupViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 
 @property(strong, nonatomic)UIBarButtonItem *nextButton;
 
@@ -27,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+    self.questNameTextField.delegate = self;
+    self.questDesciptionTextField.delegate = self;
+    self.objectivesNumberTextField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,9 +41,6 @@
     self.playersPickerView.delegate = self;
     self.playersPickerView.dataSource = self;
     self.playersPickerData = @[@"1", @"2", @"3", @"4", @"5", @"6"];
-    self.questNameTextField.delegate = self;
-    self.questDesciptionTextField.delegate = self;
-    self.objectivesNumberTextField.delegate = self;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
