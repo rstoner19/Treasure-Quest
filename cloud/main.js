@@ -34,7 +34,7 @@ Parse.Cloud.define('currentPlayers', function(request, response) {
   var query = new Parse.Query('Quest');
   console.log('calling Current Players!!!');
   console.log(request.params.objectId);
-  query.getElementById(request.params.objectId);
+  query.get();
   query.find({
     success: function(results) {
       var players = results[0].get('players');
@@ -46,6 +46,24 @@ Parse.Cloud.define('currentPlayers', function(request, response) {
     },
     error: function() {
       response.error(' lookup failed' + results.length + results[0].get('players'));
+    }
+  });
+});
+
+Parse.Cloud.define("averageStars", function(request, response) {
+  var query = new Parse.Query("Review");
+  query.equalTo("objectId", request.params.objectId);
+  query.find({
+    success: function(results) {
+      console.log('found something');
+      var sum = 0;
+      for (var i = 0; i < results.length; ++i) {
+        sum += results[i].get("stars");
+      }
+      response.success(sum / results.length);
+    },
+    error: function() {
+      response.error("movie lookup failed");
     }
   });
 });
