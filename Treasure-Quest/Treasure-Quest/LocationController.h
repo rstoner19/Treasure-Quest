@@ -15,6 +15,7 @@
 -(void)locationControllerDidUpdateHeading:(CLHeading *)heading;
 
 
+
 @end
 
 @interface LocationController : NSObject

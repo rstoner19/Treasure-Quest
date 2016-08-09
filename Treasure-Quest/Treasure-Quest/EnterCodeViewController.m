@@ -11,7 +11,8 @@
 #import "Quest.h"
 #import "WaitPageViewController.h"
 
-@interface EnterCodeViewController ()
+@interface EnterCodeViewController () <UITextFieldDelegate>
+
 - (IBAction)joinButtonSelected:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *codeTextField;
 
@@ -21,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.codeTextField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,4 +90,12 @@
     [self parseQuery];
     
 }
+
+#pragma Mark - Text Field Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 @end
