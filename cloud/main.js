@@ -35,6 +35,7 @@ Parse.Cloud.define('iosPushToChannel', function(request, response) {
 // request has 2 parameters: params passed by the client and the authorized user
   var params = request.params;
   var user = request.user;
+  console.log('request.user', request.user);
 
   // Our "Message" class has a "text" key with the body of the message itself
   var messageText = params.text;
@@ -43,7 +44,7 @@ Parse.Cloud.define('iosPushToChannel', function(request, response) {
   // pushQuery.equalTo('deviceType', 'ios'); // targeting iOS devices only
   console.log(typeof(user.currentQuestId), user.currentQuestId);
   Parse.Push.send({
-    channels: [user.currentQuestId],
+    channels: [ user.currentQuestId],
     data: {
       alert: messageText
     }
