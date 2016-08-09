@@ -93,6 +93,10 @@
             
             [[self.view viewWithTag:12] stopAnimating];
             [self.navigationController pushViewController:viewController animated:YES];
+//            NSLog(@"Current user: %@, created questid: %@", [PFUser currentUser].username, quest.objectId);
+            [[PFUser currentUser]setObject:quest.objectId forKey:@"currentQuestId"];
+            [[PFUser currentUser] saveInBackground ];
+            
             
         } else {
             [[self.view viewWithTag:12] stopAnimating];

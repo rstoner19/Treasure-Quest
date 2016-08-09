@@ -17,6 +17,7 @@ if (process.env.APNS_ENABLE) {
   pushConfig['ios'] = [
     {
       pfx: 'certs/treasure-quest.p12', // P12 file only
+
       bundleId: 'com.derekgraham.treasurequest',  // change to match bundleId
       production: false // dev certificate
     }
@@ -29,7 +30,10 @@ var api = new ParseServer({
   appId: process.env.APP_ID || 'tresQ',
   masterKey: process.env.MASTER_KEY || 'bestGroup', //Add your master key here. Keep it secret!
   push: pushConfig,
-  serverURL: process.env.SERVER_URL || 'http://localhost/parse'  // needed for Parse Cloud and push notifications
+  serverURL: process.env.SERVER_URL || 'http://localhost/parse',  // needed for Parse Cloud and push notifications
+  liveQuery: {
+    classNames: ['Quests'] // List of classes to support for query subscriptions
+  }
 });
 
 // var api = new ParseServer({
