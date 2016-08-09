@@ -55,7 +55,7 @@ Parse.Cloud.define("averageStars", function(request, response) {
   query.equalTo("objectId", request.params.objectId);
   query.find({
     success: function(results) {
-      console.log('found something');
+      console.log('found something', results);
       var sum = 0;
       for (var i = 0; i < results.length; ++i) {
         sum += results[i].get("stars");
