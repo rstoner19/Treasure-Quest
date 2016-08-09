@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *questNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *questDesciptionTextField;
 @property (weak, nonatomic) IBOutlet UIPickerView *playersPickerView;
+@property (weak, nonatomic) IBOutlet UITextField *objectivesNumberTextField;
 
 
 @end
@@ -53,6 +54,17 @@
         if ([description isEqualToString:@""]) {
             playfieldViewController.gameDescription = @"A race to find the locations first!";
         } else { playfieldViewController.gameDescription = description; }
+        
+        //verify number is input
+        NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
+        NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:self.objectivesNumberTextField.text];
+        bool valid = [alphaNums isSupersetOfSet:inStringSet];
+        if (!valid || [self.objectivesNumberTextField.text intValue] < 5 || [self.objectivesNumberTextField.text isEqualToString:@""]) {
+            playfieldViewController.objectives = [NSNumber numberWithInt:5];
+        } else {
+            playfieldViewController.objectives = [NSNumber numberWithInt:[self.objectivesNumberTextField.text intValue]];
+        }
+     
     }
     
 }
