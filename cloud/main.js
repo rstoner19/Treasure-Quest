@@ -19,7 +19,7 @@ Parse.Cloud.define('iosPushTest', function(request, response) {
   Parse.Push.send({
     where: pushQuery, // Set our Installation query
     data: {
-      alert: 'Message: ' + messageText
+      alert: messageText
     }
   }, { success: function() {
     console.log('#### PUSH OK');
@@ -55,12 +55,13 @@ Parse.Cloud.define('getPlayersNow', function(request, response){
   var Quest = Parse.Object.extend('Quest');
   var query = new Parse.Query(Quest);
   console.log('incoming object id: ', request.params.objectId);
+  console.log(typeof(request.params.objectId));
   query.get(request.params.objectId, {
     success: function(results) {
     // The object was retrieved successfully.
       console.log('found something', results);
       console.log('Cloud: ', results[0].players);
-      response.success('Got Something at Server');
+      response.success('Got Something at Server', results[0].players);
 
     },
     error: function(object, error) {
