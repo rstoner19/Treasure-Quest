@@ -30,19 +30,19 @@ Parse.Cloud.define('iosPushTest', function(request, response) {
   response.success('success');
 });
 
-Parse.Cloud.define("averageStars", function(request, response) {
-  var query = new Parse.Query("Review");
-  query.equalTo("movie", request.params.movie);
+Parse.Cloud.define('currentPlayers', function(request, response) {
+  var query = new Parse.Query('Quest');
+  query.equalTo('objectId', request.params.objectId);
   query.find({
     success: function(results) {
-      var sum = 0;
-      for (var i = 0; i < results.length; ++i) {
-        sum += results[i].get("stars");
+      var players = results[0].get('players');
+      for (var i = 0; i < players.length; ++i) {
+        myString += players[i];
       }
-      response.success(sum / results.length);
+      response.success(myString);
     },
     error: function() {
-      response.error("movie lookup failed");
+      response.error(' lookup failed' + results.length + results[0].get('players'));
     }
   });
 });

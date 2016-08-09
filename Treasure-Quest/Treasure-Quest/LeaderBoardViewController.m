@@ -23,11 +23,12 @@
 - (IBAction)pushTestButtonPressed:(id)sender {
     NSLog(@"got it");
     
-    [PFCloud callFunctionInBackground:@"iosPushTest"
-                       withParameters:@{@"text": @"Welcome to the Matrix"}
-                                block:^(NSNumber *ratings, NSError *error) {
+    [PFCloud callFunctionInBackground:@"currentPlayers"
+                       withParameters:@{@"objectId": @"eWCJIWiL4B"}
+                                block:^(NSString *response, NSError *error) {
                                     if (!error) {
                                         // ratings is 4.5
+                                        NSLog(@"%@",response );
                                     }
                                 }];
 }
