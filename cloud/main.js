@@ -50,9 +50,28 @@ Parse.Cloud.define('currentPlayers', function(request, response) {
   });
 });
 
+Parse.Cloud.define('getPlayersNow', function(request, response){
+
+  var Quest = Parse.Object.extend('Quest');
+  var query = new Parse.Query(Quest);
+  query.get(request.params.objectId, {
+    success: function(gameScore) {
+    // The object was retrieved successfully.
+      console.log('found something', results);
+      response.success('Got Something at Server');
+
+    },
+    error: function(object, error) {
+    // The object was not retrieved successfully.
+    // error is a Parse.Error with an error code and message.
+      response.error('Quest lookup failed');
+    }
+  });
+});
+
 Parse.Cloud.define("averageStars", function(request, response) {
-  var Review = new Parse.Object.extend("Quest");
-  var query = new Parse.Query("Quest");
+  var Quest = new Parse.Object.extend("Quest");
+  var query = new Parse.Query(Quest);
   query.equalTo("objectId", request.params.objectId);
   query.find({
     success: function(results) {
