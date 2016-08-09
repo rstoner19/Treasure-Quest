@@ -58,6 +58,7 @@
     int players = [self.maxPlayers intValue];
     
     [self setWaitingPlayers:players];
+    NSLog(@"Player count: %d",(int)self.players.count);
     [self setUserItems:(int)self.players.count currentTeam:[self.teamNumber intValue]];
 
 }
@@ -110,10 +111,11 @@
 }
 
 - (void)setUserItems:(int)registeredTeams currentTeam:(int)currentTeam {
-    for (int i = 1; i <= registeredTeams; i++) {
-        switch(registeredTeams){
+    for (int i = 0; i <= registeredTeams; i++) {
+        NSLog(@"i: %d, regiesterTeams: %i, currentTeam: %i", i, registeredTeams, currentTeam);
+        switch(i){
             case 1:
-                if (currentTeam == registeredTeams) {
+                if (currentTeam == i) {
                     self.userTeam.text = @"Blue Team";
                     self.userImage.image = [UIImage imageNamed:@"blueTeam"];
                 }
@@ -121,7 +123,7 @@
                 self.waitingImageOne.layer.opacity = 1.0;
                 break;
             case 2:
-                if (currentTeam == registeredTeams) {
+                if (currentTeam == i) {
                     self.userTeam.text = @"Red Team";
                     self.userImage.image = [UIImage imageNamed:@"redTeam"];
                 }
@@ -129,7 +131,7 @@
                 self.waitingImageTwo.layer.opacity = 1.0;
                 break;
             case 3:
-                if (currentTeam == registeredTeams) {
+                if (currentTeam == i) {
                     self.userTeam.text = @"Green Team";
                     self.userImage.image = [UIImage imageNamed:@"greenTeam"];
                 }
@@ -137,7 +139,7 @@
                 self.waitingImageThree.layer.opacity = 1.0;
                 break;
             case 4:
-                if (currentTeam == registeredTeams) {
+                if (currentTeam == i) {
                     self.userTeam.text = @"Orange Team";
                     self.userImage.image = [UIImage imageNamed:@"orangeTeam"];
                 }
@@ -145,7 +147,7 @@
                 self.waitingImageFour.layer.opacity = 1.0;
                 break;
             case 5:
-                if (currentTeam == registeredTeams) {
+                if (currentTeam == i) {
                     self.userTeam.text = @"Purple Team";
                     self.userImage.image = [UIImage imageNamed:@"purpleTeam"];
                 }
@@ -153,7 +155,7 @@
                 self.waitingImageFive.layer.opacity = 1.0;
                 break;
             case 6:
-                if (currentTeam == registeredTeams) {
+                if (currentTeam == i) {
                     self.userTeam.text = @"Black Team";
                     self.userImage.image = [UIImage imageNamed:@"blackTeam"];
                 }
