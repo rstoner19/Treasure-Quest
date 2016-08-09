@@ -44,14 +44,10 @@
                 for (Quest *quest in objects)
                 {
                     if ([quest.name isEqualToString:@"Rick's Pub Crawl"]) {
-                        NSLog(@"%@", quest.name);
                         quest.route = [Route demoRoute];
                         strongSelf.currentQuest = quest;
                         strongSelf.currentObjective = quest.route.waypoints[0];
-                        NSLog(@"Initial objective = %@", quest.route.waypoints[0]);
                         [strongSelf.objectivesDisplayed addObject:strongSelf.currentObjective];
-//                        NSLog(@"%lu", (unsigned long)quest.route.waypoints.count);
-//                        NSLog(@"%@", quest.route);
                         [strongSelf.tableView reloadData];
                     }
                     
