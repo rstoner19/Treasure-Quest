@@ -30,6 +30,9 @@ var api = new ParseServer({
   masterKey: process.env.MASTER_KEY || 'bestGroup', //Add your master key here. Keep it secret!
   push: pushConfig,
   serverURL: process.env.SERVER_URL || 'http://localhost/parse'  // needed for Parse Cloud and push notifications
+    liveQuery: {
+    classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
+//   }
 });
 
 // var api = new ParseServer({

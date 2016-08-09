@@ -23,7 +23,7 @@
 - (IBAction)pushTestButtonPressed:(id)sender {
     NSLog(@"got it");
     
-    [PFCloud callFunctionInBackground:@"currentPlayers"
+    [PFCloud callFunctionInBackground:@"iosPushTest"
                        withParameters:@{@"objectId": @"eWCJIWiL4B"}
                                 block:^(NSString *response, NSError *error) {
                                     if (!error) {
