@@ -29,7 +29,7 @@
 - (IBAction)pushTestButtonPressed:(id)sender {
     NSLog(@"got it");
     
-    [PFCloud callFunctionInBackground:@"iosPushTest"
+    [PFCloud callFunctionInBackground:@"currentPlayers"
                        withParameters:@{@"objectId": @"eWCJIWiL4B"}
                                 block:^(NSString *response, NSError *error) {
                                     if (!error) {
@@ -48,7 +48,6 @@
         PFObject *obj = [objects firstObject];
         NSLog(@"%@", obj);
     }];
-    query
 
     
 }
