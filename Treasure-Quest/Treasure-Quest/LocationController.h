@@ -22,6 +22,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
 @property (weak, nonatomic) id delegate;
+@property (strong, nonatomic) CLLocation *pinLocation;
 +(LocationController *)sharedController;
 
 

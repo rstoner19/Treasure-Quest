@@ -7,6 +7,7 @@
 //
 
 #import "LocationController.h"
+#import "MapViewController.h"
 
 @interface LocationController () <CLLocationManagerDelegate>
 
@@ -34,7 +35,8 @@
         _locationManager = [[CLLocationManager alloc]init];
         _locationManager.delegate = self;
         _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        _locationManager.distanceFilter = 50;
+        _locationManager.distanceFilter = 10;
+        _locationManager.headingFilter = 3;
         
     }
     
@@ -48,7 +50,18 @@
     [self.delegate locationControllerDidUpdateLocation:locations.lastObject];
     [self setLocation:locations.lastObject];
     
+//    MapViewController *mapvc = [[MapViewController alloc]init];
+//    mapvc.currentUserLocation = locations.lastObject;
+    
 }
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
+    
+    NSLog(@"New Heading: %f", newHeading.trueHeading);
+    [self.delegate locationControllerDidUpdateHeading:newHeading];
+    
+}
+
 
 
 

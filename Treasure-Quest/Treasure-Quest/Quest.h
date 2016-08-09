@@ -15,12 +15,11 @@
 @interface Quest : PFObject <PFSubclassing>
 
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *code;
 @property (strong, nonatomic) NSString *info;
 @property (strong, nonatomic) Player *creator;
 @property (strong, nonatomic) NSMutableArray *players;
 @property (strong, nonatomic) NSNumber *maxplayers;
 @property (strong, nonatomic) Route *route;
-
-
 
 @end

@@ -8,17 +8,22 @@
 
 #import "Objective.h"
 
+@interface Objective ()
+
+@end
+
 @implementation Objective
 
-+(instancetype)initWith: (NSString *)name imageURL:(NSString *)imageURL info:(NSString *)info category: (NSString *)category range: (NSNumber *)range location:(CLLocationCoordinate2D)location {
-    
++(instancetype)initWith: (NSString *)name imageURL:(NSString *)imageURL info:(NSString *)info category: (NSString *)category range: (NSNumber *)range latitude:(double)lat longitude:(double)lon{
+
     Objective *newObjective = [[Objective alloc]init];
     newObjective.name = name;
     newObjective.imageURL = imageURL;
     newObjective.info = info;
     newObjective.category = category;
-    newObjective.location = location;
-    
+    newObjective.completed = NO;
+    newObjective.location = [[CLLocation alloc]initWithLatitude:lat longitude:lon];
+
 
     return newObjective;
 }
