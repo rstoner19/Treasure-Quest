@@ -16,8 +16,8 @@ console.log('TREASURE-QUEST was here!');
 if (process.env.APNS_ENABLE) {
   pushConfig['ios'] = [
     {
-      pfx: 'certs/treasure-quest.p12', // P12 file only
-      bundleId: 'com.derekgraham.treasurequest',  // change to match bundleId
+      pfx: 'certs/treasure-quest-ios.p12', // P12 file only
+      bundleId: 'com.derekgraham.treasurequest.ios',  // change to match bundleId
       production: false // dev certificate
     }
   ];
