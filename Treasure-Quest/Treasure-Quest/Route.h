@@ -15,6 +15,8 @@
 @property (strong, nonatomic) Playfield *playfield;
 @property (strong, nonatomic) NSMutableArray *waypoints;
 +(Route *)demoRoute;
++(double)totalDistanceCrowFlies:(Route *)route;
+
 
 
 @end

@@ -22,7 +22,7 @@
                                 <rect key="frame" x="277" y="464" width="46" height="30"/>
                                 <state key="normal" title="Create"/>
                                 <connections>
-                                    <segue destination="D43-vg-krK" kind="show" id="TQa-Q2-0Ak"/>
+                                    <segue destination="D43-vg-krK" kind="show" id="mWY-JZ-YAm"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main" translatesAutoresizingMaskIntoConstraints="NO" id="Wll-xx-SCx">
@@ -50,7 +50,9 @@
                             <constraint firstItem="Wll-xx-SCx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vQq-8J-OCN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Questinations" id="eNh-cu-gs2"/>
+                    <navigationItem key="navigationItem" title="Questinations" id="eNh-cu-gs2">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="k6s-Nz-rmO"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,7 +66,7 @@
             </objects>
             <point key="canvasLocation" x="1177.5" y="723"/>
         </scene>
-        <!--Title-->
+        <!--Create A New Quest-->
         <scene sceneID="Z2X-6X-KPD">
             <objects>
                 <viewController storyboardIdentifier="SetupViewController" id="D43-vg-krK" customClass="SetupViewController" sceneMemberID="viewController">
@@ -164,17 +166,13 @@
                             <constraint firstItem="Beh-ge-KxL" firstAttribute="top" secondItem="VT1-qy-f89" secondAttribute="bottom" constant="40" id="zJQ-Ax-6Wl"/>
                         </constraints>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="aJb-3Y-RC1"/>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Title" id="8ho-8w-GQL">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="lb0-Jt-Mre">
+                    <navigationItem key="navigationItem" title="Create A New Quest" id="3Kg-gx-qjx">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="yer-E4-kfN">
                             <connections>
-                                <segue destination="80Q-XK-Gqa" kind="show" id="qU7-lg-Ctq"/>
+                                <segue destination="80Q-XK-Gqa" kind="show" id="yTu-P1-eXC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9g2-HH-4Od" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -301,6 +299,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TvC-kW-9kh">
                                 <rect key="frame" x="255" y="462" width="91" height="30"/>
                                 <state key="normal" title="Create Quest"/>
+                                <connections>
+                                    <segue destination="Qfc-EU-4dd" kind="show" id="1D3-k6-P6A"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of Objectives and detail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHa-vg-xoI">
                                 <rect key="frame" x="20" y="186" width="560" height="100"/>
@@ -332,6 +333,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNJ-tp-pYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3217" y="276"/>
+        </scene>
+        <!--waitingStoryboard-->
+        <scene sceneID="Xpr-F5-wug">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Waiting" referencedIdentifier="waitingStoryboard" id="Qfc-EU-4dd" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xPz-0k-xhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3217.5" y="745"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="prY-Ik-lty">
