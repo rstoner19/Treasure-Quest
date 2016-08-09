@@ -51,7 +51,8 @@ Parse.Cloud.define('currentPlayers', function(request, response) {
 });
 
 Parse.Cloud.define("averageStars", function(request, response) {
-  var query = new Parse.Query("Review");
+  var Review = new Parse.Object.extend("Quest");
+  var query = new Parse.Query("Quest");
   query.equalTo("objectId", request.params.objectId);
   query.find({
     success: function(results) {
