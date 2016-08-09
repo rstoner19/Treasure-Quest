@@ -30,6 +30,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)alert{
+    [[self.view viewWithTag:12] stopAnimating];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Invalid Code"
+                                                                             message:@"Please retry your code or create a new quest."
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:actionOk];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
 - (void)parseQuery {
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     spinner.color = [UIColor darkGrayColor];
@@ -66,17 +77,11 @@
                                 
                             }
                         }];
-                    } else {
-                        [[self.view viewWithTag:12] stopAnimating];
-                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Invalid Code"
-                                                                                                 message:@"Please retry your code or create a new quest."
-                                                                                          preferredStyle:UIAlertControllerStyleAlert];
-                        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-                        [alertController addAction:actionOk];
-                        [self presentViewController:alertController animated:YES completion:nil];
                     }
                 }
             }];
+        } else {
+            [self alert];
         }
     }];
     [[self.view viewWithTag:12] stopAnimating];
