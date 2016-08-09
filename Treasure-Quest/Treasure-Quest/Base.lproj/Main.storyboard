@@ -203,6 +203,9 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zjd-WK-kTp">
                                 <rect key="frame" x="0.0" y="64" width="600" height="436"/>
                                 <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="I2T-fu-QVG" appends="YES" id="3mI-vW-ZTL"/>
+                                </connections>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Final Location and Playfield Area around It" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rln-lW-W3d">
                                 <rect key="frame" x="138" y="512" width="324" height="17"/>
@@ -269,7 +272,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVg-dW-qyw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="I2T-fu-QVG">
                     <connections>
-                        <action selector="handleLongPress:" destination="80Q-XK-Gqa" id="GO9-qu-Y4o"/>
+                        <action selector="handleLongPress:" destination="80Q-XK-Gqa" id="zL9-6u-pxR"/>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>

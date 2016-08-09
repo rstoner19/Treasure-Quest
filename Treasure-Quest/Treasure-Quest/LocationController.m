@@ -36,7 +36,7 @@
         _locationManager.delegate = self;
         _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         _locationManager.distanceFilter = 10;
-        _locationManager.headingFilter = 5;
+        _locationManager.headingFilter = 3;
         
     }
     
@@ -50,22 +50,19 @@
     [self.delegate locationControllerDidUpdateLocation:locations.lastObject];
     [self setLocation:locations.lastObject];
     
-    MapViewController *mapvc = [[MapViewController alloc]init];
-    mapvc.currentUserLocation = locations.lastObject;
+//    MapViewController *mapvc = [[MapViewController alloc]init];
+//    mapvc.currentUserLocation = locations.lastObject;
     
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
     
-    [self.delegate locationControllerDidUpdateHeading:newHeading];
-
     NSLog(@"New Heading: %f", newHeading.trueHeading);
-//    MapViewController *mapVC = [[MapViewController alloc]init];
-//    mapVC.currentHeading = newHeading.trueHeading;
-//    
     [self.delegate locationControllerDidUpdateHeading:newHeading];
     
 }
+
+
 
 
 @end
