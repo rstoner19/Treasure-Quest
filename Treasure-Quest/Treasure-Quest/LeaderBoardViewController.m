@@ -13,17 +13,24 @@
 @import Parse;
 
 
-@interface LeaderBoardViewController ()
+@interface LeaderBoardViewController () 
 @property (strong, nonatomic) IBOutlet UIView *pushTestButton;
+@property (weak, nonatomic) IBOutlet UIButton *textSendButton;
 @property (strong, nonatomic) Quest *currentQuest;
 
 @end
+
+
+
 
 @implementation LeaderBoardViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
+}
+- (IBAction)sendTextButtonPressed:(id)sender {
+ 
 }
 
 - (IBAction)pushTestButtonPressed:(id)sender {
@@ -41,21 +48,36 @@
                                         NSLog(@"%@",response );
                                     }
                                 }];
+    [PFCloud callFunctionInBackground:@"iosPushToChannel"
+                       withParameters:@{@"text": @"TEST CHANNEL SEND",
+                                        @"channel": [[PFUser currentUser] objectForKey:@"currentQuestId"]}
+                                block:^(NSString *response, NSError *error) {
+                                    if (!error) {
+                                        // ratings is 4.5
+                                        NSLog(@"%@",response );
+                                    }
+                                }];
 }
 
 - (void) setup {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     
-    PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
-    [query getObjectWithId:@"LuX5l9Yirp"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-    {
-        PFObject *obj = [objects firstObject];
-        NSLog(@"%@", obj);
-    }];
+    
+    [currentInstallation addUniqueObject:[[PFUser currentUser] objectForKey:@"currentQuestId"] forKey:@"channels"];
+    [currentInstallation saveInBackground];
+    NSLog(@"%@",[PFInstallation currentInstallation].channels);
+    
+    
+//    PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
+//    [query getObjectWithId:@"LuX5l9Yirp"];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+//    {
+//        PFObject *obj = [objects firstObject];
+//        NSLog(@"%@", obj);
+//    }];
 
     
 }
-
 
 
 @end

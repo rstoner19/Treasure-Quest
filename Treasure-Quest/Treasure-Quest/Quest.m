@@ -17,7 +17,9 @@
 @dynamic players;
 @dynamic maxplayers;
 @dynamic code;
-@synthesize route;
+@dynamic objectives;
+
+//@synthesize route;
 
 
 +(void)load{

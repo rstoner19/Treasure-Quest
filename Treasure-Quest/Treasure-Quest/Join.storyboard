@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Ie-wp-lna" id="cOZ-Oo-Cb0">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -117,17 +117,27 @@
                                     <action selector="pushTestButtonPressed:" destination="ETA-WN-YQb" eventType="touchUpInside" id="FRu-qP-urH"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgj-bH-ywO">
+                                <rect key="frame" x="277" y="323" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="sendTextButtonPressed:" destination="ETA-WN-YQb" eventType="touchUpInside" id="XUn-96-fjA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Bgj-bH-ywO" firstAttribute="centerX" secondItem="hY0-jp-KRY" secondAttribute="centerX" id="A8h-xs-hQG"/>
                             <constraint firstItem="M1H-uF-ZMr" firstAttribute="leading" secondItem="hY0-jp-KRY" secondAttribute="leading" constant="140" id="PfC-MB-faG"/>
                             <constraint firstItem="M1H-uF-ZMr" firstAttribute="centerY" secondItem="hY0-jp-KRY" secondAttribute="centerY" id="PyO-gt-7ws"/>
                             <constraint firstItem="M1H-uF-ZMr" firstAttribute="centerX" secondItem="hY0-jp-KRY" secondAttribute="centerX" id="boF-C3-JaA"/>
+                            <constraint firstItem="Bgj-bH-ywO" firstAttribute="top" secondItem="M1H-uF-ZMr" secondAttribute="bottom" constant="8" id="kCe-bo-hd9"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Leaderboard" id="9WT-fg-1Dx"/>
                     <connections>
                         <outlet property="pushTestButton" destination="hY0-jp-KRY" id="7OT-cC-d3A"/>
+                        <outlet property="textSendButton" destination="Bgj-bH-ywO" id="tax-X6-ch0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ilp-Pi-YrV" userLabel="First Responder" sceneMemberID="firstResponder"/>
