@@ -39,12 +39,13 @@ Parse.Cloud.define('iosPushToChannel', function(request, response) {
 
   // Our "Message" class has a "text" key with the body of the message itself
   var messageText = params.text;
+  var messageChannel = params.channel;
 
   // var pushQuery = new Parse.Query(Parse.Installation);
   // pushQuery.equalTo('deviceType', 'ios'); // targeting iOS devices only
   console.log(typeof(user.currentQuestId), user.currentQuestId);
   Parse.Push.send({
-    channels: [ user.currentQuestId],
+    channels: [ messageChannel ],
     data: {
       alert: messageText
     }
@@ -56,8 +57,6 @@ Parse.Cloud.define('iosPushToChannel', function(request, response) {
 
   response.success('success');
 });
-
-
 
 Parse.Cloud.define('currentPlayers', function(request, response) {
   var query = new Parse.Query('Quest');
