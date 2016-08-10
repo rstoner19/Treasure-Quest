@@ -60,11 +60,13 @@
             
             self.creatorObjectives = [[NSMutableArray alloc]init];
             
-            while ((int)self.creatorObjectives.count < (self.objectives.intValue -1)) {
-                int index = (int) (arc4random() * self.searchResults.count) % self.searchResults.count;
-                
-                if (![self.creatorObjectives containsObject:[self.searchResults objectAtIndex:index]]) {
-                    [self.creatorObjectives addObject:[self.searchResults objectAtIndex:index]];
+            if ((int)self.searchResults.count > self.objectives.intValue) {
+                while ((int)self.creatorObjectives.count < (self.objectives.intValue -1)) {
+                    int index = (int) (arc4random() * self.searchResults.count) % self.searchResults.count;
+                    
+                    if (![self.creatorObjectives containsObject:[self.searchResults objectAtIndex:index]]) {
+                        [self.creatorObjectives addObject:[self.searchResults objectAtIndex:index]];
+                    }
                 }
             }
             
