@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A270f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -274,10 +274,24 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nl9-OU-9sk">
+                                <rect key="frame" x="554" y="562" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="7PT-Od-Lg0"/>
+                                    <constraint firstAttribute="width" constant="5" id="A6t-nP-4DE"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="joinViewButton:" destination="Ius-La-fXG" eventType="touchUpInside" id="zUk-8J-zh7"/>
+                                    <segue destination="ari-cm-KGh" kind="show" id="oc5-83-CFu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="L6j-uH-4vw" firstAttribute="top" secondItem="Nl9-OU-9sk" secondAttribute="bottom" id="6PK-xN-SJi"/>
                             <constraint firstItem="Eqe-bK-gA8" firstAttribute="centerX" secondItem="FHi-gM-Ftb" secondAttribute="centerX" id="Ddy-DY-Zsg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Nl9-OU-9sk" secondAttribute="trailing" id="LCB-S5-uFJ"/>
                             <constraint firstItem="L6j-uH-4vw" firstAttribute="top" secondItem="0P4-sh-HfI" secondAttribute="bottom" constant="8" id="LfP-CZ-jUo"/>
                             <constraint firstItem="Eqe-bK-gA8" firstAttribute="top" secondItem="0P4-sh-HfI" secondAttribute="bottom" id="M0B-yv-km6"/>
                             <constraint firstItem="CQf-6a-4Xc" firstAttribute="top" secondItem="WoV-ED-tnh" secondAttribute="bottom" constant="100" id="M6c-rS-oej"/>
@@ -295,11 +309,20 @@
                     </view>
                     <connections>
                         <outlet property="countDownLabel" destination="Eqe-bK-gA8" id="8oO-pT-17X"/>
+                        <outlet property="joinButton" destination="Nl9-OU-9sk" id="C4A-eD-Vsf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byQ-Ve-EZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="995" y="361"/>
+        </scene>
+        <!--PlayVC-->
+        <scene sceneID="ezE-xg-x1U">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Join" referencedIdentifier="PlayVC" id="ari-cm-KGh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TZM-Gt-rPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1106.5" y="804"/>
         </scene>
         <!--Enter Code View Controller-->
         <scene sceneID="s6s-Jn-uqe">

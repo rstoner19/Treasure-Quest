@@ -134,7 +134,6 @@
             [[PFUser currentUser]setObject:quest.objectId forKey:@"currentQuestId"];
             [[PFUser currentUser] saveInBackground ];
             
-            
         } else {
             [[self.view viewWithTag:12] stopAnimating];
             

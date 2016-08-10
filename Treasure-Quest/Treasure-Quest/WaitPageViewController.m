@@ -198,7 +198,8 @@
                             NSLog(@"Looking up");
                         } else {
                             [UIView animateWithDuration:0.5 delay:3.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                                //
+                                self.gameDescriptionLabel.text = @"Get Ready!";
+                                self.gameDescriptionLabel.transform = CGAffineTransformScale(self.gameDescriptionLabel.transform, 1.5, 1.5);
                             } completion:^(BOOL finished) {
                                 CountDownViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"countDownViewController"];
                                 [self.navigationController pushViewController:viewController animated:YES];
