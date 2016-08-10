@@ -105,12 +105,12 @@
     
     NSMutableArray *objectives = [[NSMutableArray alloc]init];
     objectives = [Objective verifyDistanceRange:self.creatorObjectives players:self.players.intValue];
-    for (int i = 0; i < objectives.count; i++)
-    {
-        NSString *dictionaryValue = [NSString stringWithFormat:@"objectives%d", i];
-        quest[dictionaryValue] = [objectives objectAtIndex:i];
-    }
-    quest[@"objectives"] = self.creatorObjectives;
+//    for (int i = 0; i < objectives.count; i++)
+//    {
+//        NSString *dictionaryValue = [NSString stringWithFormat:@"objectives%d", i];
+//        quest[dictionaryValue] = [objectives objectAtIndex:i];
+//    }
+    quest[@"objectives"] = objectives;
     
 
     
