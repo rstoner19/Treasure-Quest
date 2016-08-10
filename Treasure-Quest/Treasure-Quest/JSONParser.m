@@ -29,25 +29,18 @@
         NSArray *categories = item[@"categories"];
         NSArray *icon = [categories valueForKey:@"icon"];
         NSArray *prefix = [icon valueForKey:@"prefix"];
-        NSDictionary *categoriesDictionary = item[@"icon"];
+  //      NSDictionary *categoriesDictionary = item[@"icon"];
         NSString *imageURL = [NSString stringWithFormat:@"%@.png",prefix];
-        //NSLog(@"%@", imageURL);
         NSString *infoCategory = [categories valueForKey:@"name"];
-        //NSLog(@"%@", infoCategory);
         
         NSDictionary *location = item[@"location"];
         
         double lat = [[location objectForKey:@"lat"] doubleValue];
         double lng = [[location objectForKey:@"lng"] doubleValue];
         
-        //NSLog(@"%f and %f", lat, lng);
-
-        
-        Objective *foursquareObjective = [Objective initWith:venueName imageURL:imageURL info:@"This is some information." category:@"Hi" range:@15 latitude:lat longitude:lng];
+        Objective *foursquareObjective = [Objective initWith:venueName imageURL:imageURL info:@"Arg I'm a pirate." category:infoCategory range:@15 latitude:lat longitude:lng];
       
         [foursquareData addObject:foursquareObjective];
-        //NSLog(@"foursquaredata: %@", [foursquareData[0]name]);
-        
     }
     return foursquareData;
 }
