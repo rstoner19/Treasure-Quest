@@ -12,7 +12,6 @@
 @interface CountDownViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *countDownLabel;
-- (IBAction)joinViewButton:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *joinButton;
 
 @end
@@ -71,7 +70,7 @@
                         [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                             self.countDownLabel.alpha = 0.0;
                         } completion:^(BOOL finished) {
-                            [self joinViewButton:self.joinButton];
+                            [self.joinButton sendActionsForControlEvents:UIControlEventTouchUpInside];
                             }];
                     }];
                 }];
@@ -80,6 +79,5 @@
     }];
 }
 
-- (IBAction)joinViewButton:(UIButton *)sender {
-}
+
 @end

@@ -274,15 +274,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nl9-OU-9sk">
-                                <rect key="frame" x="554" y="562" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nl9-OU-9sk">
+                                <rect key="frame" x="575" y="595" width="5" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="7PT-Od-Lg0"/>
                                     <constraint firstAttribute="width" constant="5" id="A6t-nP-4DE"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="joinViewButton:" destination="Ius-La-fXG" eventType="touchUpInside" id="zUk-8J-zh7"/>
                                     <segue destination="ari-cm-KGh" kind="show" id="oc5-83-CFu"/>
                                 </connections>
                             </button>
@@ -309,7 +310,7 @@
                     </view>
                     <connections>
                         <outlet property="countDownLabel" destination="Eqe-bK-gA8" id="8oO-pT-17X"/>
-                        <outlet property="joinButton" destination="Nl9-OU-9sk" id="C4A-eD-Vsf"/>
+                        <outlet property="joinButton" destination="Nl9-OU-9sk" id="YkY-1m-3wt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byQ-Ve-EZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
