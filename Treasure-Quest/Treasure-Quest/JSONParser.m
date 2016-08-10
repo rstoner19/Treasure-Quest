@@ -31,6 +31,10 @@
         NSArray *prefix = [icon valueForKey:@"prefix"];
         NSString *imageURL = [NSString stringWithFormat:@"%@.png",prefix];
         NSString *infoCategory = [categories firstObject][@"name"];
+        if (infoCategory == nil)
+        {
+            infoCategory = @"Mystery!";
+        }
         
         NSDictionary *location = item[@"location"];
         
