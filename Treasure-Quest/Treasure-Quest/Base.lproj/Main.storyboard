@@ -376,6 +376,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Summary" id="5fE-d9-n1T"/>
                     <connections>
+                        <outlet property="createButtonSelected" destination="TvC-kW-9kh" id="2u7-IZ-6gr"/>
                         <outlet property="descriptionLabel" destination="TX0-M6-POP" id="wfA-Fm-gY3"/>
                         <outlet property="numberOfPlayersLabel" destination="qDz-no-wQa" id="Aq6-7p-MKV"/>
                         <outlet property="objectivesLabel" destination="bHa-vg-xoI" id="jkA-v6-wfj"/>

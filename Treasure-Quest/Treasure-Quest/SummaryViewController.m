@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *objectivesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 - (IBAction)createButtonSelected:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *createButtonSelected;
 
 @end
 
@@ -30,12 +31,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+    self.createButtonSelected.alpha = 0;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        self.createButtonSelected.alpha = 1;
+        });
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 - (void)viewDidAppear:(BOOL)animated
@@ -72,6 +79,7 @@
             
             Objective *finalObjective = [[Objective alloc]init];
             finalObjective.name = @"The Final Destination!";
+            finalObjective.category = @"Final Destination!";
             finalObjective.latitude = self.finalCoordinate.latitude;
             finalObjective.longitude = self.finalCoordinate.longitude;
             
@@ -107,11 +115,6 @@
     
     NSMutableArray *objectives = [[NSMutableArray alloc]init];
     objectives = [Objective verifyDistanceRange:self.creatorObjectives players:self.players.intValue];
-//    for (int i = 0; i < objectives.count; i++)
-//    {
-//        NSString *dictionaryValue = [NSString stringWithFormat:@"objectives%d", i];
-//        quest[dictionaryValue] = [objectives objectAtIndex:i];
-//    }
     quest[@"objectives"] = objectives;
     
 
