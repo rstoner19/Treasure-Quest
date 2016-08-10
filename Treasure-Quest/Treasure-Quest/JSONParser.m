@@ -8,6 +8,7 @@
 
 #import "JSONParser.h"
 #import "FoursquareAPI.h"
+#import "Objective.h"
 
 @implementation JSONParser
 
@@ -15,18 +16,38 @@
 {
     NSMutableArray *foursquareData = [[NSMutableArray alloc]init];
     
-    NSArray *dataPoints = jsonData[@"items"];
+    NSDictionary *dataPoints = jsonData[@"response"];
     
-    for (NSDictionary *item in dataPoints)
+    NSArray *dataArray = dataPoints[@"venues"];
+    
+    for (NSDictionary *item in dataArray)
     {
-        FoursquareAPI *data = [[FoursquareAPI alloc]init];
-        data.name = item[@""];
+     //   FoursquareAPI *data = [[FoursquareAPI alloc]init];
         
-        NSDictionary *owner = item[@"name"];
-        data.name = owner[@"name"];
-        data.location = owner[@"location"];
+        NSString *venueName = item[@"name"];
+        //NSLog(@"%@", venueName);
+        NSArray *categories = item[@"categories"];
+        NSArray *icon = [categories valueForKey:@"icon"];
+        NSArray *prefix = [icon valueForKey:@"prefix"];
+        NSDictionary *categoriesDictionary = item[@"icon"];
+        NSString *imageURL = [NSString stringWithFormat:@"%@.png",prefix];
+        //NSLog(@"%@", imageURL);
+        NSString *infoCategory = [categories valueForKey:@"name"];
+        //NSLog(@"%@", infoCategory);
         
-        [foursquareData addObject:dataPoints];
+        NSDictionary *location = item[@"location"];
+        
+        double lat = [[location objectForKey:@"lat"] doubleValue];
+        double lng = [[location objectForKey:@"lng"] doubleValue];
+        
+        //NSLog(@"%f and %f", lat, lng);
+
+        
+        Objective *foursquareObjective = [Objective initWith:venueName imageURL:imageURL info:@"This is some information." category:@"Hi" range:@15 latitude:lat longitude:lng];
+      
+        [foursquareData addObject:foursquareObjective];
+        //NSLog(@"foursquaredata: %@", [foursquareData[0]name]);
+        
     }
     return foursquareData;
 }
