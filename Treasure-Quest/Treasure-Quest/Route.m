@@ -70,27 +70,6 @@
     CLLocationCoordinate2D pinLoc = [LocationController sharedController].pinLocation.coordinate;
     goRoute.finalDestination = pinLoc;
 
-//    goRoute.playfield.coordinate =
-
-//    goRoute.playfield.minRadius = @;
-
-//    goRoute.playfield.maxRadius = @;
-    
-    
-    
-//    if (token)
-//    {
-//        [FoursquareAPI getFoursquareData:@"query" finalLat:finalLat finalLong:finalLong radius:radius completionHandler:^(NSArray *results, NSError *error) {
-//            
-//            if (error)
-//            {
-//                NSLog(@"%@", error.localizedDescription);
-//            }
-//            goRoute.waypoints = [[NSMutableArray alloc]initWithArray:results];
-//            NSLog(@"%@", goRoute.waypoints);
-//        }];
-//    }
-
     return goRoute;
 }
 

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Treasure-Quest/SummaryViewController.m"
-            timestampString = "492545057.587313"
+            timestampString = "492548640.325485"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "-createButtonSelected:"
             landmarkType = "5">
          </BreakpointContent>
@@ -33,69 +33,6 @@
             endingLineNumber = "52"
             landmarkName = "+initWith:imageURL:info:category:range:latitude:longitude:"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Treasure-Quest/SummaryViewController.m"
-            timestampString = "492544830.117565"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__39-[SummaryViewController viewDidAppear:]_block_invoke"
-                  moduleName = "Treasure-Quest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seanchampagne/CF/401/Treasure-Quest/Treasure-Quest/Treasure-Quest/SummaryViewController.m"
-                  timestampString = "492544841.876286"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "1136">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_"
-                  moduleName = "Treasure-Quest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seanchampagne/CF/401/Treasure-Quest/Treasure-Quest/Treasure-Quest/SummaryViewController.m"
-                  timestampString = "492544841.876517"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "64">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_"
-                  moduleName = "Treasure-Quest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seanchampagne/CF/401/Treasure-Quest/Treasure-Quest/Treasure-Quest/SummaryViewController.m"
-                  timestampString = "492544841.876682"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
