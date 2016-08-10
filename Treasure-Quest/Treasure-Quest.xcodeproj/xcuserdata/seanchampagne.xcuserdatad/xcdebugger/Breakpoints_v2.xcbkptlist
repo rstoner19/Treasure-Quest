@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Treasure-Quest/SummaryViewController.m"
-            timestampString = "492548640.325485"
+            timestampString = "492550465.746235"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "-createButtonSelected:"
             landmarkType = "5">
          </BreakpointContent>
