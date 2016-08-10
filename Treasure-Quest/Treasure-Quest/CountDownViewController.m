@@ -7,6 +7,7 @@
 //
 
 #import "CountDownViewController.h"
+@import UIKit;
 
 @interface CountDownViewController ()
 
@@ -18,7 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.countDownLabel.text = @"5";
+    [self animateCountDown];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,9 +29,48 @@
 }
 
 - (void)animateCountDown {
-//    [UIView animateWithDuration:1.0 animations:^{
-//        <#code#>
-//    }]
+    
+    [UIView animateWithDuration:1.0 delay:1.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.countDownLabel.transform = CGAffineTransformScale(self.countDownLabel.transform, 2.0, 2.0);
+        self.countDownLabel.alpha = 0;
+    } completion:^(BOOL finished) {
+        self.countDownLabel.transform = CGAffineTransformScale(self.countDownLabel.transform, 0.5, 0.5);
+        self.countDownLabel.text = @"4";
+        self.countDownLabel.alpha = 1.0;
+        [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.countDownLabel.transform = CGAffineTransformScale(self.countDownLabel.transform, 2.1, 2.1);
+            self.countDownLabel.alpha = 0;
+        } completion:^(BOOL finished) {
+            self.countDownLabel.transform = CGAffineTransformScale(self.countDownLabel.transform, 0.5, 0.5);
+            self.countDownLabel.text = @"3";
+            self.countDownLabel.alpha = 1.0;
+            [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                self.countDownLabel.transform = CGAffineTransformScale(self.countDownLabel.transform, 2.2, 2.2);
+                self.countDownLabel.alpha = 0;
+            } completion:^(BOOL finished) {
+                self.countDownLabel.transform = CGAffineTransformScale(self.countDownLabel.transform, 0.5, 0.5);
+                self.countDownLabel.text = @"2";
+                self.countDownLabel.alpha = 1.0;
+                [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                    self.countDownLabel.transform = CGAffineTransformScale(self.countDownLabel.transform, 2.3, 2.3);
+                    self.countDownLabel.alpha = 0.5;
+                } completion:^(BOOL finished) {
+                    self.countDownLabel.transform = CGAffineTransformScale(self.countDownLabel.transform, 0.5, 0.5);
+                    self.countDownLabel.text = @"1";
+                    self.countDownLabel.alpha = 1.0;
+                    [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                        self.countDownLabel.transform = CGAffineTransformScale(self.countDownLabel.transform, 2.4, 2.4);
+                        self.countDownLabel.alpha = 0;
+                    } completion:^(BOOL finished) {
+                        self.countDownLabel.transform = CGAffineTransformScale(self.countDownLabel.transform, 0.85, 0.85);
+                        self.countDownLabel.textColor = [UIColor greenColor];
+                        self.countDownLabel.alpha = 0.8;
+                        self.countDownLabel.text = @"GO!";
+                    }];
+                }];
+            }];
+        }];
+    }];
 }
 
 @end

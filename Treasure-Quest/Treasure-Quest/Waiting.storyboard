@@ -249,8 +249,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Begins ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQf-6a-4Xc">
-                                <rect key="frame" x="186" y="120" width="229" height="40"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.25" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scavangerHunt" translatesAutoresizingMaskIntoConstraints="NO" id="0P4-sh-HfI">
+                                <rect key="frame" x="20" y="20" width="560" height="572"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Game Begins in..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQf-6a-4Xc">
+                                <rect key="frame" x="160" y="120" width="255" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -265,10 +268,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Eqe-bK-gA8" firstAttribute="centerX" secondItem="FHi-gM-Ftb" secondAttribute="centerX" id="Ddy-DY-Zsg"/>
+                            <constraint firstItem="L6j-uH-4vw" firstAttribute="top" secondItem="0P4-sh-HfI" secondAttribute="bottom" constant="8" id="LfP-CZ-jUo"/>
+                            <constraint firstItem="Eqe-bK-gA8" firstAttribute="top" secondItem="0P4-sh-HfI" secondAttribute="bottom" id="M0B-yv-km6"/>
                             <constraint firstItem="CQf-6a-4Xc" firstAttribute="top" secondItem="WoV-ED-tnh" secondAttribute="bottom" constant="100" id="M6c-rS-oej"/>
                             <constraint firstItem="Eqe-bK-gA8" firstAttribute="centerY" secondItem="FHi-gM-Ftb" secondAttribute="centerY" id="QMl-1P-QVl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0P4-sh-HfI" secondAttribute="trailing" id="Rnl-Kr-e1F"/>
+                            <constraint firstItem="0P4-sh-HfI" firstAttribute="top" secondItem="WoV-ED-tnh" secondAttribute="bottom" id="Ta8-aK-0Ly"/>
+                            <constraint firstItem="0P4-sh-HfI" firstAttribute="leading" secondItem="FHi-gM-Ftb" secondAttribute="leadingMargin" id="XWY-lB-OiY"/>
                             <constraint firstItem="CQf-6a-4Xc" firstAttribute="centerX" secondItem="FHi-gM-Ftb" secondAttribute="centerX" id="qGR-ME-Wxm"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="M0B-yv-km6"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="countDownLabel" destination="Eqe-bK-gA8" id="8oO-pT-17X"/>
@@ -311,13 +324,22 @@
                                     <action selector="joinButtonSelected:" destination="bFj-So-Eea" eventType="touchUpInside" id="Lzc-VP-9ow"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRs-es-K9d">
+                                <rect key="frame" x="285" y="436" width="30" height="30"/>
+                                <state key="normal" title="Test"/>
+                                <connections>
+                                    <segue destination="Ius-La-fXG" kind="show" id="k3f-wQ-t2y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WLs-we-B4f" firstAttribute="centerY" secondItem="Iar-Vh-E6F" secondAttribute="centerY" id="0Ae-he-zLe"/>
+                            <constraint firstItem="tRs-es-K9d" firstAttribute="centerX" secondItem="Iar-Vh-E6F" secondAttribute="centerX" id="Bsy-1v-0Hg"/>
                             <constraint firstItem="WLs-we-B4f" firstAttribute="centerX" secondItem="Iar-Vh-E6F" secondAttribute="centerX" id="Ewq-T6-6TK"/>
                             <constraint firstItem="jlO-xx-qAA" firstAttribute="centerX" secondItem="Iar-Vh-E6F" secondAttribute="centerX" id="MQj-O9-mQ1"/>
                             <constraint firstItem="V3c-Cm-czr" firstAttribute="top" secondItem="WLs-we-B4f" secondAttribute="bottom" constant="39" id="WwA-yr-8II"/>
+                            <constraint firstItem="tRs-es-K9d" firstAttribute="top" secondItem="V3c-Cm-czr" secondAttribute="bottom" constant="52" id="a67-xi-dip"/>
                             <constraint firstItem="V3c-Cm-czr" firstAttribute="centerX" secondItem="Iar-Vh-E6F" secondAttribute="centerX" id="b56-19-Bel"/>
                             <constraint firstItem="WLs-we-B4f" firstAttribute="top" secondItem="jlO-xx-qAA" secondAttribute="bottom" constant="115" id="n9G-Wv-qga"/>
                         </constraints>
@@ -331,4 +353,7 @@
             <point key="canvasLocation" x="-385" y="361"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="scavangerHunt" width="220" height="229"/>
+    </resources>
 </document>
