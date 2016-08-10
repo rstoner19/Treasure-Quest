@@ -20,6 +20,7 @@
 @property (strong, nonatomic) Player *creator;
 @property (strong, nonatomic) NSMutableArray *players;
 @property (strong, nonatomic) NSNumber *maxplayers;
-@property (strong, nonatomic) Route *route;
+//@property (strong, nonatomic) Route *route;
+@property (strong, nonatomic) NSMutableArray *objectives;
 
 @end

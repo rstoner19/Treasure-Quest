@@ -73,11 +73,12 @@
 //          [self.mapView addAnnotation:newPoint];
 //
 //=======
-    Objective *current = self.currentQuest.route.waypoints[0];
-    long index = [self.currentQuest.route.waypoints indexOfObject:current] + 1;
+    Objective *current = self.currentQuest.objectives[0];
+    [current fetchIfNeeded];
+    long index = [self.currentQuest.objectives indexOfObject:current] + 1;
     
     //Traverse array for first non complete item
-    while (current.completed == YES && index <= self.currentQuest.route.waypoints.count) {
+    while (current.completed == YES && index <= self.currentQuest.objectives.count) {
         
         CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(current.latitude, current.longitude);
 
@@ -87,11 +88,12 @@
         newPoint.title = current.name;
         [self.mapView addAnnotation:newPoint];
         
-        if (index == self.currentQuest.route.waypoints.count) {
+        if (index == self.currentQuest.objectives.count) {
             NSLog(@"end of array...");
             break;
         }
-        current = self.currentQuest.route.waypoints[index];
+        current = self.currentQuest.objectives[index];
+        [current fetchIfNeeded];
         index += 1;
 
     }
@@ -200,26 +202,41 @@
 
 -(void)completeCurrentObjective {
     NSUInteger index = 0;
+    [self.currentObjective fetchIfNeeded];
+    
     self.currentObjective.completed = YES;
+    [self.currentObjective save];
     
     NSArray *objectives = [[NSArray alloc]init];
-    objectives = self.currentQuest.route.waypoints;
-
+    objectives = self.currentQuest.objectives;
     
-    while (((Objective *)[objectives objectAtIndex: index]).completed == YES) {
-        
-        if (index == self.currentQuest.route.waypoints.count-1) {
-            NSLog(@"reached array limit, we out");
-            
-            //
-            
-            return;
+    while (index < self.currentQuest.objectives.count ) {
+        Objective *objective = [objectives objectAtIndex: index];
+        [objective fetchIfNeeded];
+        if (objective.completed == NO){
+            break;
         }
-        
-        index += 1;
+        index++;
     }
+    
+    if (index == self.currentQuest.objectives.count){
+        NSLog(@"end of the line");
+        return;
+    }
+//    while (((Objective *)[objectives objectAtIndex: index]).completed == YES) {
+//        
+//        if (index == self.currentQuest.objectives.count-1) {
+//            NSLog(@"reached array limit, we out");
+//            
+//            //
+//            
+//            return;
+//        }
+//        
+//        index += 1;
+//    }
 
-    self.currentObjective = self.currentQuest.route.waypoints[index];
+    self.currentObjective = self.currentQuest.objectives[index];
     NSLog(@"Objective complete! Next objective is objective %@", self.currentObjective.name);
     [self setupObjectiveAnnotations];
 }
