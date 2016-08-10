@@ -11,9 +11,11 @@
 @import Parse;
 #import "Objective.h"
 #import "CountDownViewController.h"
+#import <MessageUI/MessageUI.h>
 
 
-@interface WaitPageViewController ()
+
+@interface WaitPageViewController () <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gameCodeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gameDescriptionLabel;
@@ -32,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *waitingImageFour;
 @property (weak, nonatomic) IBOutlet UIImageView *waitingImageFive;
 @property (weak, nonatomic) IBOutlet UIImageView *waitingImageSix;
+@property (strong, nonatomic) IBOutlet UIView *sendInvitationButton;
 
 @end
 
@@ -208,6 +211,55 @@
             }];
         }
     }];
+}
+- (IBAction)sendInvitationsButtonPressed:(id)sender {
+    NSString *message = [NSString stringWithFormat:@"%@ wants you to join the quest! quest://%@", [[PFUser currentUser] objectForKey:@"username" ], [[PFUser currentUser] objectForKey:@"currentQuestId"] ];
+    [self showSMS:message];
+
+    
+}
+
+- (void)showSMS:(NSString*)text {
+    
+    if(![MFMessageComposeViewController canSendText]) {
+        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [warningAlert show];
+        return;
+    }
+    
+    //    NSArray *recipents = @[@"12345678", @"72345524"];
+    NSString *message = [NSString stringWithFormat:@"%@", text];
+    
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.messageComposeDelegate = self;
+    //    [messageController setRecipients:recipents];
+    [messageController setBody:message];
+    
+    // Present message view controller on screen
+    [self presentViewController:messageController animated:YES completion:nil];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult) result
+{
+    switch (result) {
+        case MessageComposeResultCancelled:
+            break;
+            
+        case MessageComposeResultFailed:
+        {
+            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to send SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [warningAlert show];
+            break;
+        }
+            
+        case MessageComposeResultSent:
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)parseListner {

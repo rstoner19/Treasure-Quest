@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A270f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -170,6 +170,13 @@
                                     <constraint firstAttribute="height" constant="25" id="edw-rd-IY2"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjc-qB-se1">
+                                <rect key="frame" x="243" y="562" width="114" height="30"/>
+                                <state key="normal" title="Send Invitations!"/>
+                                <connections>
+                                    <action selector="sendInvitationsButtonPressed:" destination="6VG-gx-1WK" eventType="touchUpInside" id="C97-Qu-3qH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -187,6 +194,7 @@
                             <constraint firstItem="qXI-ae-TFa" firstAttribute="centerX" secondItem="Sgf-Zi-Kpn" secondAttribute="centerX" id="NhE-gc-fNq"/>
                             <constraint firstItem="mGr-Yq-XoI" firstAttribute="top" secondItem="Ded-OQ-P0B" secondAttribute="bottom" constant="26" id="QgS-DA-z7S"/>
                             <constraint firstItem="tiB-mX-YXr" firstAttribute="top" secondItem="Bup-kY-7IX" secondAttribute="bottom" constant="25" id="R9h-TJ-Gjf"/>
+                            <constraint firstItem="D0f-tZ-7eh" firstAttribute="top" secondItem="sjc-qB-se1" secondAttribute="bottom" constant="8" id="ROb-A7-jRn"/>
                             <constraint firstItem="J5W-aG-zII" firstAttribute="top" secondItem="Yye-xk-Ain" secondAttribute="top" id="T0y-72-bpg"/>
                             <constraint firstItem="Imd-QW-Mr5" firstAttribute="top" secondItem="9Pa-ks-BQb" secondAttribute="bottom" constant="8" id="Z20-o5-Kam"/>
                             <constraint firstItem="Imd-QW-Mr5" firstAttribute="top" secondItem="poB-Ga-GvV" secondAttribute="top" id="Zmk-MA-UGY"/>
@@ -205,6 +213,7 @@
                             <constraint firstItem="gOl-0b-DQ6" firstAttribute="leading" secondItem="bYy-tf-bh3" secondAttribute="leading" id="jmD-oJ-Vhg"/>
                             <constraint firstItem="9Pa-ks-BQb" firstAttribute="top" secondItem="mGr-Yq-XoI" secondAttribute="bottom" constant="8" id="jyX-RA-bKz"/>
                             <constraint firstItem="bYy-tf-bh3" firstAttribute="centerX" secondItem="Sgf-Zi-Kpn" secondAttribute="centerX" constant="70" id="k0q-5a-Ezm"/>
+                            <constraint firstItem="sjc-qB-se1" firstAttribute="centerX" secondItem="Sgf-Zi-Kpn" secondAttribute="centerX" id="mii-Kz-9sj"/>
                             <constraint firstItem="qXI-ae-TFa" firstAttribute="leading" secondItem="Sgf-Zi-Kpn" secondAttribute="leadingMargin" id="pt5-m7-CkQ"/>
                             <constraint firstItem="xWK-A7-HHc" firstAttribute="leading" secondItem="FGU-xi-mjE" secondAttribute="leading" id="sch-2p-18w"/>
                             <constraint firstItem="J5W-aG-zII" firstAttribute="leading" secondItem="FGU-xi-mjE" secondAttribute="leading" id="tvn-Dy-2CZ"/>
@@ -217,6 +226,7 @@
                         <outlet property="gameCodeLabel" destination="tiB-mX-YXr" id="TUK-6u-5TR"/>
                         <outlet property="gameDescriptionLabel" destination="qXI-ae-TFa" id="sjq-a3-iNW"/>
                         <outlet property="questNameLabel" destination="Bup-kY-7IX" id="hCK-V5-FuG"/>
+                        <outlet property="sendInvitationButton" destination="Sgf-Zi-Kpn" id="zJP-3k-vgM"/>
                         <outlet property="userImage" destination="gOl-0b-DQ6" id="N63-ff-Jw1"/>
                         <outlet property="userTeam" destination="St2-8Q-GD3" id="RRC-Lf-dz6"/>
                         <outlet property="waitingImageFive" destination="Cn0-bF-kyK" id="Tlr-4e-cpd"/>

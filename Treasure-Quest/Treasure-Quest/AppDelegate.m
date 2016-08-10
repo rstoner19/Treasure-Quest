@@ -45,7 +45,7 @@
     [installation setDeviceTokenFromData:deviceToken];
     installation.channels = @[ @"global" ];
     [installation saveInBackground];
-    NSLog(@"Shit is happening now");
+//    NSLog(@"Shit is happening now");
 }
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     if (error.code == 3010) {
@@ -64,8 +64,22 @@
 
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
     [PFPush handlePush:userInfo];
     NSLog(@"%@",userInfo);
+
+    
+}
+
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    NSLog(@"Calling Application Bundle ID: %@", sourceApplication);
+    NSLog(@"URL scheme:%@", [url scheme]);
+    NSLog(@"URL query: %@", [url query]);
+    
+    return YES;
 }
 
 @end

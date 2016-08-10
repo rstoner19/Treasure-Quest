@@ -38,6 +38,7 @@
 }
 
 - (void)setupView {
+    self.questNameTextField.text = [NSString stringWithFormat:@"%@'s Epic Quest", [[PFUser currentUser] objectForKey:@"username" ]];
     self.playersPickerView.delegate = self;
     self.playersPickerView.dataSource = self;
     self.playersPickerData = @[@"1", @"2", @"3", @"4", @"5", @"6"];
