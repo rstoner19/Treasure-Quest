@@ -73,9 +73,7 @@
             finalObjective.latitude = self.finalCoordinate.latitude;
             finalObjective.longitude = self.finalCoordinate.longitude;
             
-            [self.creatorObjectives addObject:finalObjective];
-            NSLog(@"%@", self.creatorObjectives);
-            
+            [self.creatorObjectives addObject:finalObjective];            
         }];
     }
 }
@@ -105,17 +103,14 @@
     
     quest[@"players"] = currentPlayers;
     
-    
-////    route = [Route gameRoute:@100 maxRadius:@1000];
-//    quest.route = route;
-    
-//    Route *route = [Route demoRoute];
-//    quest.route = route;
-//    quest[@"route"] = quest.route;
-    
-    NSMutableArray *objectives = [[NSMutableArray alloc]initWithArray:self.creatorObjectives];
-    
-    quest[@"objectives"] = objectives;
+    NSMutableArray *objectives = [[NSMutableArray alloc]init];
+    objectives = [Objective verifyDistanceRange:self.creatorObjectives players:self.players.intValue];
+    for (int i = 0; i < objectives.count; i++)
+    {
+        NSString *dictionaryValue = [NSString stringWithFormat:@"objectives%d", i];
+        quest[dictionaryValue] = [objectives objectAtIndex:i];
+    }
+    quest[@"objectives"] = self.creatorObjectives;
     
 
     

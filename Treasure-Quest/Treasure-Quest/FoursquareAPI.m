@@ -31,7 +31,7 @@ static NSString * const BaseURLString = @"https://api.foursquare.com/v2/venues/"
         dispatch_async(dispatch_get_main_queue(), ^{
             completionHandler(results, nil);
         });
-        
+        NSLog(@"%@", searchURL);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"ERROR GETTING JSON: %@", error);
     }];
