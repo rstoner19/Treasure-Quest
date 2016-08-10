@@ -25,6 +25,7 @@
 @dynamic longitude;
 
 
+
 +(void)load{
     [self registerSubclass];
     
@@ -33,10 +34,6 @@
 +(NSString *)parseClassName{
     return @"Objective";
 }
-
-
-
-
 
 
 
@@ -53,6 +50,59 @@
     newObjective.longitude = lon;
 
     return newObjective;
+}
+
++ (double)totalDistanceCrowFlies:(NSMutableArray *)objectives {
+    double totalDistance = 0.00;
+    for (int i = 1; i < objectives.count; i++) {
+        Objective *first = [objectives objectAtIndex:(i-1)];
+        Objective *second = [objectives objectAtIndex:(i)];
+        CLLocation *firstLocation =  [[CLLocation alloc]initWithLatitude:first.latitude longitude:first.longitude];
+        CLLocation *secondLocation =  [[CLLocation alloc]initWithLatitude:second.latitude longitude:second.longitude];
+        
+        totalDistance += [firstLocation distanceFromLocation:secondLocation];
+    }
+    return totalDistance;
+}
+
++ (NSMutableArray *)randomizeObjectives:(NSMutableArray *)originalRoute {
+    NSMutableArray *newObjective = [[NSMutableArray alloc]init];
+    NSMutableArray *objectivesCopy = [originalRoute mutableCopy];
+    
+    while (objectivesCopy.count > 1) {
+        int index = (int)(arc4random() * objectivesCopy.count % ( objectivesCopy.count - 1 ));
+        [newObjective addObject:[objectivesCopy objectAtIndex:index]];
+        [objectivesCopy removeObjectAtIndex:index];
+    }
+    [newObjective addObject:objectivesCopy.lastObject];
+    return newObjective;
+}
+
++ (NSMutableArray *)verifyDistanceRange:(NSMutableArray *)originalObjectives players:(int)players{
+    
+    NSMutableArray *fairObjectives = [[NSMutableArray alloc]init];
+    double averageDistance = 0;
+    int othercount = 0;
+    for (int i = 0; i < 25; i++) {
+        averageDistance += [self totalDistanceCrowFlies:[self randomizeObjectives:originalObjectives]];
+        othercount ++;
+    }
+    
+    averageDistance = averageDistance/25;
+    NSLog(@"%d and average: %f", othercount, averageDistance);
+    while (fairObjectives.count < players) {
+        NSMutableArray *randomObjective = [self randomizeObjectives:originalObjectives];
+        if (averageDistance * 0.925 < [self totalDistanceCrowFlies:randomObjective] && averageDistance * 1.075 > [self totalDistanceCrowFlies:randomObjective]) {
+            [fairObjectives addObject:randomObjective];
+        }
+    }
+    //FOR TESTING PURPOSES.. CAN BE DELETED IF TEST ARE DONE AND IT WORKS
+    int count = 1;
+    for (NSMutableArray *objective in fairObjectives) {
+        NSLog(@"Player %i,: %f", count, [self totalDistanceCrowFlies:objective]);
+        count ++;
+    }
+    return fairObjectives;
 }
 
 

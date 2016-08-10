@@ -11,6 +11,7 @@
 #import "WaitPageViewController.h"
 #import "Route.h"
 @import Parse;
+#import "Objective.h"
 
 @interface SummaryViewController ()
 
@@ -57,7 +58,7 @@
             self.searchResults = [[NSMutableArray alloc] initWithArray:results];
             
             self.creatorObjectives = [[NSMutableArray alloc]init];
-            
+                        
             while ((int)self.creatorObjectives.count < self.objectives.intValue)
             {
                 int index = (int) (arc4random() * self.searchResults.count) % self.searchResults.count;
@@ -68,7 +69,6 @@
                 }
                 
             }
-            
         }];
         
     }

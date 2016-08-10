@@ -24,5 +24,8 @@
 
 +(instancetype)initWith: (NSString *)name imageURL:(NSString *)imageURL info:(NSString *)info category: (NSString *)category range: (NSNumber *)range latitude:(double)lat longitude:(double)lon;
 
++ (double)totalDistanceCrowFlies:(NSMutableArray *)objectives;
++ (NSMutableArray *)randomizeObjectives:(NSMutableArray *)originalRoute;
++ (NSMutableArray *)verifyDistanceRange:(NSMutableArray *)originalObjectives players:(int)players;
 
 @end
