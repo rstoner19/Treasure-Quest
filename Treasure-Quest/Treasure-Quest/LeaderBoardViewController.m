@@ -13,17 +13,24 @@
 @import Parse;
 
 
-@interface LeaderBoardViewController ()
+@interface LeaderBoardViewController () 
 @property (strong, nonatomic) IBOutlet UIView *pushTestButton;
+@property (weak, nonatomic) IBOutlet UIButton *textSendButton;
 @property (strong, nonatomic) Quest *currentQuest;
 
 @end
+
+
+
 
 @implementation LeaderBoardViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
+}
+- (IBAction)sendTextButtonPressed:(id)sender {
+ 
 }
 
 - (IBAction)pushTestButtonPressed:(id)sender {
@@ -71,7 +78,6 @@
 
     
 }
-
 
 
 @end
