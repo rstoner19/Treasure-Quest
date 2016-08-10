@@ -72,7 +72,7 @@
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     spinner.color = [UIColor darkGrayColor];
     [self.view addSubview:spinner];
-    spinner.center = CGPointMake(160, 250);
+    spinner.center = CGPointMake(self.view.center.x, self.view.center.y);
     spinner.tag = 12;
     [spinner startAnimating];
     
@@ -102,7 +102,7 @@
     [quest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (!error) {
      
-            WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
+            WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"countDownViewController"];
 
             NSLog(@"Saved successfully");
             viewController.questName = self.questName;

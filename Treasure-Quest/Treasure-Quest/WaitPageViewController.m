@@ -10,6 +10,7 @@
 #import "Route.h"
 @import Parse;
 #import "Objective.h"
+#import "CountDownViewController.h"
 
 
 @interface WaitPageViewController ()
@@ -189,11 +190,33 @@
                         }
                         
                         [self setupViewController];
+                        
+                        if (self.maxPlayers != [NSNumber numberWithUnsignedInteger:self.players.count]) {
+                            [self parseListner];
+                            NSLog(@"Looking up");
+                        } else {
+                            [UIView animateWithDuration:0.5 delay:1.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                //
+                            } completion:^(BOOL finished) {
+                                CountDownViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"countDownViewController"];
+                                [self.navigationController pushViewController:viewController animated:YES];
+                                return;
+                            }];
+                        }
                     }
                 }
             }];
         }
     }];
+}
+
+- (void)parseListner {
+    NSLog(@"Yep");
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            NSLog(@"Boom Goes the Dynamite!");
+            [self parseQuery];
+
+        });
 }
 
 
