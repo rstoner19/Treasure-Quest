@@ -83,18 +83,18 @@
     NSString *finalLong = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.longitude];
     
     
-    if (token)
-    {
-        [FoursquareAPI getFoursquareData:@"query" finalLat:finalLat finalLong:finalLong completionHandler:^(NSArray *results, NSError *error) {
-            
-            if (error)
-            {
-                NSLog(@"%@", error.localizedDescription);
-            }
-            goRoute.waypoints = [[NSMutableArray alloc]initWithArray:results];
-            NSLog(@"%@", goRoute.waypoints);
-        }];
-    }
+//    if (token)
+//    {
+//        [FoursquareAPI getFoursquareData:@"query" finalLat:finalLat finalLong:finalLong radius:radius completionHandler:^(NSArray *results, NSError *error) {
+//            
+//            if (error)
+//            {
+//                NSLog(@"%@", error.localizedDescription);
+//            }
+//            goRoute.waypoints = [[NSMutableArray alloc]initWithArray:results];
+//            NSLog(@"%@", goRoute.waypoints);
+//        }];
+//    }
 
     return goRoute;
 }

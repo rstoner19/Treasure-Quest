@@ -237,6 +237,47 @@
             </objects>
             <point key="canvasLocation" x="327" y="361"/>
         </scene>
+        <!--Count Down View Controller-->
+        <scene sceneID="cXj-MV-tg8">
+            <objects>
+                <viewController storyboardIdentifier="countDownViewController" id="Ius-La-fXG" customClass="CountDownViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WoV-ED-tnh"/>
+                        <viewControllerLayoutGuide type="bottom" id="L6j-uH-4vw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FHi-gM-Ftb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Begins ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQf-6a-4Xc">
+                                <rect key="frame" x="186" y="120" width="229" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqe-bK-gA8">
+                                <rect key="frame" x="258" y="252" width="84" height="96"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Eqe-bK-gA8" firstAttribute="centerX" secondItem="FHi-gM-Ftb" secondAttribute="centerX" id="Ddy-DY-Zsg"/>
+                            <constraint firstItem="CQf-6a-4Xc" firstAttribute="top" secondItem="WoV-ED-tnh" secondAttribute="bottom" constant="100" id="M6c-rS-oej"/>
+                            <constraint firstItem="Eqe-bK-gA8" firstAttribute="centerY" secondItem="FHi-gM-Ftb" secondAttribute="centerY" id="QMl-1P-QVl"/>
+                            <constraint firstItem="CQf-6a-4Xc" firstAttribute="centerX" secondItem="FHi-gM-Ftb" secondAttribute="centerX" id="qGR-ME-Wxm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="countDownLabel" destination="Eqe-bK-gA8" id="8oO-pT-17X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="byQ-Ve-EZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="995" y="361"/>
+        </scene>
         <!--Enter Code View Controller-->
         <scene sceneID="s6s-Jn-uqe">
             <objects>

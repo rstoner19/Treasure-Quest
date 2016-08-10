@@ -12,7 +12,7 @@
 #import "Route.h"
 @import Parse;
 
-@interface SummaryViewController ()  <LocationControllerDelegate>
+@interface SummaryViewController ()
 
 @property (strong, nonatomic) NSMutableArray *searchResults;
 @property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
@@ -35,16 +35,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//-(void)locationControllerDidUpdateHeading:(CLHeading *)heading
-//{
-//    //
-//}
-//
-//-(void)locationControllerDidUpdateLocation:(CLLocation *)location
-//{
-//    self.finalLat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-//    self.finalLong = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
-//}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -52,14 +42,14 @@
     
     NSString *token = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
     
-    self.finalLat = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.latitude];
-    
-    self.finalLong = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.longitude];
+    self.finalLat = [NSString stringWithFormat:@"%f", self.finalCoordinate.latitude];
+    self.finalLong = [NSString stringWithFormat:@"%f", self.finalCoordinate.longitude];
+    NSLog(@"Lat: %@, long: %@", self.finalLat, self.finalLong);
     
     
     if (token)
     {
-        [FoursquareAPI getFoursquareData:@"query" finalLat:self.finalLat finalLong:self.finalLong completionHandler:^(NSArray *results, NSError *error) {
+        [FoursquareAPI getFoursquareData:@"query" finalLat:self.finalLat finalLong:self.finalLong radius:[self.maxDistance stringValue] completionHandler:^(NSArray *results, NSError *error) {
             if (error)
             {
                 NSLog(@"%@", error.localizedDescription);
@@ -116,9 +106,14 @@
 
             NSLog(@"Saved successfully");
             viewController.questName = self.questName;
-            
+            viewController.gameCode = quest.objectId;
             [[self.view viewWithTag:12] stopAnimating];
+            
             [self.navigationController pushViewController:viewController animated:YES];
+//            NSLog(@"Current user: %@, created questid: %@", [PFUser currentUser].username, quest.objectId);
+            [[PFUser currentUser]setObject:quest.objectId forKey:@"currentQuestId"];
+            [[PFUser currentUser] saveInBackground ];
+            
             
         } else {
             [[self.view viewWithTag:12] stopAnimating];

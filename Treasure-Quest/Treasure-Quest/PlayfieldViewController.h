@@ -19,6 +19,9 @@
 @property(strong, nonatomic)NSNumber *objectives;
 @property(strong, nonatomic)NSString *currentLat;
 @property(strong, nonatomic)NSString *currentLong;
-@property (strong, nonatomic) CLLocation *currentUserLocation;
+@property(nonatomic)CLLocationCoordinate2D finalCoordinate;
+@property (strong, nonatomic)CLLocation *currentUserLocation;
+@property (strong, nonatomic)MKCircle *overlay;
+@property(strong, nonatomic)NSNumber *maxDistance;
 
 @end

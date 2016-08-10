@@ -65,11 +65,26 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nDk-RJ-Wg2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jva-eC-hv6">
+                                <rect key="frame" x="0.0" y="175" width="600" height="85"/>
+                                <color key="backgroundColor" red="0.66334614752659404" green="0.074224274474644414" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="CMo-DA-rUb"/>
+                                </constraints>
+                                <state key="normal" title="Complete Objective"/>
+                                <connections>
+                                    <action selector="completeButtonSelected:" destination="26P-hV-pd3" eventType="touchUpInside" id="msT-gP-5En"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nDk-RJ-Wg2" firstAttribute="leading" secondItem="0pQ-P3-fzD" secondAttribute="leadingMargin" constant="-20" id="12y-F8-dU6"/>
+                            <constraint firstItem="Jva-eC-hv6" firstAttribute="top" secondItem="9jP-xX-r27" secondAttribute="bottom" constant="155" id="6pD-Ol-h3D"/>
+                            <constraint firstItem="Jva-eC-hv6" firstAttribute="trailing" secondItem="nDk-RJ-Wg2" secondAttribute="trailing" id="F2a-Ma-bHh"/>
                             <constraint firstItem="9Oy-fA-zQU" firstAttribute="top" secondItem="nDk-RJ-Wg2" secondAttribute="bottom" id="FTO-1r-8Ui"/>
+                            <constraint firstItem="Jva-eC-hv6" firstAttribute="leading" secondItem="nDk-RJ-Wg2" secondAttribute="leading" id="JNG-O9-EcM"/>
+                            <constraint firstItem="nDk-RJ-Wg2" firstAttribute="top" secondItem="Jva-eC-hv6" secondAttribute="bottom" constant="-260" id="P2c-NG-SrZ"/>
                             <constraint firstItem="nDk-RJ-Wg2" firstAttribute="top" secondItem="0pQ-P3-fzD" secondAttribute="topMargin" id="b4z-Nr-Bri"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nDk-RJ-Wg2" secondAttribute="trailing" constant="-20" id="cK7-dW-fls"/>
                         </constraints>
@@ -94,13 +109,30 @@
                     <view key="view" contentMode="scaleToFill" id="hY0-jp-KRY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M1H-uF-ZMr">
+                                <rect key="frame" x="140" y="285" width="320" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="pushTestButtonPressed:" destination="ETA-WN-YQb" eventType="touchUpInside" id="FRu-qP-urH"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="M1H-uF-ZMr" firstAttribute="leading" secondItem="hY0-jp-KRY" secondAttribute="leading" constant="140" id="PfC-MB-faG"/>
+                            <constraint firstItem="M1H-uF-ZMr" firstAttribute="centerY" secondItem="hY0-jp-KRY" secondAttribute="centerY" id="PyO-gt-7ws"/>
+                            <constraint firstItem="M1H-uF-ZMr" firstAttribute="centerX" secondItem="hY0-jp-KRY" secondAttribute="centerX" id="boF-C3-JaA"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Leaderboard" id="9WT-fg-1Dx"/>
+                    <connections>
+                        <outlet property="pushTestButton" destination="hY0-jp-KRY" id="7OT-cC-d3A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ilp-Pi-YrV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="854" y="-392"/>
+            <point key="canvasLocation" x="1665" y="-432"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="UST-MY-ZTt">
@@ -119,7 +151,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nzS-Tc-Hex" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="854" y="308"/>
+            <point key="canvasLocation" x="758" y="326"/>
         </scene>
     </scenes>
 </document>

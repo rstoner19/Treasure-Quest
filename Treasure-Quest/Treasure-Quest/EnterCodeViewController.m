@@ -11,7 +11,8 @@
 #import "Quest.h"
 #import "WaitPageViewController.h"
 
-@interface EnterCodeViewController ()
+@interface EnterCodeViewController () <UITextFieldDelegate>
+
 - (IBAction)joinButtonSelected:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *codeTextField;
 
@@ -21,13 +22,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.codeTextField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)alert{
+    [[self.view viewWithTag:12] stopAnimating];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Invalid Code"
+                                                                             message:@"Please retry your code or create a new quest."
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:actionOk];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 
 - (void)parseQuery {
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -40,8 +52,8 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error){
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                for (Quest *quest in objects)
-                {
+                for (Quest *quest in objects) {
+                    
                     if ([quest.objectId isEqualToString:self.codeTextField.text]) {
                         self.questName = quest.name;
                         self.players = quest.players;
@@ -53,40 +65,41 @@
                         
                         PFObject *updateQuest = [PFObject objectWithoutDataWithClassName:@"Quest" objectId:quest.objectId];
                         updateQuest[@"players"] = self.players;
+                        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+
                         [updateQuest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                            if(!error) {
-                                WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
-                                NSLog(@"Saved successfully");
-                                [spinner stopAnimating];
-                                [[self.view viewWithTag:12] stopAnimating];
-
-                                viewController.questName = self.questName;
-                                
-                                [self.navigationController pushViewController:viewController animated:YES];
-                                
-                            }
+                                if(!error) {
+                                    WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
+                                    NSLog(@"Saved successfully");
+                                    [spinner stopAnimating];
+                                    viewController.gameCode = self.codeTextField.text;
+                                    viewController.questName = self.questName;
+                                    
+                                    [self.navigationController pushViewController:viewController animated:YES];
+                                    return;
+                                }
+                            }];
                         }];
-
-                        
-                    } else {
-                        [[self.view viewWithTag:12] stopAnimating];
-                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Invalid Code"
-                                                                                                 message:@"Please retry your code or create a new quest."
-                                                                                          preferredStyle:UIAlertControllerStyleAlert];
-                        UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-                        [alertController addAction:actionOk];
-                        [self presentViewController:alertController animated:YES completion:nil];
                     }
                 }
             }];
+        } else {
+            [self alert];
         }
     }];
-    [[self.view viewWithTag:12] stopAnimating];
-
+    [spinner stopAnimating];
 }
 
 - (IBAction)joinButtonSelected:(UIButton *)sender {
     [self parseQuery];
     
 }
+
+#pragma Mark - Text Field Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 @end

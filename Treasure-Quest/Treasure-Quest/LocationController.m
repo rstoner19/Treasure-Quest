@@ -44,23 +44,21 @@
     return self;
 }
 
-
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     
     [self.delegate locationControllerDidUpdateLocation:locations.lastObject];
     [self setLocation:locations.lastObject];
-    
-//    MapViewController *mapvc = [[MapViewController alloc]init];
-//    mapvc.currentUserLocation = locations.lastObject;
-    
+
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
     
-    NSLog(@"New Heading: %f", newHeading.trueHeading);
     [self.delegate locationControllerDidUpdateHeading:newHeading];
     
 }
+
+
+
 
 
 
