@@ -52,8 +52,8 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error){
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                for (Quest *quest in objects)
-                {
+                for (Quest *quest in objects) {
+                    
                     if ([quest.objectId isEqualToString:self.codeTextField.text]) {
                         self.questName = quest.name;
                         self.players = quest.players;
@@ -65,17 +65,20 @@
                         
                         PFObject *updateQuest = [PFObject objectWithoutDataWithClassName:@"Quest" objectId:quest.objectId];
                         updateQuest[@"players"] = self.players;
-                        [updateQuest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                            if(!error) {
-                                WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
-                                NSLog(@"Saved successfully");
-                                [spinner stopAnimating];
+                        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
 
-                                viewController.questName = self.questName;
-                                
-                                [self.navigationController pushViewController:viewController animated:YES];
-                                
-                            }
+                        [updateQuest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                                if(!error) {
+                                    WaitPageViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"waitingStoryboard"];
+                                    NSLog(@"Saved successfully");
+                                    [spinner stopAnimating];
+                                    viewController.gameCode = self.codeTextField.text;
+                                    viewController.questName = self.questName;
+                                    
+                                    [self.navigationController pushViewController:viewController animated:YES];
+                                    return;
+                                }
+                            }];
                         }];
                     }
                 }
@@ -84,8 +87,7 @@
             [self alert];
         }
     }];
-    [[self.view viewWithTag:12] stopAnimating];
-
+    [spinner stopAnimating];
 }
 
 - (IBAction)joinButtonSelected:(UIButton *)sender {
