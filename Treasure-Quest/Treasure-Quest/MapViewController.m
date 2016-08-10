@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property float angleToNextObjective;
 @property (strong, nonatomic) MKPinAnnotationView *userPin;
-@property (strong, nonatomic) TabBarViewController *tabbar;
 
 @end
 
@@ -30,9 +29,8 @@
     
     [super viewDidLoad];
     
-     self.tabbar = (TabBarViewController*)self.tabBarController;
-//    NSLog(@"mapview view did load %@",((TabBarViewController *)self.parentViewController).currentQuest.name);
-//    NSLog(@"string value? %@",((TabBarViewController *)self.parentViewController).mystring);
+    //    NSLog(@"mapview view did load %@",((TabBarViewController *)self.parentViewController).currentQuest.name);
+    //    NSLog(@"string value? %@",((TabBarViewController *)self.parentViewController).mystring);
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setShowsUserLocation:YES];
     [self.mapView setDelegate:self];
@@ -52,8 +50,8 @@
     [[LocationController sharedController]setDelegate:self];
     [[[LocationController sharedController]locationManager]startUpdatingLocation];
     [[[LocationController sharedController] locationManager]startUpdatingHeading];
-//    ProgressListViewController *progressListVC = (ProgressListViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
-//    self.tabbar.currentQuest = progressListVC.currentQuest;
+    //    ProgressListViewController *progressListVC = (ProgressListViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
+    //    self.tabbar.currentQuest = progressListVC.currentQuest;
     [self setupObjectiveAnnotations];
 }
 
@@ -64,7 +62,7 @@
     
     Objective *current = [[Objective alloc]init];
     current = ((TabBarViewController *)self.parentViewController).currentQuest.objectives[index];
-   
+    
     while (current.completed == YES && index < ((TabBarViewController *)self.parentViewController).currentQuest.objectives.count) {
         NSLog(@"completed: %@", current.name);
         index++;
@@ -74,42 +72,30 @@
             return;
         }
         
+        CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(current.latitude, current.longitude);
+        MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+        newPoint.coordinate = loc;
+        newPoint.title = current.name;
+        [self.mapView addAnnotation:newPoint];
+    
         current = ((TabBarViewController *)self.parentViewController).currentQuest.objectives[index];
         
     }
-    
-//Traverse array for first non complete item
-//
-//        CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(current.latitude, current.longitude);
-//
-////        CLLocationCoordinate2D loc = current.location.coordinate;
-//        MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
-//        newPoint.coordinate = loc;
-//        newPoint.title = current.name;
-//        [self.mapView addAnnotation:newPoint];
-//        
-//        if (index == self.currentQuest.objectives.count) {
-//            NSLog(@"end of array...");
-//            break;
-//        }
-//        current = self.currentQuest.objectives[index];
-////        [current fetchIfNeeded];
-//        index += 1;
 
-//    }
+    ((TabBarViewController *)self.parentViewController).currentObjective = current;
 }
 
 -(void)setRegionForCoordinate:(MKCoordinateRegion)region {
     
     [self.mapView setRegion:region animated:YES];
-
+    
 }
 
 -(void)locationControllerDidUpdateLocation:(CLLocation *)location{
     
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 50, 50) animated:YES];
     self.mapView.camera.altitude = 250;
-    CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:self.tabbar.currentObjective.latitude longitude:self.tabbar.currentObjective.longitude];
+    CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:((TabBarViewController *)self.parentViewController).currentObjective.latitude longitude:((TabBarViewController *)self.parentViewController).currentObjective.longitude];
     [self calculateAngleToNewObjective:location objectiveLocation:locationPointer];
     self.currentUserLocation = location;
     [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:locationPointer];
@@ -118,39 +104,41 @@
 }
 
 -(void)locationControllerDidUpdateHeading:(CLHeading *)heading {
-
-//    NSLog(@"%@", heading);
+    
+    NSLog(@"current device heading: %@", heading);
     self.mapView.camera.heading = heading.trueHeading;
     
-    CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:self.tabbar.currentObjective.latitude longitude:self.tabbar.currentObjective.longitude];
-
+    CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:((TabBarViewController *)self.parentViewController).currentObjective.latitude longitude:((TabBarViewController *)self.parentViewController).currentObjective.longitude];
+    
+    NSLog(@"current objectives latitude from tabbar! = %f", ((TabBarViewController *)self.parentViewController).currentObjective.latitude);
     
     self.mapView.camera.pitch = 70;
     self.mapView.camera.altitude = 250;
     self.currentHeading = heading.trueHeading;
     [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:locationPointer];
     
-//    NSLog(@"User Heading: %f   Angle to next: %f", self.currentHeading, self.angleToNextObjective);
+        NSLog(@"User Heading: %f   Angle to next: %f", self.currentHeading, self.angleToNextObjective);
     [self changeUserAnnotationColor:self.userPin];
     
- }
+}
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-
+    
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         
-       self.userPin = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"userAnno"];
+        self.userPin = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"userAnno"];
         self.userPin.pinTintColor = [UIColor purpleColor];
         
         return [self changeUserAnnotationColor:self.userPin];
+        
     }
-
+    
     MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"annotationView"];
-
+    
     if (!annotationView) {
         annotationView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"annotationView"];
     }
-
+    
     annotationView.canShowCallout = YES;
     UIButton *calloutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     annotationView.rightCalloutAccessoryView = calloutButton;
@@ -158,7 +146,7 @@
 }
 
 -(void) calculateAngleToNewObjective:(CLLocation *)userLocation objectiveLocation: (CLLocation *)objectiveLocation {
-   
+    
     float userLat = userLocation.coordinate.latitude;
     float userLong = userLocation.coordinate.longitude;
     
@@ -170,40 +158,39 @@
     float x = cos(userLat) * sin(objectiveLat) - sin(userLat) * cos(objectiveLat) * cos(deltaLong);
     float bearingInRadians = atan2f(y, x);
     
-    self.angleToNextObjective = bearingInRadians * 180 / M_PI;
+    self.angleToNextObjective = fabs(bearingInRadians * 180 / M_PI);
     
 }
 
 -(MKPinAnnotationView*)changeUserAnnotationColor: (MKPinAnnotationView *)userPin {
-   //TODO: adjust opacity based on accuracy percentage
+    //TODO: adjust opacity based on accuracy percentage
     //float difference = fabs(self.currentHeading - self.angleToNextObjective);
-
-    if (self.currentHeading <= self.angleToNextObjective + 10 && self.currentHeading >= self.angleToNextObjective - 10) {
     
-       
-       self.userPin.pinTintColor = [UIColor greenColor];
+    if (self.currentHeading <= self.angleToNextObjective + 10 && self.currentHeading >= self.angleToNextObjective - 10) {
+        
+        self.userPin.pinTintColor = [UIColor greenColor];
         return userPin;
         
     }
     
-    else if(self.currentHeading <= self.angleToNextObjective + 50 && self.currentHeading >= self.angleToNextObjective - 50) {
-        self.userPin.pinTintColor = [UIColor yellowColor];
-        return userPin;
-
-    }
+    //    else if(self.currentHeading <= self.angleToNextObjective + 50 && self.currentHeading >= self.angleToNextObjective - 50) {
+    //        self.userPin.pinTintColor = [UIColor yellowColor];
+    //        return userPin;
+    //
+    //    }
     
     else {
         
         self.userPin.pinTintColor = [UIColor redColor];
         return userPin;
     }
-
+    
 }
 
 -(void)completeCurrentObjective {
     NSUInteger index = 0;
     ((TabBarViewController *)self.parentViewController).currentObjective.completed = YES;
-//    [self.currentObjective save];
+    //    [self.currentObjective save];
     
     NSArray *objectives = [[NSArray alloc]init];
     objectives = ((TabBarViewController *)self.parentViewController).currentQuest.objectives;
@@ -220,28 +207,16 @@
         NSLog(@"end of the line");
         return;
     }
-//    while (((Objective *)[objectives objectAtIndex: index]).completed == YES) {
-//        
-//        if (index == self.currentQuest.objectives.count-1) {
-//            NSLog(@"reached array limit, we out");
-//            
-//            //
-//            
-//            return;
-//        }
-//        
-//        index += 1;
-//    }
-
-    self.tabbar.currentObjective = self.tabbar.currentQuest.objectives[index];
     
-    NSLog(@"Objective complete! Next objective is objective %@", self.tabbar.currentObjective.name);
+    ((TabBarViewController *)self.parentViewController).currentObjective = ((TabBarViewController *)self.parentViewController).currentQuest.objectives[index];
+    
+    //    NSLog(@"Objective complete! Next objective is objective %@", self.tabbar.currentObjective.name);
     [self setupObjectiveAnnotations];
-    [self setUpRegion:self.tabbar.currentObjective];
+    [self setUpRegion:((TabBarViewController *)self.parentViewController).currentObjective];
 }
 
 -(void) setUpRegion: (Objective *)objective {
-   
+    
     objective.range = @50;
     NSLog(@"Dis mah range bruh: %@", objective.range);
     
