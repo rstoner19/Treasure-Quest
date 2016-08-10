@@ -55,9 +55,24 @@
                 NSLog(@"%@", error.localizedDescription);
             }
             self.searchResults = [[NSMutableArray alloc] initWithArray:results];
+            
+            self.creatorObjectives = [[NSMutableArray alloc]init];
+            
+            while ((int)self.creatorObjectives.count < self.objectives.intValue)
+            {
+                int index = (int) (arc4random() * self.searchResults.count) % self.searchResults.count;
+                
+                if (![self.creatorObjectives containsObject:[self.searchResults objectAtIndex:index]])
+                {
+                    [self.creatorObjectives addObject:[self.searchResults objectAtIndex:index]];
+                }
+                
+            }
+            
         }];
+        
     }
-
+  NSLog(@"%@", [NSNumber numberWithUnsignedInteger:self.creatorObjectives.count]);
 }
 
 - (void)setupView {
@@ -93,7 +108,7 @@
 //    quest.route = route;
 //    quest[@"route"] = quest.route;
     
-    NSMutableArray *objectives = [[NSMutableArray alloc]initWithArray:self.searchResults];
+    NSMutableArray *objectives = [[NSMutableArray alloc]initWithArray:self.creatorObjectives];
     
     quest[@"objectives"] = objectives;
     
