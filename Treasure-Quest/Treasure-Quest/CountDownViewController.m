@@ -12,6 +12,7 @@
 @interface CountDownViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *countDownLabel;
+@property (weak, nonatomic) IBOutlet UIButton *joinButton;
 
 @end
 
@@ -66,11 +67,17 @@
                         self.countDownLabel.textColor = [UIColor greenColor];
                         self.countDownLabel.alpha = 0.8;
                         self.countDownLabel.text = @"GO!";
+                        [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                            self.countDownLabel.alpha = 0.0;
+                        } completion:^(BOOL finished) {
+                            [self.joinButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+                            }];
                     }];
                 }];
             }];
         }];
     }];
 }
+
 
 @end
