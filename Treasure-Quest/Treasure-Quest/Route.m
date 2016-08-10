@@ -15,7 +15,9 @@
 
 @implementation Route
 
-//
+//@synthesize finalDestination;
+//@synthesize playfield;
+//@synthesize waypoints;
 //
 //+(void)load{
 //    [self registerSubclass];
@@ -53,7 +55,10 @@
     for (int i = 1; i < route.waypoints.count; i++) {
         Objective *first = route.waypoints[i-1];
         Objective *second = route.waypoints[i];
-        totalDistance += [first.location distanceFromLocation:second.location];
+        CLLocation *firstLocation =  [[CLLocation alloc]initWithLatitude:first.latitude longitude:first.longitude];
+        CLLocation *secondLocation =  [[CLLocation alloc]initWithLatitude:second.latitude longitude:second.longitude];
+        
+        totalDistance += [firstLocation distanceFromLocation:secondLocation];
     }
     return totalDistance;
 }
@@ -81,6 +86,7 @@
     if (token)
     {
         [FoursquareAPI getFoursquareData:@"query" finalLat:finalLat finalLong:finalLong completionHandler:^(NSArray *results, NSError *error) {
+            
             if (error)
             {
                 NSLog(@"%@", error.localizedDescription);

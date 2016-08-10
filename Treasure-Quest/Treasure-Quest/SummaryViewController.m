@@ -14,7 +14,7 @@
 
 @interface SummaryViewController ()  <LocationControllerDelegate>
 
-@property (strong, nonatomic) NSArray *searchResults;
+@property (strong, nonatomic) NSMutableArray *searchResults;
 @property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfPlayersLabel;
 @property (weak, nonatomic) IBOutlet UILabel *objectivesLabel;
@@ -64,7 +64,7 @@
             {
                 NSLog(@"%@", error.localizedDescription);
             }
-            self.searchResults = results;
+            self.searchResults = [[NSMutableArray alloc] initWithArray:results];
         }];
     }
 
@@ -86,14 +86,28 @@
     spinner.tag = 12;
     [spinner startAnimating];
     
-    PFObject *quest = [PFObject objectWithClassName:@"Quest"];
+    Quest *quest = [Quest objectWithClassName:@"Quest"];
     quest[@"name"] = self.questName;
     quest[@"info"] = self.gameDescription;
     quest[@"maxplayers"] = self.players;
     NSMutableArray *currentPlayers = [[NSMutableArray alloc]init];
     [currentPlayers addObject:[PFUser currentUser].objectId];
+    
     quest[@"players"] = currentPlayers;
-    quest[@"route"] = [Route gameRoute:@100 maxRadius:@1000];
+    
+    
+////    route = [Route gameRoute:@100 maxRadius:@1000];
+//    quest.route = route;
+    
+//    Route *route = [Route demoRoute];
+//    quest.route = route;
+//    quest[@"route"] = quest.route;
+    
+    NSMutableArray *objectives = [[NSMutableArray alloc]initWithArray:self.searchResults];
+    
+    quest[@"objectives"] = objectives;
+    
+
     
     [quest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (!error) {

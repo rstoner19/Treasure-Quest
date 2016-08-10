@@ -43,7 +43,7 @@
         //NSLog(@"%f and %f", lat, lng);
 
         
-        Objective *foursquareObjective = [Objective initWith:venueName imageURL:imageURL info:@"This is some information." category:infoCategory range:@15 latitude:lat longitude:lng];
+        Objective *foursquareObjective = [Objective initWith:venueName imageURL:imageURL info:@"This is some information." category:@"Hi" range:@15 latitude:lat longitude:lng];
       
         [foursquareData addObject:foursquareObjective];
         //NSLog(@"foursquaredata: %@", [foursquareData[0]name]);
