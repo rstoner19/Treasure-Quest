@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Ie-wp-lna" id="cOZ-Oo-Cb0">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -144,10 +144,10 @@
             </objects>
             <point key="canvasLocation" x="1665" y="-432"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="UST-MY-ZTt">
             <objects>
-                <tabBarController storyboardIdentifier="PlayVC" automaticallyAdjustsScrollViewInsets="NO" id="D55-wM-r9Q" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="PlayVC" automaticallyAdjustsScrollViewInsets="NO" id="D55-wM-r9Q" customClass="TabBarViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="XWg-VZ-G2Z">
                         <autoresizingMask key="autoresizingMask"/>

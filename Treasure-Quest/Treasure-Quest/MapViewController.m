@@ -12,15 +12,15 @@
 #import "Quest.h"
 #import "Objective.h"
 #import "ProgressListViewController.h"
+#import "TabBarViewController.h"
 
 @interface MapViewController () <MKMapViewDelegate, LocationControllerDelegate>
 - (IBAction)completeButtonSelected:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) Quest *currentQuest;
 @property float angleToNextObjective;
-@property (strong, nonatomic) Objective *currentObjective;
 @property (strong, nonatomic) MKPinAnnotationView *userPin;
+@property (strong, nonatomic) TabBarViewController *tabbar;
 
 @end
 
@@ -29,6 +29,10 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+     self.tabbar = (TabBarViewController*)self.tabBarController;
+//    NSLog(@"mapview view did load %@",((TabBarViewController *)self.parentViewController).currentQuest.name);
+//    NSLog(@"string value? %@",((TabBarViewController *)self.parentViewController).mystring);
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setShowsUserLocation:YES];
     [self.mapView setDelegate:self];
@@ -48,54 +52,51 @@
     [[LocationController sharedController]setDelegate:self];
     [[[LocationController sharedController]locationManager]startUpdatingLocation];
     [[[LocationController sharedController] locationManager]startUpdatingHeading];
-    ProgressListViewController *progressListVC = (ProgressListViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
-    self.currentQuest = progressListVC.currentQuest;
-    NSLog(@"%@", self.currentQuest);
+//    ProgressListViewController *progressListVC = (ProgressListViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
+//    self.tabbar.currentQuest = progressListVC.currentQuest;
     [self setupObjectiveAnnotations];
 }
 
+
 -(void)setupObjectiveAnnotations {
-
-
-//    NSArray *objectives = self.currentQuest.route.waypoints;
-//
-//    Objective *firstCompleted = objectives[0];
-//    firstCompleted.completed = YES;
-//
-//    for (Objective *objective in objectives) {
-//
-//        if(objective.completed == YES){
-//  
-//            CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(objective.latitude, objective.longitude);
-//          MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
-//          newPoint.coordinate = loc;
-//          newPoint.title = objective.name;
-//          [self.mapView addAnnotation:newPoint];
-//
-    Objective *current = self.currentQuest.objectives[0];
-    [current fetchIfNeeded];
-    long index = [self.currentQuest.objectives indexOfObject:current] + 1;
     
-    //Traverse array for first non complete item
-    while (current.completed == YES && index <= self.currentQuest.objectives.count) {
+    NSUInteger index = 0;
+    
+    Objective *current = [[Objective alloc]init];
+    current = ((TabBarViewController *)self.parentViewController).currentQuest.objectives[index];
+   
+    while (current.completed == YES && index < ((TabBarViewController *)self.parentViewController).currentQuest.objectives.count) {
+        NSLog(@"completed: %@", current.name);
+        index++;
         
-        CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(current.latitude, current.longitude);
-
-//        CLLocationCoordinate2D loc = current.location.coordinate;
-        MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
-        newPoint.coordinate = loc;
-        newPoint.title = current.name;
-        [self.mapView addAnnotation:newPoint];
-        
-        if (index == self.currentQuest.objectives.count) {
-            NSLog(@"end of array...");
-            break;
+        if(index == ((TabBarViewController *)self.parentViewController).currentQuest.objectives.count){
+            NSLog(@"end of array reached");
+            return;
         }
-        current = self.currentQuest.objectives[index];
-        [current fetchIfNeeded];
-        index += 1;
-
+        
+        current = ((TabBarViewController *)self.parentViewController).currentQuest.objectives[index];
+        
     }
+    
+//Traverse array for first non complete item
+//
+//        CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(current.latitude, current.longitude);
+//
+////        CLLocationCoordinate2D loc = current.location.coordinate;
+//        MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+//        newPoint.coordinate = loc;
+//        newPoint.title = current.name;
+//        [self.mapView addAnnotation:newPoint];
+//        
+//        if (index == self.currentQuest.objectives.count) {
+//            NSLog(@"end of array...");
+//            break;
+//        }
+//        current = self.currentQuest.objectives[index];
+////        [current fetchIfNeeded];
+//        index += 1;
+
+//    }
 }
 
 -(void)setRegionForCoordinate:(MKCoordinateRegion)region {
@@ -108,7 +109,7 @@
     
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 50, 50) animated:YES];
     self.mapView.camera.altitude = 250;
-    CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:self.currentObjective.latitude longitude:self.currentObjective.longitude];
+    CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:self.tabbar.currentObjective.latitude longitude:self.tabbar.currentObjective.longitude];
     [self calculateAngleToNewObjective:location objectiveLocation:locationPointer];
     self.currentUserLocation = location;
     [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:locationPointer];
@@ -121,7 +122,7 @@
 //    NSLog(@"%@", heading);
     self.mapView.camera.heading = heading.trueHeading;
     
-    CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:self.currentObjective.latitude longitude:self.currentObjective.longitude];
+    CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:self.tabbar.currentObjective.latitude longitude:self.tabbar.currentObjective.longitude];
 
     
     self.mapView.camera.pitch = 70;
@@ -201,24 +202,21 @@
 
 -(void)completeCurrentObjective {
     NSUInteger index = 0;
-    [self.currentObjective fetchIfNeeded];
-    
-    self.currentObjective.completed = YES;
-    [self.currentObjective save];
+    ((TabBarViewController *)self.parentViewController).currentObjective.completed = YES;
+//    [self.currentObjective save];
     
     NSArray *objectives = [[NSArray alloc]init];
-    objectives = self.currentQuest.objectives;
+    objectives = ((TabBarViewController *)self.parentViewController).currentQuest.objectives;
     
-    while (index < self.currentQuest.objectives.count ) {
+    while (index < ((TabBarViewController *)self.parentViewController).currentQuest.objectives.count) {
         Objective *objective = [objectives objectAtIndex: index];
-        [objective fetchIfNeeded];
         if (objective.completed == NO){
             break;
         }
         index++;
     }
     
-    if (index == self.currentQuest.objectives.count){
+    if (index == ((TabBarViewController *)self.parentViewController).currentQuest.objectives.count){
         NSLog(@"end of the line");
         return;
     }
@@ -235,17 +233,17 @@
 //        index += 1;
 //    }
 
-    self.currentObjective = self.currentQuest.objectives[index];
-    NSLog(@"Objective complete! Next objective is objective %@", self.currentObjective.name);
+    self.tabbar.currentObjective = self.tabbar.currentQuest.objectives[index];
+    
+    NSLog(@"Objective complete! Next objective is objective %@", self.tabbar.currentObjective.name);
     [self setupObjectiveAnnotations];
-    [self setUpRegion:self.currentObjective];
+    [self setUpRegion:self.tabbar.currentObjective];
 }
 
 -(void) setUpRegion: (Objective *)objective {
    
     objective.range = @50;
     NSLog(@"Dis mah range bruh: %@", objective.range);
-    
     
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(objective.latitude, objective.longitude);
     
