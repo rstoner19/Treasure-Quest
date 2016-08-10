@@ -191,7 +191,6 @@
                         if ([self.players containsObject:[PFUser currentUser].objectId]) {
                             self.teamNumber = [NSNumber numberWithInt:(int)([self.players indexOfObject:[PFUser currentUser].objectId] + 1)];
                         }
-                        
                         [self setupViewController];
                         
                         if ([self.maxPlayers intValue] != (int)(self.players.count)) {
