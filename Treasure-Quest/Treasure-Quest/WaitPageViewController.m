@@ -199,7 +199,7 @@
     }];
 }
 - (IBAction)sendInvitationsButtonPressed:(id)sender {
-    NSString *message = [NSString stringWithFormat:@"%@ wants you to join the quest! quest://%@", [[PFUser currentUser] objectForKey:@"username" ], [[PFUser currentUser] objectForKey:@"currentQuestId"] ];
+    NSString *message = [NSString stringWithFormat:@"%@ wants you to join the quest! quest://?%@", [[PFUser currentUser] objectForKey:@"username" ], [[PFUser currentUser] objectForKey:@"currentQuestId"] ];
     [self showSMS:message];
 
     
