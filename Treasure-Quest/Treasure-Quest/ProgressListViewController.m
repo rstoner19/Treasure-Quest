@@ -38,10 +38,6 @@
 -(void) setup {
 
    self.objectivesDisplayed = [[NSMutableArray alloc]init];
-    TabBarViewController *tabbar = (TabBarViewController*)self.tabBarController;
-    
-
-
     
     PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
     [query whereKey:@"objectId" equalTo:[[PFUser currentUser] objectForKey:@"currentQuestId"]];
