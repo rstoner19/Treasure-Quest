@@ -76,11 +76,6 @@
 
 //    goRoute.playfield.maxRadius = @;
     
-    NSString *token = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
-    
-    NSString *finalLat = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.latitude];
-    
-    NSString *finalLong = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.longitude];
     
     
 //    if (token)

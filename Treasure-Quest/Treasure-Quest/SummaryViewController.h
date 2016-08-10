@@ -18,6 +18,7 @@
 @property(strong, nonatomic)NSNumber *objectives;
 @property(strong, nonatomic)NSString *finalLat;
 @property(strong, nonatomic)NSString *finalLong;
+@property(strong, nonatomic)NSMutableArray *creatorObjectives;
 @property(nonatomic)CLLocationCoordinate2D finalCoordinate;
 @property(strong, nonatomic)NSNumber *maxDistance;
 
