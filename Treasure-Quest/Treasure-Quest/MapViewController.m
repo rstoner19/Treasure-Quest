@@ -230,7 +230,7 @@
     NSLog(@"Dis mah range bruh: %@", objective.range);
     
     
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(objective.location.coordinate.latitude, objective.location.coordinate.longitude);
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(objective.latitude, objective.longitude);
     
     if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
         CLCircularRegion *eventRegion = [[CLCircularRegion alloc]initWithCenter: coord radius:objective.range.floatValue identifier:objective.name];
