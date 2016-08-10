@@ -38,6 +38,7 @@
 		4CBE87A81D55B8DE0034F19A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CBE87A71D55B8DE0034F19A /* MapKit.framework */; };
 		4CBE87AB1D55BC8F0034F19A /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBE87AA1D55BC8F0034F19A /* LocationController.m */; };
 		6958E99D1D5B193000510ADC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6958E99C1D5B193000510ADC /* MessageUI.framework */; };
+		699942FF1D5BC78A00735F9F /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699942FE1D5BC78A00735F9F /* TabBarViewController.m */; };
 		8BF2B1D41D567CBD0071DE20 /* JSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2B1D31D567CBD0071DE20 /* JSONParser.m */; };
 		8BF2B1D71D567DC10071DE20 /* FoursquareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2B1D61D567DC10071DE20 /* FoursquareAPI.m */; };
 		8BF2B1D91D56A0F70071DE20 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF2B1D81D56A0F70071DE20 /* AFNetworking.framework */; };
@@ -108,6 +109,8 @@
 		4CBE87A91D55BC8F0034F19A /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
 		4CBE87AA1D55BC8F0034F19A /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 		6958E99C1D5B193000510ADC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		699942FD1D5BC78A00735F9F /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		699942FE1D5BC78A00735F9F /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		8BF2B1D21D567CBD0071DE20 /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
 		8BF2B1D31D567CBD0071DE20 /* JSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONParser.m; sourceTree = "<group>"; };
 		8BF2B1D51D567DC10071DE20 /* FoursquareAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoursquareAPI.h; sourceTree = "<group>"; };
@@ -212,6 +215,8 @@
 		4C7D76191D53FAA700932D3A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				699942FD1D5BC78A00735F9F /* TabBarViewController.h */,
+				699942FE1D5BC78A00735F9F /* TabBarViewController.m */,
 				4C7D76151D53FA1700932D3A /* ProgressListViewController.h */,
 				4C7D76161D53FA1700932D3A /* ProgressListViewController.m */,
 				4C7D76361D55A7D800932D3A /* MapViewController.h */,
@@ -374,7 +379,7 @@
 				TargetAttributes = {
 					4C7D75EC1D53389C00932D3A = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 9EE26NTZPB;
+						DevelopmentTeam = 8ZT3NZA445;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -440,6 +445,7 @@
 				4C7D761F1D5400A900932D3A /* Player.m in Sources */,
 				4C7D76171D53FA1700932D3A /* ProgressListViewController.m in Sources */,
 				04594DF91D599695007AAAB6 /* EnterCodeViewController.m in Sources */,
+				699942FF1D5BC78A00735F9F /* TabBarViewController.m in Sources */,
 				4C7D76351D5546F700932D3A /* Objective.m in Sources */,
 				048DB9491D54015C00604726 /* PlayfieldViewController.m in Sources */,
 				8BF2B1D41D567CBD0071DE20 /* JSONParser.m in Sources */,
@@ -566,7 +572,7 @@
 				);
 				INFOPLIST_FILE = "Treasure-Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seanchampagne.treasurequest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.derekgraham.treasurequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -585,7 +591,7 @@
 				);
 				INFOPLIST_FILE = "Treasure-Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seanchampagne.treasurequest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.derekgraham.treasurequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
