@@ -10,6 +10,7 @@
 #import "FoursquareAPI.h"
 #import "WaitPageViewController.h"
 #import "Route.h"
+#import "Objective.h"
 @import Parse;
 
 @interface SummaryViewController ()
@@ -58,7 +59,7 @@
             
             self.creatorObjectives = [[NSMutableArray alloc]init];
             
-            while ((int)self.creatorObjectives.count < self.objectives.intValue)
+            while ((int)self.creatorObjectives.count < (self.objectives.intValue -1))
             {
                 int index = (int) (arc4random() * self.searchResults.count) % self.searchResults.count;
                 
@@ -66,13 +67,18 @@
                 {
                     [self.creatorObjectives addObject:[self.searchResults objectAtIndex:index]];
                 }
-                
             }
+            Objective *finalObjective = [[Objective alloc]init];
+            finalObjective.name = @"The Final Destination!";
+            finalObjective.latitude = self.finalCoordinate.latitude;
+            finalObjective.longitude = self.finalCoordinate.longitude;
+            
+            [self.creatorObjectives addObject:finalObjective];
+            NSLog(@"%@", self.creatorObjectives);
             
         }];
         
     }
-  NSLog(@"%@", [NSNumber numberWithUnsignedInteger:self.creatorObjectives.count]);
 }
 
 - (void)setupView {

@@ -21,11 +21,8 @@ static NSString * const BaseURLString = @"https://api.foursquare.com/v2/venues/"
 {
     NSString *clientID = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
     NSString *clientSecret = @"HP0YY4ORAIF1Q1DKM4C24EUYHXG0SZBI5CYFZD030APKYIVL";
-    //NSString *v = @"20160613";
-   // NSString *venueID = "";
     NSString *searchURL = [NSString stringWithFormat:@"%@search?ll=%@,%@&client_id=%@&client_secret=%@&v=20160613&radius=%@&categoryId=4d4b7105d754a06374d81259", BaseURLString, finalLat, finalLong, clientID, clientSecret, radius];
     
-//    NSString *searchURL = [NSString stringWithFormat:@"%@search?ll=%@,%@&client_id=%@&client_secret=%@&v=20160613&radius=%@", BaseURLString, finalLat, finalLong, clientID, clientSecret, radius];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
