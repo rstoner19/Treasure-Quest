@@ -34,7 +34,11 @@
 -(void) setup {
 
    self.objectivesDisplayed = [[NSMutableArray alloc]init];
+    
     PFQuery *query= [PFQuery queryWithClassName:@"Quest"];
+    [query whereKey:@"objectId" equalTo:[[PFUser currentUser] objectForKey:@"currentQuestId"]];
+    
+    NSLog(@"current quest: %@", [[PFUser currentUser] objectForKey:@"currentQuestId"]);
     __weak typeof (self) weakSelf = self;
 
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
@@ -43,22 +47,23 @@
                 __strong typeof(weakSelf) strongSelf = weakSelf;
                 for (Quest *quest in objects)
                 {
+                    
                     if ([quest.name isEqualToString:@"yay"]) {
                         NSLog(@"%@", quest.name);
-                        NSLog(@"%@", quest);
-
+                        NSLog(@"%lu", (unsigned long) quest.objectives.count);
+//                        NSLog(@"%@", [[quest.objectives objectAtIndex:0] objectForKey:@"name"]);
 
 
 //                        quest.route = [Route demoRoute];
                         strongSelf.currentQuest = quest;
                         strongSelf.currentObjective = quest.objectives[0];
-//                        NSLog(@"Initial objective = %@", quest.route.waypoints[0]);
+//                        NSLog(@"Initial objective = %@", [quest.objectives[0] name] );
 
                     // if ([quest.name isEqualToString:@"Rick's Pub Crawl"]) {
                         // quest.route = [Route demoRoute];
                         // strongSelf.currentQuest = quest;
                         // strongSelf.currentObjective = quest.route.waypoints[0];
-                        // [strongSelf.objectivesDisplayed addObject:strongSelf.currentObjective];
+                         strongSelf.objectivesDisplayed = [[NSMutableArray alloc]initWithArray:quest.objectives];
                         [strongSelf.tableView reloadData];
                     }
 
@@ -99,9 +104,13 @@
 
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    Objective *objective = self.currentQuest.route.waypoints[indexPath.row];
-    NSLog(@"Objective name: %@", objective.name);
-    cell.textLabel.text = objective.category;
+    Objective *objective = [[Objective alloc] init];
+    objective = self.objectivesDisplayed[indexPath.row];
+    [objective fetchIfNeeded];
+//    NSLog(@"%@", self.objectivesDisplayed[indexPath.row]);
+//    NSLog(@"Objective name: %@", [objective objectForKey:@"name"]);
+    cell.textLabel.text = objective.name;
+//    cell.textLabel.text = @"nothing";
     return cell;
 
 }
@@ -114,11 +123,11 @@
 
 -(void)userDidCompleteCurrentObjective {
 
-    if ([self.currentQuest.route.waypoints indexOfObject:self.currentObjective] < [self.currentQuest.route.waypoints count]) {
+    if ([self.currentQuest.objectives indexOfObject:self.currentObjective] < [self.currentQuest.objectives count]) {
 
-        NSInteger nextObjIndex = [self.currentQuest.route.waypoints indexOfObject:self.currentObjective] + 1;
+        NSInteger nextObjIndex = [self.currentQuest.objectives indexOfObject:self.currentObjective] + 1;
 
-        Objective *nextObjective = [self.currentQuest.route.waypoints objectAtIndex:nextObjIndex];
+        Objective *nextObjective = [self.currentQuest.objectives objectAtIndex:nextObjIndex];
         [self.objectivesDisplayed addObject:nextObjective];
         NSLog(@"your next objective is %@", nextObjective.name);
     }

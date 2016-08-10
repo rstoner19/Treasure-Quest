@@ -42,7 +42,8 @@
                                     }
                                 }];
     [PFCloud callFunctionInBackground:@"iosPushToChannel"
-                       withParameters:@{@"text": @"TEST CHANNEL SEND" }
+                       withParameters:@{@"text": @"TEST CHANNEL SEND",
+                                        @"channel": [[PFUser currentUser] objectForKey:@"currentQuestId"]}
                                 block:^(NSString *response, NSError *error) {
                                     if (!error) {
                                         // ratings is 4.5
