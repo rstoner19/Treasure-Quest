@@ -273,7 +273,7 @@
 
 - (void)parseListner {
     NSLog(@"Yep");
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 7 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             NSLog(@"Boom Goes the Dynamite!");
             [self parseQuery];
 
