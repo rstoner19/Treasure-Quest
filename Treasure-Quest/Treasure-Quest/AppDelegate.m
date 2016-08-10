@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
-#import "Quest.h"
 #import "EnterCodeViewController.h"
+#import "Quest.h"
 #import "WaitPageViewController.h"
 
 @interface AppDelegate ()

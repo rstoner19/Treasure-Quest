@@ -67,11 +67,13 @@
             
             self.creatorObjectives = [[NSMutableArray alloc]init];
             
-            while ((int)self.creatorObjectives.count < (self.objectives.intValue -1)) {
-                int index = (int) (arc4random() * self.searchResults.count) % self.searchResults.count;
-                
-                if (![self.creatorObjectives containsObject:[self.searchResults objectAtIndex:index]]) {
-                    [self.creatorObjectives addObject:[self.searchResults objectAtIndex:index]];
+            if ((int)self.searchResults.count > self.objectives.intValue) {
+                while ((int)self.creatorObjectives.count < (self.objectives.intValue -1)) {
+                    int index = (int) (arc4random() * self.searchResults.count) % self.searchResults.count;
+                    
+                    if (![self.creatorObjectives containsObject:[self.searchResults objectAtIndex:index]]) {
+                        [self.creatorObjectives addObject:[self.searchResults objectAtIndex:index]];
+                    }
                 }
             }
             
@@ -113,11 +115,6 @@
     
     NSMutableArray *objectives = [[NSMutableArray alloc]init];
     objectives = [Objective verifyDistanceRange:self.creatorObjectives players:self.players.intValue];
-//    for (int i = 0; i < objectives.count; i++)
-//    {
-//        NSString *dictionaryValue = [NSString stringWithFormat:@"objectives%d", i];
-//        quest[dictionaryValue] = [objectives objectAtIndex:i];
-//    }
     quest[@"objectives"] = objectives;
     
 

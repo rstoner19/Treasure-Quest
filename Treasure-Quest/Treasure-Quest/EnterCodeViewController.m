@@ -66,7 +66,7 @@
                         PFObject *updateQuest = [PFObject objectWithoutDataWithClassName:@"Quest" objectId:quest.objectId];
                         updateQuest[@"players"] = self.players;
                         [[PFUser currentUser]setObject:quest.objectId forKey:@"currentQuestId"];
-                        [[PFUser currentUser] saveInBackground];
+                        [[PFUser currentUser] saveInBackground ];
 
 
                         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
