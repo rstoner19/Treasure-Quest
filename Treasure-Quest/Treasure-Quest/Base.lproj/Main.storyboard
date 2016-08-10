@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A270f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wbf-9s-5vb">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wbf-9s-5vb">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -224,44 +224,53 @@
                                     <outletCollection property="gestureRecognizers" destination="I2T-fu-QVG" appends="YES" id="3mI-vW-ZTL"/>
                                 </connections>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Final Location and Playfield Area around It" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rln-lW-W3d">
-                                <rect key="frame" x="138" y="512" width="324" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Final Location and Play Field Perimeter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rln-lW-W3d">
+                                <rect key="frame" x="149" y="512" width="302" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQO-Vh-6a1">
-                                <rect key="frame" x="313" y="554" width="24" height="17"/>
+                                <rect key="frame" x="288" y="554" width="24" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vhN-kn-qZ1">
-                                <rect key="frame" x="215" y="548" width="75" height="30"/>
+                                <rect key="frame" x="183" y="548" width="75" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="k4L-yV-rrU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nTT-cd-8WM">
-                                <rect key="frame" x="352" y="548" width="75" height="30"/>
+                                <rect key="frame" x="327" y="548" width="75" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRg-a2-caz">
-                                <rect key="frame" x="173" y="554" width="27" height="17"/>
+                                <rect key="frame" x="141" y="554" width="27" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5x-oQ-l7I">
+                                <rect key="frame" x="422" y="548" width="30" height="30"/>
+                                <state key="normal" title="Set"/>
+                                <connections>
+                                    <action selector="set:" destination="80Q-XK-Gqa" eventType="touchUpInside" id="gcT-VQ-vf1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Rln-lW-W3d" firstAttribute="top" secondItem="zjd-WK-kTp" secondAttribute="bottom" constant="12" id="7wt-GS-4ql"/>
-                            <constraint firstItem="uQO-Vh-6a1" firstAttribute="centerX" secondItem="3Vr-at-XSe" secondAttribute="centerX" constant="25" id="DvR-Tw-XZJ"/>
+                            <constraint firstItem="H5x-oQ-l7I" firstAttribute="leading" secondItem="nTT-cd-8WM" secondAttribute="trailing" constant="20" id="D2k-8G-56i"/>
+                            <constraint firstItem="uQO-Vh-6a1" firstAttribute="centerX" secondItem="3Vr-at-XSe" secondAttribute="centerX" id="DvR-Tw-XZJ"/>
                             <constraint firstItem="LFd-dZ-bE9" firstAttribute="top" secondItem="zjd-WK-kTp" secondAttribute="bottom" constant="100" id="E6G-NS-8GF"/>
                             <constraint firstItem="vhN-kn-qZ1" firstAttribute="leading" secondItem="pRg-a2-caz" secondAttribute="trailing" constant="15" id="MvX-rv-v6L"/>
+                            <constraint firstItem="H5x-oQ-l7I" firstAttribute="centerY" secondItem="nTT-cd-8WM" secondAttribute="centerY" id="Ru1-it-kI8"/>
                             <constraint firstItem="nTT-cd-8WM" firstAttribute="baseline" secondItem="uQO-Vh-6a1" secondAttribute="baseline" id="aly-it-hA7"/>
                             <constraint firstItem="zjd-WK-kTp" firstAttribute="leading" secondItem="3Vr-at-XSe" secondAttribute="leading" id="cnD-0z-tOU"/>
                             <constraint firstItem="nTT-cd-8WM" firstAttribute="leading" secondItem="uQO-Vh-6a1" secondAttribute="trailing" constant="15" id="dJc-nv-Iyl"/>
@@ -272,7 +281,7 @@
                             <constraint firstItem="Rln-lW-W3d" firstAttribute="centerX" secondItem="3Vr-at-XSe" secondAttribute="centerX" id="mQR-y2-IEq"/>
                             <constraint firstItem="zjd-WK-kTp" firstAttribute="top" secondItem="taM-NQ-Xhl" secondAttribute="bottom" id="qCr-zG-zME"/>
                             <constraint firstAttribute="trailing" secondItem="zjd-WK-kTp" secondAttribute="trailing" id="qTQ-Bm-xSY"/>
-                            <constraint firstItem="vhN-kn-qZ1" firstAttribute="centerX" secondItem="3Vr-at-XSe" secondAttribute="centerX" constant="-48" id="rzo-I8-phX"/>
+                            <constraint firstItem="vhN-kn-qZ1" firstAttribute="centerX" secondItem="3Vr-at-XSe" secondAttribute="centerX" constant="-80" id="rzo-I8-phX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Playfield" id="hU7-ga-HjU">
@@ -284,6 +293,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="zjd-WK-kTp" id="azG-Hc-N5g"/>
+                        <outlet property="maxDistanceTextField" destination="vhN-kn-qZ1" id="2WQ-xI-P0D"/>
+                        <outlet property="minDistanceTextField" destination="nTT-cd-8WM" id="SMc-kk-8j9"/>
+                        <outlet property="setButton" destination="H5x-oQ-l7I" id="Bvj-FN-Eux"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVg-dW-qyw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -298,7 +310,7 @@
         <!--Summary-->
         <scene sceneID="eKB-4R-k0j">
             <objects>
-                <viewController id="6fe-xV-F15" customClass="SummaryViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SummaryViewController" id="6fe-xV-F15" customClass="SummaryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Av-bj-XBZ"/>
                         <viewControllerLayoutGuide type="bottom" id="aGw-6G-l4f"/>
@@ -369,18 +381,10 @@
             </objects>
             <point key="canvasLocation" x="3217" y="276"/>
         </scene>
-        <!--waitingStoryboard-->
-        <scene sceneID="Xpr-F5-wug">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Waiting" referencedIdentifier="waitingStoryboard" id="Qfc-EU-4dd" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xPz-0k-xhU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3222.5" y="756"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="prY-Ik-lty">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wbf-9s-5vb" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="wbf-9s-5vb" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qho-zG-aWB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

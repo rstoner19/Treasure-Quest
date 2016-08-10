@@ -9,11 +9,12 @@
 #import "SummaryViewController.h"
 #import "FoursquareAPI.h"
 #import "WaitPageViewController.h"
+#import "Route.h"
 @import Parse;
 
-@interface SummaryViewController ()  <LocationControllerDelegate>
+@interface SummaryViewController ()
 
-@property (strong, nonatomic) NSArray *searchResults;
+@property (strong, nonatomic) NSMutableArray *searchResults;
 @property (weak, nonatomic) IBOutlet UILabel *questNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfPlayersLabel;
 @property (weak, nonatomic) IBOutlet UILabel *objectivesLabel;
@@ -34,16 +35,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//-(void)locationControllerDidUpdateHeading:(CLHeading *)heading
-//{
-//    //
-//}
-//
-//-(void)locationControllerDidUpdateLocation:(CLLocation *)location
-//{
-//    self.finalLat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-//    self.finalLong = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
-//}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -51,19 +42,19 @@
     
     NSString *token = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
     
-    self.finalLat = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.latitude];
-    
-    self.finalLong = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.longitude];
+    self.finalLat = [NSString stringWithFormat:@"%f", self.finalCoordinate.latitude];
+    self.finalLong = [NSString stringWithFormat:@"%f", self.finalCoordinate.longitude];
+    NSLog(@"Lat: %@, long: %@", self.finalLat, self.finalLong);
     
     
     if (token)
     {
-        [FoursquareAPI getFoursquareData:@"query" finalLat:self.finalLat finalLong:self.finalLong completionHandler:^(NSArray *results, NSError *error) {
+        [FoursquareAPI getFoursquareData:@"query" finalLat:self.finalLat finalLong:self.finalLong radius:[self.maxDistance stringValue] completionHandler:^(NSArray *results, NSError *error) {
             if (error)
             {
                 NSLog(@"%@", error.localizedDescription);
             }
-            self.searchResults = results;
+            self.searchResults = [[NSMutableArray alloc] initWithArray:results];
         }];
     }
 
@@ -85,13 +76,28 @@
     spinner.tag = 12;
     [spinner startAnimating];
     
-    PFObject *quest = [PFObject objectWithClassName:@"Quest"];
+    Quest *quest = [Quest objectWithClassName:@"Quest"];
     quest[@"name"] = self.questName;
     quest[@"info"] = self.gameDescription;
     quest[@"maxplayers"] = self.players;
     NSMutableArray *currentPlayers = [[NSMutableArray alloc]init];
     [currentPlayers addObject:[PFUser currentUser].objectId];
+    
     quest[@"players"] = currentPlayers;
+    
+    
+////    route = [Route gameRoute:@100 maxRadius:@1000];
+//    quest.route = route;
+    
+//    Route *route = [Route demoRoute];
+//    quest.route = route;
+//    quest[@"route"] = quest.route;
+    
+    NSMutableArray *objectives = [[NSMutableArray alloc]initWithArray:self.searchResults];
+    
+    quest[@"objectives"] = objectives;
+    
+
     
     [quest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (!error) {
@@ -100,8 +106,9 @@
 
             NSLog(@"Saved successfully");
             viewController.questName = self.questName;
-            
+            viewController.gameCode = quest.objectId;
             [[self.view viewWithTag:12] stopAnimating];
+            
             [self.navigationController pushViewController:viewController animated:YES];
 //            NSLog(@"Current user: %@, created questid: %@", [PFUser currentUser].username, quest.objectId);
             [[PFUser currentUser]setObject:quest.objectId forKey:@"currentQuestId"];

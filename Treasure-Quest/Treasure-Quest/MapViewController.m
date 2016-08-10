@@ -14,11 +14,12 @@
 #import "ProgressListViewController.h"
 
 @interface MapViewController () <MKMapViewDelegate, LocationControllerDelegate>
+- (IBAction)completeButtonSelected:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) Quest *currentQuest;
 @property float angleToNextObjective;
-@property (strong, nonatomic) Objective *nextObjective;
+@property (strong, nonatomic) Objective *currentObjective;
 @property (strong, nonatomic) MKPinAnnotationView *userPin;
 
 @end
@@ -31,7 +32,7 @@
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setShowsUserLocation:YES];
     [self.mapView setDelegate:self];
-    [self.mapView setZoomEnabled:NO];
+    [self.mapView setZoomEnabled:YES];
     [self.mapView setScrollEnabled:NO];
     [self.mapView setRotateEnabled:NO];
     [self.mapView setShowsBuildings:YES];
@@ -40,11 +41,6 @@
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
     self.mapView.camera.pitch = 80;
     
-    //demo objective
-    self.nextObjective = [Objective initWith:@"World Class Coffee" imageURL:@"picture.com" info:@"sweet objective" category:@"Resturant" range:@10.0 latitude:47.617212 longitude:-122.3536802];
-//    self.nextObjective = [Objective initWith:@"Space Needle Park" imageURL:@"2ndPicture.com" info:@"kinda cool" category:@"Landmark" range:@10.0 latitude:47.6192848 longitude:-122.3503663];
-//    
-
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -54,34 +50,55 @@
     [[[LocationController sharedController] locationManager]startUpdatingHeading];
     ProgressListViewController *progressListVC = (ProgressListViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
     self.currentQuest = progressListVC.currentQuest;
-//    NSLog(@"MAPS CURRENT OBJECTIVES: %@", self.currentQuest.route.waypoints);
+    NSLog(@"%@", self.currentQuest);
     [self setupObjectiveAnnotations];
-   
 }
-
 
 -(void)setupObjectiveAnnotations {
 
-    NSArray *objectives = self.currentQuest.route.waypoints;
 
-    Objective *firstCompleted = objectives[0];
-    firstCompleted.completed = YES;
+//    NSArray *objectives = self.currentQuest.route.waypoints;
+//
+//    Objective *firstCompleted = objectives[0];
+//    firstCompleted.completed = YES;
+//
+//    for (Objective *objective in objectives) {
+//
+//        if(objective.completed == YES){
+//  
+//            CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(objective.latitude, objective.longitude);
+//          MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+//          newPoint.coordinate = loc;
+//          newPoint.title = objective.name;
+//          [self.mapView addAnnotation:newPoint];
+//
+//=======
+    Objective *current = self.currentQuest.route.waypoints[0];
+    long index = [self.currentQuest.route.waypoints indexOfObject:current] + 1;
+    
+    //Traverse array for first non complete item
+    while (current.completed == YES && index <= self.currentQuest.route.waypoints.count) {
+        
+        CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(current.latitude, current.longitude);
 
-    for (Objective *objective in objectives) {
-
-        if(objective.completed == YES){
-
-          CLLocationCoordinate2D loc = objective.location.coordinate;
-          MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
-          newPoint.coordinate = loc;
-          newPoint.title = objective.name;
-          [self.mapView addAnnotation:newPoint];
-
+//        CLLocationCoordinate2D loc = current.location.coordinate;
+        MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+        newPoint.coordinate = loc;
+        newPoint.title = current.name;
+        [self.mapView addAnnotation:newPoint];
+        
+        if (index == self.currentQuest.route.waypoints.count) {
+            NSLog(@"end of array...");
+            break;
         }
+        current = self.currentQuest.route.waypoints[index];
+        index += 1;
+
     }
 }
 
 -(void)setRegionForCoordinate:(MKCoordinateRegion)region {
+    
     [self.mapView setRegion:region animated:YES];
 
 }
@@ -90,23 +107,30 @@
     
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 50, 50) animated:YES];
     self.mapView.camera.altitude = 250;
-    [self calculateAngleToNewObjective:location objectiveLocation:self.nextObjective.location];
+    CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:self.currentObjective.latitude longitude:self.currentObjective.longitude];
+    [self calculateAngleToNewObjective:location objectiveLocation:locationPointer];
     self.currentUserLocation = location;
-    [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:self.nextObjective.location];
+    [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:locationPointer];
     [self changeUserAnnotationColor:self.userPin];
     
 }
 
 -(void)locationControllerDidUpdateHeading:(CLHeading *)heading {
 
-    NSLog(@"mapview current heading: %f", heading.trueHeading);
+//    NSLog(@"%@", heading);
     self.mapView.camera.heading = heading.trueHeading;
+    
+    CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:self.currentObjective.latitude longitude:self.currentObjective.longitude];
+
     
     self.mapView.camera.pitch = 70;
     self.mapView.camera.altitude = 250;
     self.currentHeading = heading.trueHeading;
-    [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:self.nextObjective.location];
+    [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:locationPointer];
+    
+//    NSLog(@"User Heading: %f   Angle to next: %f", self.currentHeading, self.angleToNextObjective);
     [self changeUserAnnotationColor:self.userPin];
+    
  }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -146,12 +170,12 @@
     
     self.angleToNextObjective = bearingInRadians * 180 / M_PI;
     
-    NSLog(@"Angle to next objective: %f", self.angleToNextObjective);
 }
 
 -(MKPinAnnotationView*)changeUserAnnotationColor: (MKPinAnnotationView *)userPin {
-    
-     NSLog(@"current heading: %f      objective heading: %f", self.currentHeading, self.angleToNextObjective);
+   //TODO: adjust opacity based on accuracy percentage
+    //float difference = fabs(self.currentHeading - self.angleToNextObjective);
+
     if (self.currentHeading <= self.angleToNextObjective + 10 && self.currentHeading >= self.angleToNextObjective - 10) {
     
        
@@ -160,16 +184,49 @@
         
     }
     
+    else if(self.currentHeading <= self.angleToNextObjective + 50 && self.currentHeading >= self.angleToNextObjective - 50) {
+        self.userPin.pinTintColor = [UIColor yellowColor];
+        return userPin;
+
+    }
+    
     else {
         
-        self.userPin.pinTintColor = [UIColor yellowColor];
+        self.userPin.pinTintColor = [UIColor redColor];
         return userPin;
     }
 
 }
 
--(void) compareHeadings:(float)userHeading destinationHeading:(float)destinationHeading  {
+-(void)completeCurrentObjective {
+    NSUInteger index = 0;
+    self.currentObjective.completed = YES;
     
+    NSArray *objectives = [[NSArray alloc]init];
+    objectives = self.currentQuest.route.waypoints;
+
+    
+    while (((Objective *)[objectives objectAtIndex: index]).completed == YES) {
+        
+        if (index == self.currentQuest.route.waypoints.count-1) {
+            NSLog(@"reached array limit, we out");
+            
+            //
+            
+            return;
+        }
+        
+        index += 1;
+    }
+
+    self.currentObjective = self.currentQuest.route.waypoints[index];
+    NSLog(@"Objective complete! Next objective is objective %@", self.currentObjective.name);
+    [self setupObjectiveAnnotations];
 }
 
+- (IBAction)completeButtonSelected:(UIButton *)sender {
+    
+    [self completeCurrentObjective];
+    
+}
 @end

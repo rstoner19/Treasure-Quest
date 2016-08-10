@@ -10,7 +10,7 @@
 #import "ViewController.h"
 #import "PlayfieldViewController.h"
 
-@interface SetupViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface SetupViewController () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 
 @property(strong, nonatomic)UIBarButtonItem *nextButton;
 
@@ -27,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+    self.questNameTextField.delegate = self;
+    self.questDesciptionTextField.delegate = self;
+    self.objectivesNumberTextField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,7 +55,7 @@
             playfieldViewController.questName = @"My Quest";
         } else { playfieldViewController.questName = questName; }
         if ([description isEqualToString:@""]) {
-            playfieldViewController.gameDescription = @"A race to find the locations first!";
+            playfieldViewController.gameDescription = @"A race across random points to reach the final location.";
         } else { playfieldViewController.gameDescription = description; }
         
         //verify number is input
@@ -85,6 +88,13 @@
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
 
+}
+
+#pragma mark - Textfield Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 

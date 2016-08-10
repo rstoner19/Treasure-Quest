@@ -10,9 +10,35 @@
 
 @interface Objective ()
 
+
 @end
 
 @implementation Objective
+@dynamic name;
+@dynamic imageURL;
+@dynamic info;
+@dynamic category;
+@dynamic completed;
+//@dynamic location;
+@dynamic range;
+@dynamic latitude;
+@dynamic longitude;
+
+
++(void)load{
+    [self registerSubclass];
+    
+}
+
++(NSString *)parseClassName{
+    return @"Objective";
+}
+
+
+
+
+
+
 
 +(instancetype)initWith: (NSString *)name imageURL:(NSString *)imageURL info:(NSString *)info category: (NSString *)category range: (NSNumber *)range latitude:(double)lat longitude:(double)lon{
 
@@ -22,8 +48,9 @@
     newObjective.info = info;
     newObjective.category = category;
     newObjective.completed = NO;
-    newObjective.location = [[CLLocation alloc]initWithLatitude:lat longitude:lon];
-
+    //newObjective.location = [[CLLocation alloc]initWithLatitude:lat longitude:lon];
+    newObjective.latitude = lat;
+    newObjective.longitude = lon;
 
     return newObjective;
 }

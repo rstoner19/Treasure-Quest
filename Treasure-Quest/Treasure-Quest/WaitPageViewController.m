@@ -9,6 +9,7 @@
 #import "WaitPageViewController.h"
 #import "Route.h"
 @import Parse;
+#import "Objective.h"
 
 
 @interface WaitPageViewController ()
@@ -112,7 +113,6 @@
 
 - (void)setUserItems:(int)registeredTeams currentTeam:(int)currentTeam {
     for (int i = 0; i <= registeredTeams; i++) {
-        NSLog(@"i: %d, regiesterTeams: %i, currentTeam: %i", i, registeredTeams, currentTeam);
         switch(i){
             case 1:
                 if (currentTeam == i) {
@@ -179,7 +179,7 @@
                 __strong typeof(weakSelf) strongSelf = weakSelf;
                 for (Quest *quest in objects)
                 {
-                    if ([quest.name isEqualToString:strongSelf.questName]) {
+                    if ([quest.objectId isEqualToString:strongSelf.gameCode]) {
                         self.gameCode= quest.objectId;
                         self.maxPlayers = quest.maxplayers;
                         self.gameDescription= quest.info;

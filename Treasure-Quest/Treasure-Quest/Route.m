@@ -8,10 +8,16 @@
 
 #import "Route.h"
 #import "Objective.h"
+#import "LocationController.h"
+#import "PlayfieldViewController.h"
+#import "SummaryViewController.h"
+#import "FoursquareAPI.h"
 
 @implementation Route
 
-//
+//@synthesize finalDestination;
+//@synthesize playfield;
+//@synthesize waypoints;
 //
 //+(void)load{
 //    [self registerSubclass];
@@ -25,6 +31,7 @@
 
 
 +(Route *)demoRoute{
+    
     Route *ourRoute = [[Route alloc]init];
     ourRoute.finalDestination = CLLocationCoordinate2DMake(47.618217, -122.3540207);
     ourRoute.playfield.coordinate = CLLocationCoordinate2DMake(47.618217, -122.3540207);
@@ -48,9 +55,48 @@
     for (int i = 1; i < route.waypoints.count; i++) {
         Objective *first = route.waypoints[i-1];
         Objective *second = route.waypoints[i];
-        totalDistance += [first.location distanceFromLocation:second.location];
+        CLLocation *firstLocation =  [[CLLocation alloc]initWithLatitude:first.latitude longitude:first.longitude];
+        CLLocation *secondLocation =  [[CLLocation alloc]initWithLatitude:second.latitude longitude:second.longitude];
+        
+        totalDistance += [firstLocation distanceFromLocation:secondLocation];
     }
     return totalDistance;
+}
+
+
++(Route *)gameRoute: (NSNumber *)minRadius maxRadius:(NSNumber *)maxRadius
+{
+    Route *goRoute = [[Route alloc]init];
+    CLLocationCoordinate2D pinLoc = [LocationController sharedController].pinLocation.coordinate;
+    goRoute.finalDestination = pinLoc;
+
+//    goRoute.playfield.coordinate =
+
+//    goRoute.playfield.minRadius = @;
+
+//    goRoute.playfield.maxRadius = @;
+    
+    NSString *token = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
+    
+    NSString *finalLat = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.latitude];
+    
+    NSString *finalLong = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.longitude];
+    
+    
+//    if (token)
+//    {
+//        [FoursquareAPI getFoursquareData:@"query" finalLat:finalLat finalLong:finalLong radius:radius completionHandler:^(NSArray *results, NSError *error) {
+//            
+//            if (error)
+//            {
+//                NSLog(@"%@", error.localizedDescription);
+//            }
+//            goRoute.waypoints = [[NSMutableArray alloc]initWithArray:results];
+//            NSLog(@"%@", goRoute.waypoints);
+//        }];
+//    }
+
+    return goRoute;
 }
 
 + (Route *)randomizeRoute:(Route *)originalRoute {
