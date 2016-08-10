@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wbf-9s-5vb">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A270f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wbf-9s-5vb">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -326,30 +326,33 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# Players" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDz-no-wQa">
-                                <rect key="frame" x="265" y="134" width="70" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="267" y="134" width="67" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First to reach final destination wins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TX0-M6-POP">
-                                <rect key="frame" x="168" y="346" width="265" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First to reach final destination wins" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TX0-M6-POP">
+                                <rect key="frame" x="28" y="325" width="544" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="dt4-yh-PQW"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TvC-kW-9kh">
-                                <rect key="frame" x="255" y="462" width="91" height="30"/>
+                                <rect key="frame" x="255" y="480" width="91" height="30"/>
                                 <state key="normal" title="Create Quest"/>
                                 <connections>
                                     <action selector="createButtonSelected:" destination="6fe-xV-F15" eventType="touchUpInside" id="HnS-8x-ioK"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of Objectives and detail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHa-vg-xoI">
-                                <rect key="frame" x="20" y="186" width="560" height="100"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of Objectives and detail" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHa-vg-xoI">
+                                <rect key="frame" x="20" y="185" width="560" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="ajO-17-Ecx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -358,7 +361,8 @@
                         <constraints>
                             <constraint firstItem="qDz-no-wQa" firstAttribute="centerX" secondItem="6tF-LO-1dl" secondAttribute="centerX" id="3Bh-vD-Pcz"/>
                             <constraint firstItem="TvC-kW-9kh" firstAttribute="centerX" secondItem="6tF-LO-1dl" secondAttribute="centerX" id="3vt-UN-ewN"/>
-                            <constraint firstItem="TX0-M6-POP" firstAttribute="top" secondItem="bHa-vg-xoI" secondAttribute="bottom" constant="60" id="5VD-87-hbk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TX0-M6-POP" secondAttribute="trailing" constant="8" id="5PF-Nv-upa"/>
+                            <constraint firstItem="TX0-M6-POP" firstAttribute="top" secondItem="bHa-vg-xoI" secondAttribute="bottom" constant="40" id="5VD-87-hbk"/>
                             <constraint firstItem="TX0-M6-POP" firstAttribute="centerX" secondItem="6tF-LO-1dl" secondAttribute="centerX" id="9g3-UJ-Dq6"/>
                             <constraint firstItem="sd7-BQ-csk" firstAttribute="centerX" secondItem="6tF-LO-1dl" secondAttribute="centerX" id="FQ0-Yb-QOR"/>
                             <constraint firstItem="bHa-vg-xoI" firstAttribute="leading" secondItem="6tF-LO-1dl" secondAttribute="leadingMargin" id="JDA-aT-lIH"/>
@@ -367,6 +371,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="bHa-vg-xoI" secondAttribute="trailing" id="a3y-Jy-Lyr"/>
                             <constraint firstItem="bHa-vg-xoI" firstAttribute="top" secondItem="qDz-no-wQa" secondAttribute="bottom" constant="31" id="aId-l6-VcN"/>
                             <constraint firstItem="qDz-no-wQa" firstAttribute="top" secondItem="sd7-BQ-csk" secondAttribute="bottom" constant="19" id="vzA-xK-fDu"/>
+                            <constraint firstItem="TX0-M6-POP" firstAttribute="leading" secondItem="6tF-LO-1dl" secondAttribute="leadingMargin" constant="8" id="yHV-Uo-M2A"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Summary" id="5fE-d9-n1T"/>

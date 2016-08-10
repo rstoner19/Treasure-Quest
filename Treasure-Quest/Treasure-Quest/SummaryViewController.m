@@ -72,7 +72,7 @@
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     spinner.color = [UIColor darkGrayColor];
     [self.view addSubview:spinner];
-    spinner.center = CGPointMake(160, 250);
+    spinner.center = CGPointMake(self.view.center.x, self.view.center.y);
     spinner.tag = 12;
     [spinner startAnimating];
     

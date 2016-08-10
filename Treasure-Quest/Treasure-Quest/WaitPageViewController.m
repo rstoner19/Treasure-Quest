@@ -10,6 +10,7 @@
 #import "Route.h"
 @import Parse;
 #import "Objective.h"
+#import "CountDownViewController.h"
 #import <MessageUI/MessageUI.h>
 
 
@@ -192,12 +193,26 @@
                         }
                         
                         [self setupViewController];
+                        
+                        if ([self.maxPlayers intValue] != (int)(self.players.count)) {
+                            [self parseListner];
+                            NSLog(@"Looking up");
+                        } else {
+                            [UIView animateWithDuration:0.5 delay:3.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                //
+                            } completion:^(BOOL finished) {
+                                CountDownViewController *viewController = [[UIStoryboard storyboardWithName:@"Waiting" bundle:nil] instantiateViewControllerWithIdentifier:@"countDownViewController"];
+                                [self.navigationController pushViewController:viewController animated:YES];
+                                return;
+                            }];
+                        }
                     }
                 }
             }];
         }
     }];
 }
+
 - (IBAction)sendInvitationsButtonPressed:(id)sender {
     NSString *message = [NSString stringWithFormat:@"%@ wants you to join the quest! quest://%@", [[PFUser currentUser] objectForKey:@"username" ], [[PFUser currentUser] objectForKey:@"currentQuestId"] ];
     [self showSMS:message];
@@ -205,11 +220,20 @@
     
 }
 
+- (void)alert:(NSString *)title message:(NSString *)message {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:actionOk];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
 - (void)showSMS:(NSString*)text {
     
     if(![MFMessageComposeViewController canSendText]) {
-        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [warningAlert show];
+        [self alert:@"Error" message:@"Your device doesn't support SMS!"];
         return;
     }
     
@@ -233,8 +257,7 @@
             
         case MessageComposeResultFailed:
         {
-            UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to send SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [warningAlert show];
+            [self alert:@"Error" message:@"Your device doesn't support SMS!"];
             break;
         }
             
@@ -246,6 +269,15 @@
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)parseListner {
+    NSLog(@"Yep");
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            NSLog(@"Boom Goes the Dynamite!");
+            [self parseQuery];
+
+        });
 }
 
 
