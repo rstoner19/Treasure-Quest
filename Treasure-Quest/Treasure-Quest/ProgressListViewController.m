@@ -56,7 +56,20 @@
                 for (Quest *quest in objects)
                 {
                     NSLog(@"questname %@", quest.name);
-                   for (Objective *objective in quest.objectives){
+//                    
+                    NSNumber *playerNumber = [NSNumber numberWithInt:(int)([quest.players indexOfObject:[PFUser currentUser].objectId])];
+//
+//                    NSArray
+//                    switch (playerNumber) {
+//                        case 0:
+//                            quest.objectives0
+//                            break;
+//                            
+//                        default:
+//                            break;
+//                    }
+                    
+                   for (Objective *objective in quest.objectives[playerNumber.intValue]){
                        
                        [objective fetchIfNeeded];
                         NSLog(@"%@", objective.name);

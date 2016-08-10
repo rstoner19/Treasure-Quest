@@ -379,6 +379,7 @@
 				TargetAttributes = {
 					4C7D75EC1D53389C00932D3A = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = NXQBD8W8TS;
 						DevelopmentTeam = 9EE26NTZPB;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
@@ -572,6 +573,7 @@
 				);
 				INFOPLIST_FILE = "Treasure-Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sweeney.treasurequest;
 				PRODUCT_BUNDLE_IDENTIFIER = com.champagne.treasurequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -591,6 +593,7 @@
 				);
 				INFOPLIST_FILE = "Treasure-Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sweeney.treasurequest;
 				PRODUCT_BUNDLE_IDENTIFIER = com.champagne.treasurequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
