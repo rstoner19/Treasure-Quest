@@ -12,6 +12,7 @@
 #import "Route.h"
 #import "Objective.h"
 @import Parse;
+#import "Objective.h"
 
 @interface SummaryViewController ()
 
@@ -51,23 +52,22 @@
     if (token)
     {
         [FoursquareAPI getFoursquareData:@"query" finalLat:self.finalLat finalLong:self.finalLong radius:[self.maxDistance stringValue] completionHandler:^(NSArray *results, NSError *error) {
-            if (error)
-            {
+            if (error) {
                 NSLog(@"%@", error.localizedDescription);
             }
+            
             self.searchResults = [[NSMutableArray alloc] initWithArray:results];
             
             self.creatorObjectives = [[NSMutableArray alloc]init];
             
-            while ((int)self.creatorObjectives.count < (self.objectives.intValue -1))
-            {
+            while ((int)self.creatorObjectives.count < (self.objectives.intValue -1)) {
                 int index = (int) (arc4random() * self.searchResults.count) % self.searchResults.count;
                 
-                if (![self.creatorObjectives containsObject:[self.searchResults objectAtIndex:index]])
-                {
+                if (![self.creatorObjectives containsObject:[self.searchResults objectAtIndex:index]]) {
                     [self.creatorObjectives addObject:[self.searchResults objectAtIndex:index]];
                 }
             }
+            
             Objective *finalObjective = [[Objective alloc]init];
             finalObjective.name = @"The Final Destination!";
             finalObjective.latitude = self.finalCoordinate.latitude;
@@ -77,7 +77,6 @@
             NSLog(@"%@", self.creatorObjectives);
             
         }];
-        
     }
 }
 
