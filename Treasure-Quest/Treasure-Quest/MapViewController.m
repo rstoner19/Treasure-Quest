@@ -32,10 +32,10 @@
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setShowsUserLocation:YES];
     [self.mapView setDelegate:self];
-    [self.mapView setZoomEnabled:YES];
+    [self.mapView setZoomEnabled:NO];
     [self.mapView setScrollEnabled:NO];
     [self.mapView setRotateEnabled:NO];
-    [self.mapView setShowsBuildings:YES];
+    [self.mapView setShowsBuildings:NO];
     [self.mapView setPitchEnabled:YES];
     [self.mapView setShowsPointsOfInterest:YES];
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
@@ -181,7 +181,6 @@
     NSArray *objectives = [[NSArray alloc]init];
     objectives = self.currentQuest.route.waypoints;
 
-    
     while (((Objective *)[objectives objectAtIndex: index]).completed == YES) {
         
         if (index == self.currentQuest.route.waypoints.count-1) {
@@ -198,6 +197,39 @@
     self.currentObjective = self.currentQuest.route.waypoints[index];
     NSLog(@"Objective complete! Next objective is objective %@", self.currentObjective.name);
     [self setupObjectiveAnnotations];
+    [self setUpRegion:self.currentObjective];
+}
+
+-(void) setUpRegion: (Objective *)objective {
+   
+    objective.range = @50;
+    NSLog(@"Dis mah range bruh: %@", objective.range);
+    
+    
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(objective.location.coordinate.latitude, objective.location.coordinate.longitude);
+    
+    if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+        CLCircularRegion *eventRegion = [[CLCircularRegion alloc]initWithCenter: coord radius:objective.range.floatValue identifier:objective.name];
+        [[[LocationController sharedController]locationManager]startMonitoringForRegion:eventRegion];
+        
+        MKCircle *circle = [MKCircle circleWithCenterCoordinate:coord radius:objective.range.floatValue];
+        
+        [self.mapView addOverlay:circle];
+    }
+    
+}
+
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
+    
+    MKCircleRenderer *circleRender = [[MKCircleRenderer alloc]initWithOverlay:overlay];
+    circleRender.strokeColor = [UIColor blueColor];
+    circleRender.lineWidth = 1;
+    
+    circleRender.fillColor = [UIColor redColor];
+    circleRender.alpha = 0.25;
+    
+    return circleRender;
+    
 }
 
 - (IBAction)completeButtonSelected:(UIButton *)sender {
