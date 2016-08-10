@@ -10,6 +10,8 @@
 #import "Objective.h"
 #import "LocationController.h"
 #import "PlayfieldViewController.h"
+#import "SummaryViewController.h"
+#import "FoursquareAPI.h"
 
 @implementation Route
 
@@ -57,7 +59,7 @@
 }
 
 
-+(Route *)gameRoute
++(Route *)gameRoute: (NSNumber *)minRadius maxRadius:(NSNumber *)maxRadius
 {
     Route *goRoute = [[Route alloc]init];
     CLLocationCoordinate2D pinLoc = [LocationController sharedController].pinLocation.coordinate;
@@ -68,20 +70,25 @@
 //    goRoute.playfield.minRadius = @;
 
 //    goRoute.playfield.maxRadius = @;
-
-    goRoute.waypoints = [[NSMutableArray alloc]initWithObjects:
-
-                          [Objective initWith:@"name" imageURL:@"picture.com" info:@"sweet objective" category:@"Bar" range:@10.0 latitude:47.617212 longitude:-122.3536802],
-
-                          [Objective initWith:@"Space Needle Park" imageURL:@"2ndPicture.com" info:@"kinda cool" category:@"Landmark" range:@10.0 latitude:47.6192848 longitude:-122.3503663],
-
-                          [Objective initWith:@"Olympic Sculpture Park" imageURL:@"3rdPicture.com" info:@"worst" category:@"Local Shitty Art" range:@10.0 latitude:47.6170897 longitude:-122.3533829],
-
-                          [Objective initWith:@"Buckleys" imageURL:@"4thPicture.com" info:@"Best" category:@"Artwork" range:@10.0 latitude:47.6145925 longitude:-122.3491382
-
-                           ], nil];
-
-
+    
+    NSString *token = @"IPVFQK21YIYRBOAM3JHLKAQXDU2LSDVAUFBLZ1ILNINHBMZY";
+    
+    NSString *finalLat = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.latitude];
+    
+    NSString *finalLong = [NSString stringWithFormat:@"%f", [LocationController sharedController].pinLocation.coordinate.longitude];
+    
+    
+    if (token)
+    {
+        [FoursquareAPI getFoursquareData:@"query" finalLat:finalLat finalLong:finalLong completionHandler:^(NSArray *results, NSError *error) {
+            if (error)
+            {
+                NSLog(@"%@", error.localizedDescription);
+            }
+            goRoute.waypoints = [[NSMutableArray alloc]initWithArray:results];
+            NSLog(@"%@", goRoute.waypoints);
+        }];
+    }
 
     return goRoute;
 }

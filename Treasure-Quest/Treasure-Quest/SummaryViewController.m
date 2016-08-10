@@ -9,6 +9,7 @@
 #import "SummaryViewController.h"
 #import "FoursquareAPI.h"
 #import "WaitPageViewController.h"
+#import "Route.h"
 @import Parse;
 
 @interface SummaryViewController ()  <LocationControllerDelegate>
@@ -92,6 +93,7 @@
     NSMutableArray *currentPlayers = [[NSMutableArray alloc]init];
     [currentPlayers addObject:[PFUser currentUser].objectId];
     quest[@"players"] = currentPlayers;
+    quest[@"route"] = [Route gameRoute:@100 maxRadius:@1000];
     
     [quest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (!error) {
