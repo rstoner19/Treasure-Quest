@@ -56,13 +56,32 @@
 
 -(void)setupObjectiveAnnotations {
 
+
+//    NSArray *objectives = self.currentQuest.route.waypoints;
+//
+//    Objective *firstCompleted = objectives[0];
+//    firstCompleted.completed = YES;
+//
+//    for (Objective *objective in objectives) {
+//
+//        if(objective.completed == YES){
+//  
+//            CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(objective.latitude, objective.longitude);
+//          MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
+//          newPoint.coordinate = loc;
+//          newPoint.title = objective.name;
+//          [self.mapView addAnnotation:newPoint];
+//
+//=======
     Objective *current = self.currentQuest.route.waypoints[0];
     long index = [self.currentQuest.route.waypoints indexOfObject:current] + 1;
     
     //Traverse array for first non complete item
     while (current.completed == YES && index <= self.currentQuest.route.waypoints.count) {
         
-        CLLocationCoordinate2D loc = current.location.coordinate;
+        CLLocationCoordinate2D loc = CLLocationCoordinate2DMake(current.latitude, current.longitude);
+
+//        CLLocationCoordinate2D loc = current.location.coordinate;
         MKPointAnnotation *newPoint = [[MKPointAnnotation alloc]init];
         newPoint.coordinate = loc;
         newPoint.title = current.name;
@@ -88,9 +107,10 @@
     
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 50, 50) animated:YES];
     self.mapView.camera.altitude = 250;
-    [self calculateAngleToNewObjective:location objectiveLocation:self.currentObjective.location];
+    CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:self.currentObjective.latitude longitude:self.currentObjective.longitude];
+    [self calculateAngleToNewObjective:location objectiveLocation:locationPointer];
     self.currentUserLocation = location;
-    [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:self.currentObjective.location];
+    [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:locationPointer];
     [self changeUserAnnotationColor:self.userPin];
     
 }
@@ -100,11 +120,15 @@
 //    NSLog(@"%@", heading);
     self.mapView.camera.heading = heading.trueHeading;
     
+    CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:self.currentObjective.latitude longitude:self.currentObjective.longitude];
+
+    
     self.mapView.camera.pitch = 70;
     self.mapView.camera.altitude = 250;
     self.currentHeading = heading.trueHeading;
+    [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:locationPointer];
+    
 //    NSLog(@"User Heading: %f   Angle to next: %f", self.currentHeading, self.angleToNextObjective);
-    [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:self.currentObjective.location];
     [self changeUserAnnotationColor:self.userPin];
     
  }

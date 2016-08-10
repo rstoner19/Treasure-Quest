@@ -179,7 +179,7 @@
                 __strong typeof(weakSelf) strongSelf = weakSelf;
                 for (Quest *quest in objects)
                 {
-                    if ([quest.name isEqualToString:strongSelf.questName]) {
+                    if ([quest.objectId isEqualToString:strongSelf.gameCode]) {
                         self.gameCode= quest.objectId;
                         self.maxPlayers = quest.maxplayers;
                         self.gameDescription= quest.info;

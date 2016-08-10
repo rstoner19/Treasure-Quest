@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+@import Parse;
 @import MapKit;
 
-@interface Objective : NSObject
+@interface Objective : PFObject <PFSubclassing>
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *imageURL;
@@ -17,7 +18,9 @@
 @property (strong, nonatomic) NSString *category;
 @property (strong, nonatomic) NSNumber *range;
 @property Boolean completed;
-@property CLLocation *location;
+//@property CLLocation *location;
+@property double latitude;
+@property double longitude;
 
 +(instancetype)initWith: (NSString *)name imageURL:(NSString *)imageURL info:(NSString *)info category: (NSString *)category range: (NSNumber *)range latitude:(double)lat longitude:(double)lon;
 
