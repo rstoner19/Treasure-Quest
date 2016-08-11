@@ -35,7 +35,7 @@
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setShowsUserLocation:YES];
     [self.mapView setDelegate:self];
-    [self.mapView setZoomEnabled:YES];
+    [self.mapView setZoomEnabled:NO];
     [self.mapView setScrollEnabled:NO];
     [self.mapView setRotateEnabled:NO];
     [self.mapView setShowsBuildings:NO];
@@ -123,7 +123,7 @@
     self.currentHeading = heading.trueHeading;
     [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:locationPointer];
 
-        NSLog(@"User Heading: %f   Angle to next: %f", self.currentHeading, self.angleToNextObjective);
+//   NSLog(@"User Heading: %f   Angle to next: %f", self.currentHeading, self.angleToNextObjective);
     [self changeUserAnnotationColor:self.userPin];
 
 }
@@ -151,48 +151,94 @@
     return annotationView;
 }
 
+#define degreesToRadians(x) (M_PI * x / 180.0)
+#define radiansToDegrees(x) (x * 180.0 / M_PI)
+
+- (float)getHeadingForDirectionFromCoordinate:(CLLocationCoordinate2D)fromLoc toCoordinate:(CLLocationCoordinate2D)toLoc
+{
+    float fLat = degreesToRadians(fromLoc.latitude);
+    float fLng = degreesToRadians(fromLoc.longitude);
+    float tLat = degreesToRadians(toLoc.latitude);
+    float tLng = degreesToRadians(toLoc.longitude);
+    
+    float degree = radiansToDegrees(atan2(sin(tLng-fLng)*cos(tLat), cos(fLat)*sin(tLat)-sin(fLat)*cos(tLat)*cos(tLng-fLng)));
+    
+    if (degree >= 0) {
+        return degree;
+    } else {
+        return 360+degree;
+    }
+}
+
 -(void) calculateAngleToNewObjective:(CLLocation *)userLocation objectiveLocation: (CLLocation *)objectiveLocation {
 
-    float userLat = userLocation.coordinate.latitude;
-    float userLong = userLocation.coordinate.longitude;
-
+    //OLD CODE
+//    float userLat = userLocation.coordinate.latitude;
+//    float userLong = userLocation.coordinate.longitude;
+//
 //    float objectiveLat = objectiveLocation.coordinate.latitude;
 //    float objectiveLong = objectiveLocation.coordinate.longitude;
 //
+    
+    //NEW CODE
+    float userLatRadians = degreesToRadians(userLocation.coordinate.latitude);
+    float userLongRadians = degreesToRadians(userLocation.coordinate.longitude);
+    
+    float objectiveLatRadians = degreesToRadians(objectiveLocation.coordinate.latitude);
+    float objectiveLongRadians = degreesToRadians(objectiveLocation.coordinate.longitude);
 
-    float objectiveLat = 47.618216495037395;
-    float objectiveLong = -122.35081493854524;
-    MKPointAnnotation *anno = [[MKPointAnnotation alloc]init];
+    //Intersection @ 2nd and broad
+//    float objectiveLat = 47.618216495037395;
+//    float objectiveLong = -122.35081493854524;
+    
+    //Space Needle
+//    float objectiveLat = 47.62042219645017;
+//    float objectiveLong = -122.34931290149687;
+    
+    // South of Home
+//    float objectiveLat = 47.640048839626715;
+//    float objectiveLong = -122.40581631660461;
+    
+    // West of Home
+//    float objectiveLat =  47.64596900612188;
+//    float objectiveLong = -122.41194784641266;
 
-    anno.coordinate = CLLocationCoordinate2DMake(objectiveLat, objectiveLong);
-    [self.mapView addAnnotation:anno];
+    // North of Home
+//    float objectiveLat =  47.647194158250265;
+//    float objectiveLong = -122.40559637546538;
+  
+    // East of Home
+//    float objectiveLat =  47.64595816393936;
+//    float objectiveLong = -122.4032950401306;
+    
+//    float objectiveLatRadians = degreesToRadians(objectiveLat);
+//    float objectiveLongRadians = degreesToRadians(objectiveLong);
+   
+//    MKPointAnnotation *anno = [[MKPointAnnotation alloc]init];
+//
+//    anno.coordinate = CLLocationCoordinate2DMake(objectiveLat, objectiveLong);
+//    [self.mapView addAnnotation:anno];
 
-    float deltaLong = objectiveLong - userLong;
-    float y = sin(deltaLong) * cos(objectiveLat);
-    float x = cos(userLat) * sin(objectiveLat) - sin(userLat) * cos(objectiveLat) * cos(deltaLong);
+    float deltaLong = objectiveLongRadians - userLongRadians;
+    float y = sin(deltaLong) * cos(objectiveLatRadians);
+    float x = cos(userLatRadians) * sin(objectiveLatRadians) - sin(userLatRadians) * cos(objectiveLatRadians) * cos(deltaLong);
     float bearingInRadians = atan2f(y, x);
-    float degrees = bearingInRadians * 180 / M_PI;
-//    self.angleToNextObjective = fmod(((bearingInRadians * 180 / M_PI) + 180), 360);
+//    float degrees = fmod(((bearingInRadians * 180 / M_PI) + 360), 360);
+    self.angleToNextObjective = fmod(((bearingInRadians * 180 / M_PI) + 360), 360);
 
-    if (degrees < 0){
-        self.angleToNextObjective = fabs(degrees) + 90;
-    }
-
-    else if (degrees > 90 && degrees < 180) {
-
-        self.angleToNextObjective = 450-degrees;
-
-    }
-
-    else if (degrees > 0 && degrees < 90){
-
-        self.angleToNextObjective = 90 - degrees;
-
-    }
-
-    else {
-        NSLog(@"you done fucked up");
-    }
+    
+//    NSLog(@"Degrees: %@ vs: degree: %@", degrees, degree);
+    
+//    float degree = radiansToDegrees(atan2(sin(objectiveLongRadians-userLongRadians)*cos(objectiveLatRadians), cos(userLatRadians)*sin(objectiveLatRadians)-sin(userLatRadians)*cos(objectiveLatRadians)*cos(objectiveLongRadians-userLongRadians)));
+//
+//    
+//    if (degree >= 0) {
+//        self.angleToNextObjective = degree;
+//    } else {
+//        self.angleToNextObjective = 360 + degree;
+//    }
+    
+//    NSLog(@"Degrees: %f vs: degree: %f", degrees, self.angleToNextObjective);
 
 
 }
@@ -209,11 +255,11 @@
 
     }
 
-    //    else if(self.currentHeading <= self.angleToNextObjective + 50 && self.currentHeading >= self.angleToNextObjective - 50) {
-    //        self.userPin.pinTintColor = [UIColor yellowColor];
-    //        return userPin;
-    //
-    //    }
+        else if(self.currentHeading <= self.angleToNextObjective + 50 && self.currentHeading >= self.angleToNextObjective - 50) {
+            self.userPin.pinTintColor = [UIColor yellowColor];
+            return userPin;
+    
+        }
 
     else {
 

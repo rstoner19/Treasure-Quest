@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Ie-wp-lna" id="cOZ-Oo-Cb0">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -65,24 +65,6 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="nDk-RJ-Wg2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                             </mapView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Sy-yA-ZFe">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="tn0-Co-HJX">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="Wm3-kF-GnI">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jva-eC-hv6">
-                                                <rect key="frame" x="505" y="2" width="75" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.66334614752659404" green="0.074224274474644414" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Complete Objective"/>
-                                                <connections>
-                                                    <action selector="completeButtonSelected:" destination="26P-hV-pd3" eventType="touchUpInside" id="msT-gP-5En"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
