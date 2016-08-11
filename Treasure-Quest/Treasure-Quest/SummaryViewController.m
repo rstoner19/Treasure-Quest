@@ -32,10 +32,11 @@
     [super viewDidLoad];
     [self setupView];
     self.createButtonSelected.alpha = 0;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        self.createButtonSelected.alpha = 1;
-        });
+    [UIView animateWithDuration:2.5 delay:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.createButtonSelected.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        //
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -359,23 +359,14 @@
                                 <connections>
                                     <action selector="joinButtonSelected:" destination="bFj-So-Eea" eventType="touchUpInside" id="Lzc-VP-9ow"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRs-es-K9d">
-                                <rect key="frame" x="285" y="448" width="30" height="30"/>
-                                <state key="normal" title="Test"/>
-                                <connections>
-                                    <segue destination="Ius-La-fXG" kind="show" id="k3f-wQ-t2y"/>
-                                </connections>
-                            </button>
+                            </button> bdc79f835e9af6f69bb8453716ea7326ab03c791
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WLs-we-B4f" firstAttribute="centerY" secondItem="Iar-Vh-E6F" secondAttribute="centerY" id="0Ae-he-zLe"/>
-                            <constraint firstItem="tRs-es-K9d" firstAttribute="centerX" secondItem="Iar-Vh-E6F" secondAttribute="centerX" id="Bsy-1v-0Hg"/>
                             <constraint firstItem="WLs-we-B4f" firstAttribute="centerX" secondItem="Iar-Vh-E6F" secondAttribute="centerX" id="Ewq-T6-6TK"/>
                             <constraint firstItem="jlO-xx-qAA" firstAttribute="centerX" secondItem="Iar-Vh-E6F" secondAttribute="centerX" id="MQj-O9-mQ1"/>
                             <constraint firstItem="V3c-Cm-czr" firstAttribute="top" secondItem="WLs-we-B4f" secondAttribute="bottom" constant="39" id="WwA-yr-8II"/>
-                            <constraint firstItem="tRs-es-K9d" firstAttribute="top" secondItem="V3c-Cm-czr" secondAttribute="bottom" constant="52" id="a67-xi-dip"/>
                             <constraint firstItem="V3c-Cm-czr" firstAttribute="centerX" secondItem="Iar-Vh-E6F" secondAttribute="centerX" id="b56-19-Bel"/>
                             <constraint firstItem="WLs-we-B4f" firstAttribute="top" secondItem="jlO-xx-qAA" secondAttribute="bottom" constant="115" id="n9G-Wv-qga"/>
                         </constraints>
