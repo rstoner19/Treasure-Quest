@@ -23,5 +23,6 @@
 @property (strong, nonatomic)CLLocation *currentUserLocation;
 @property (strong, nonatomic)MKCircle *overlay;
 @property(strong, nonatomic)NSNumber *maxDistance;
+@property(nonatomic)int count;
 
 @end

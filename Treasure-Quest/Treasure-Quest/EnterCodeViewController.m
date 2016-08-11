@@ -30,10 +30,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)alert{
+- (void)alert:(NSString *)title message:(NSString *)message {
     [[self.view viewWithTag:12] stopAnimating];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Invalid Code"
-                                                                             message:@"Please retry your code or create a new quest."
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                             message:message
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:actionOk];
@@ -59,7 +59,12 @@
                         
                          //********** NEED TO ADD A CHECK TO MAKE SURE EXCESS USERS DON'T JOIN **********//
                         if (![self.players containsObject:[PFUser currentUser].objectId]) {
-                            [self.players addObject:[PFUser currentUser].objectId];
+                            if (self.players.count < quest.maxplayers.intValue) {
+                                [self.players addObject:[PFUser currentUser].objectId];
+                            } else {
+                                [self alert:@"Game is Full" message:@"The game you are trying to join is full, please create a new one."];
+                                return;
+                            }
                         }
                         
                         PFObject *updateQuest = [PFObject objectWithoutDataWithClassName:@"Quest" objectId:quest.objectId];
@@ -87,7 +92,7 @@
                 }
             }];
         } else {
-            [self alert];
+            [self alert:@"Invalid Code" message:@"Please retry your code or create a new quest."];
         }
     }];
     [spinner stopAnimating];

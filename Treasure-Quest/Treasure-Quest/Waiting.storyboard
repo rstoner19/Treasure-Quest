@@ -359,17 +359,7 @@
                                 <connections>
                                     <action selector="joinButtonSelected:" destination="bFj-So-Eea" eventType="touchUpInside" id="Lzc-VP-9ow"/>
                                 </connections>
-                            </button>
-<<<<<<< HEAD
-=======
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRs-es-K9d">
-                                <rect key="frame" x="285" y="448" width="30" height="30"/>
-                                <state key="normal" title="Test"/>
-                                <connections>
-                                    <segue destination="Ius-La-fXG" kind="show" id="k3f-wQ-t2y"/>
-                                </connections>
-                            </button>
->>>>>>> bdc79f835e9af6f69bb8453716ea7326ab03c791
+                            </button> bdc79f835e9af6f69bb8453716ea7326ab03c791
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
