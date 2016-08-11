@@ -65,6 +65,7 @@
     notification.alertBody = @"🐺 My emoji game is stronk";
     
     [[UIApplication sharedApplication]presentLocalNotificationNow:notification];
+    [self.delegate userDidEnterObjectiveRegion:region];
     
 }
 
