@@ -42,8 +42,11 @@
     [self.mapView setPitchEnabled:YES];
     [self.mapView setShowsPointsOfInterest:YES];
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
-    self.mapView.camera.pitch = 80;
+//    [self.mapView setUserTrackingMode:MKUserTrackingModeNone];
 
+    self.mapView.camera.pitch = 80;
+//    self.mapView.camera.altitude = 250;
+    
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"XYZ" style:UIBarButtonSystemItemStop target:self action:@selector(completeButtonSelected:)];
 
     self.navigationItem.rightBarButtonItem = anotherButton;
@@ -59,8 +62,8 @@
     //    ProgressListViewController *progressListVC = (ProgressListViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
     //    self.tabbar.currentQuest = progressListVC.currentQuest;
     [self setupObjectiveAnnotations];
+    
 }
-
 
 -(void)setupObjectiveAnnotations {
 
@@ -94,13 +97,18 @@
 -(void)setRegionForCoordinate:(MKCoordinateRegion)region {
 
     [self.mapView setRegion:region animated:YES];
+    NSLog(@"region is %@", region);
 
 }
 
 -(void)locationControllerDidUpdateLocation:(CLLocation *)location{
 
-    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 50, 50) animated:YES];
-    self.mapView.camera.altitude = 250;
+//    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 25, 25) animated:NO];
+    
+    [self.mapView setCenterCoordinate:location.coordinate animated:YES];
+//    self.mapView.camera.altitude = 150;
+    self.mapView.camera.pitch = 80;
+//    self.mapView.camera.centerCoordinate = location.coordinate;
     CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:((TabBarViewController *)self.parentViewController).currentObjective.latitude longitude:((TabBarViewController *)self.parentViewController).currentObjective.longitude];
     [self calculateAngleToNewObjective:location objectiveLocation:locationPointer];
     self.currentUserLocation = location;
@@ -113,13 +121,13 @@
 
 //    NSLog(@"current device heading: %@", heading);
     self.mapView.camera.heading = heading.trueHeading;
+    self.mapView.camera.pitch = 80;
+    self.mapView.camera.altitude = 0;
+    [self.mapView setCenterCoordinate:self.currentUserLocation.coordinate animated:YES];
 
     CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:((TabBarViewController *)self.parentViewController).currentObjective.latitude longitude:((TabBarViewController *)self.parentViewController).currentObjective.longitude];
 
 //    NSLog(@"current objectives latitude from tabbar! = %f", ((TabBarViewController *)self.parentViewController).currentObjective.latitude);
-
-
-    self.mapView.camera.altitude = 250;
     self.currentHeading = heading.trueHeading;
     [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:locationPointer];
 
@@ -347,6 +355,12 @@
                                         NSLog(@"%@",response );
                                     }
                                 }];
+}
+
+-(void)userDidEnterObjectiveRegion:(CLRegion *)region{
+    
+    [self completeCurrentObjective];
+    
 }
 
 @end
