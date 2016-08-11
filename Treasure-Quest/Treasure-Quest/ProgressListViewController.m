@@ -14,6 +14,7 @@
 @import Parse;
 #import "MapViewController.h"
 #import "TabBarViewController.h"
+#import "JSONParser.h"
 
 @interface ProgressListViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -94,7 +95,7 @@
     objective = self.objectivesDisplayed[indexPath.row];
 //    [objective fetchIfNeeded];
 //    NSLog(@"Objective name: %@", [objective objectForKey:@"name"]);
-      cell.textLabel.text = objective.completed ? [NSString stringWithFormat:@"✓ %@",objective.name] :objective.name ;
+      cell.textLabel.text = objective.completed ? [NSString stringWithFormat:@"✓ %@",objective.category] :objective.category ;
 //    cell.textLabel.text = objective.name;
     return cell;
 
