@@ -69,12 +69,15 @@
             
             if ((int)self.searchResults.count > self.objectives.intValue) {
                 while ((int)self.creatorObjectives.count < (self.objectives.intValue -1)) {
-                    int index = (int) (arc4random() * self.searchResults.count) % self.searchResults.count;
-                    
+                    int index = arc4random_uniform((int)self.searchResults.count);
                     if (![self.creatorObjectives containsObject:[self.searchResults objectAtIndex:index]]) {
                         [self.creatorObjectives addObject:[self.searchResults objectAtIndex:index]];
                     }
                 }
+                self.createButtonSelected.hidden = NO;
+            } else {
+                [self alert:@"Too many objectives" message:@"There weren't enough objective in your area.  (30 objectives max and may need to increase your range)"];
+                self.createButtonSelected.hidden = YES;
             }
             
             Objective *finalObjective = [[Objective alloc]init];
@@ -132,20 +135,23 @@
             [self.navigationController pushViewController:viewController animated:YES];
 //            NSLog(@"Current user: %@, created questid: %@", [PFUser currentUser].username, quest.objectId);
             [[PFUser currentUser]setObject:quest.objectId forKey:@"currentQuestId"];
-            [[PFUser currentUser] saveInBackground ];
+            [[PFUser currentUser] saveInBackground];
             
         } else {
             [[self.view viewWithTag:12] stopAnimating];
-            
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error Saving"
-                                                                                     message:@"Quest unable to save, please try again."
-                                                                              preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
-            [alertController addAction:actionOk];
-            [self presentViewController:alertController animated:YES completion:nil];
-            
+            [self alert:@"Error Saving" message:@"Quest unable to save, please try again."];
+
             NSLog(@"ERROR: %@:", error);
         }
     }];
+}
+
+- (void)alert:(NSString *)title message:(NSString *)message {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:actionOk];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 @end

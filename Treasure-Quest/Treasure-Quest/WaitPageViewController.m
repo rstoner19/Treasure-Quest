@@ -227,7 +227,6 @@
     UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:actionOk];
     [self presentViewController:alertController animated:YES completion:nil];
-    
 }
 
 - (void)showSMS:(NSString*)text {

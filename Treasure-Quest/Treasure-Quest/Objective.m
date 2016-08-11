@@ -83,16 +83,20 @@
     NSMutableArray *fairObjectives = [[NSMutableArray alloc]init];
     double averageDistance = 0;
     int othercount = 0;
-    for (int i = 0; i < 25; i++) {
+    for (int i = 0; i < 15; i++) {
         averageDistance += [self totalDistanceCrowFlies:[self randomizeObjectives:originalObjectives]];
         othercount ++;
     }
     
-    averageDistance = averageDistance/25;
+    averageDistance = averageDistance/15;
     NSLog(@"%d and average: %f", othercount, averageDistance);
+    int counter = 0;
     while (fairObjectives.count < players) {
+        counter ++;
         NSMutableArray *randomObjective = [self randomizeObjectives:originalObjectives];
-        if (averageDistance * 0.925 < [self totalDistanceCrowFlies:randomObjective] && averageDistance * 1.075 > [self totalDistanceCrowFlies:randomObjective]) {
+        if (averageDistance * 0.925 < [self totalDistanceCrowFlies:randomObjective] && averageDistance * 1.075 > [self totalDistanceCrowFlies:randomObjective] && counter < 30) {
+            [fairObjectives addObject:randomObjective];
+        } else if (averageDistance * 0.85 < [self totalDistanceCrowFlies:randomObjective] && averageDistance * 1.15 > [self totalDistanceCrowFlies:randomObjective] && counter > 30) {
             [fairObjectives addObject:randomObjective];
         }
     }
