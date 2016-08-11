@@ -31,8 +31,8 @@
     self.tableView.delegate = self;
     [self setup];
     
-    ((TabBarViewController *)self.parentViewController).currentQuest.name = @"new quest name";
-    NSLog(@"listview did load %@",((TabBarViewController *)self.parentViewController).currentQuest.name);
+//    ((TabBarViewController *)self.parentViewController).currentQuest.name = @"new quest name";
+//    NSLog(@"listview did load %@",((TabBarViewController *)self.parentViewController).currentQuest.name);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
