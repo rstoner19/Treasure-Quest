@@ -17,10 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    NSLog(@"Did load the tab bar");
     self.currentQuest = [[Quest alloc]init];
-//    self.currentQuest.name = @"tab bar quest name";
-    self.mystring = @"testing....";
 }
 
 - (void)didReceiveMemoryWarning {

@@ -295,6 +295,9 @@
     //    NSLog(@"Objective complete! Next objective is objective %@", self.tabbar.currentObjective.name);
     [self setupObjectiveAnnotations];
     [self setUpRegion:((TabBarViewController *)self.parentViewController).currentObjective];
+    NSString *message = [NSString stringWithFormat:@"%@ has reached goal #%i!!", [PFUser currentUser].username, (int)index ];
+    [self questPushNotification:message];
+    
 }
 
 -(void) setUpRegion: (Objective *)objective {
@@ -331,7 +334,19 @@
 - (IBAction)completeButtonSelected:(UIButton *)sender {
 
     [self completeCurrentObjective];
-    NSLog(@"button pressed!");
 
 }
+
+- (void)questPushNotification: (NSString *)message  {
+
+    [PFCloud callFunctionInBackground:@"iosPushToChannel"
+                       withParameters:@{@"text":message,
+                                        @"channel": [[PFUser currentUser] objectForKey:@"currentQuestId"]}
+                                block:^(NSString *response, NSError *error) {
+                                    if (!error) {
+                                        NSLog(@"%@",response );
+                                    }
+                                }];
+}
+
 @end
