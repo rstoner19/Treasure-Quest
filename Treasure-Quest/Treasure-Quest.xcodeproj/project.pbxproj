@@ -39,6 +39,7 @@
 		4CBE87AB1D55BC8F0034F19A /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBE87AA1D55BC8F0034F19A /* LocationController.m */; };
 		6958E99D1D5B193000510ADC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6958E99C1D5B193000510ADC /* MessageUI.framework */; };
 		699942FF1D5BC78A00735F9F /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699942FE1D5BC78A00735F9F /* TabBarViewController.m */; };
+		699943011D5BF76600735F9F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 699943001D5BF76600735F9F /* AudioToolbox.framework */; };
 		8BF2B1D41D567CBD0071DE20 /* JSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2B1D31D567CBD0071DE20 /* JSONParser.m */; };
 		8BF2B1D71D567DC10071DE20 /* FoursquareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2B1D61D567DC10071DE20 /* FoursquareAPI.m */; };
 		8BF2B1D91D56A0F70071DE20 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF2B1D81D56A0F70071DE20 /* AFNetworking.framework */; };
@@ -111,6 +112,7 @@
 		6958E99C1D5B193000510ADC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		699942FD1D5BC78A00735F9F /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		699942FE1D5BC78A00735F9F /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		699943001D5BF76600735F9F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8BF2B1D21D567CBD0071DE20 /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
 		8BF2B1D31D567CBD0071DE20 /* JSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONParser.m; sourceTree = "<group>"; };
 		8BF2B1D51D567DC10071DE20 /* FoursquareAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoursquareAPI.h; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				699943011D5BF76600735F9F /* AudioToolbox.framework in Frameworks */,
 				6958E99D1D5B193000510ADC /* MessageUI.framework in Frameworks */,
 				4C7D76111D534C6D00932D3A /* ParseUI.framework in Frameworks */,
 				8BF2B1D91D56A0F70071DE20 /* AFNetworking.framework in Frameworks */,
@@ -160,6 +163,7 @@
 		4C7D75E41D53389C00932D3A = {
 			isa = PBXGroup;
 			children = (
+				699943001D5BF76600735F9F /* AudioToolbox.framework */,
 				6958E99C1D5B193000510ADC /* MessageUI.framework */,
 				8BF2B1D81D56A0F70071DE20 /* AFNetworking.framework */,
 				4CBE87A71D55B8DE0034F19A /* MapKit.framework */,
@@ -379,7 +383,7 @@
 				TargetAttributes = {
 					4C7D75EC1D53389C00932D3A = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = NXQBD8W8TS;
+						DevelopmentTeam = 8ZT3NZA445;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -572,7 +576,7 @@
 				);
 				INFOPLIST_FILE = "Treasure-Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sweeney.treasurequest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.derekgraham.treasurequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -591,7 +595,7 @@
 				);
 				INFOPLIST_FILE = "Treasure-Quest/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sweeney.treasurequest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.derekgraham.treasurequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
