@@ -195,13 +195,6 @@
     }
 
 
-<<<<<<< Updated upstream
-=======
-  //  (θ+360) % 360
-
-    self.angleToNextObjective = fmod( ((bearingInRadians * 180 / M_PI) + 180 ) , 360);
->>>>>>> Stashed changes
-
 }
 
 -(MKPinAnnotationView*)changeUserAnnotationColor: (MKPinAnnotationView *)userPin {
@@ -211,7 +204,7 @@
     if (self.currentHeading <= self.angleToNextObjective + 10 && self.currentHeading >= self.angleToNextObjective - 10) {
 
         self.userPin.pinTintColor = [UIColor greenColor];
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+//        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
         return userPin;
 
     }
