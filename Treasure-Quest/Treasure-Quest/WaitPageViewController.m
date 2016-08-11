@@ -42,6 +42,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self setupPushChannelForQuest];
+    [self userJoinedPushNotification];
     [self parseQuery];
 
 }
@@ -279,5 +281,36 @@
         });
 }
 
+- (void)userJoinedPushNotification {
+    
+    NSString *message = [NSString stringWithFormat:@"%@ has joined the quest!", [PFUser currentUser].username];
+//    [PFCloud callFunctionInBackground:@"iosPushTest"
+//                       withParameters:@{@"text": message }
+//                                block:^(NSString *response, NSError *error) {
+//                                    if (!error) {
+//                                        // ratings is 4.5
+//                                        NSLog(@"%@",response );
+//                                    }
+//                                }];
+    [PFCloud callFunctionInBackground:@"iosPushToChannel"
+                       withParameters:@{@"text":message,
+                                        @"channel": [[PFUser currentUser] objectForKey:@"currentQuestId"]}
+                                block:^(NSString *response, NSError *error) {
+                                    if (!error) {
+                                        NSLog(@"%@",response );
+                                    }
+                                }];
+    [self setupPushChannelForQuest];
+}
+
+- (void) setupPushChannelForQuest {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    
+    
+    [currentInstallation addUniqueObject:[[PFUser currentUser] objectForKey:@"currentQuestId"] forKey:@"channels"];
+    [currentInstallation saveInBackground];
+    NSLog(@"%@",[PFInstallation currentInstallation].channels);
+    
+}
 
 @end
