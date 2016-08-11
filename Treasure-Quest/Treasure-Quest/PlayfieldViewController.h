@@ -12,6 +12,8 @@
 @import MapKit;
 
 @interface PlayfieldViewController : UIViewController
+@property (strong, nonatomic) CLLocationManager *locationManager;
+
 
 @property(strong, nonatomic)NSString *questName;
 @property(strong, nonatomic)NSString *gameDescription;

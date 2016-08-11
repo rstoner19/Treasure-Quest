@@ -40,7 +40,6 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-
 - (void)parseQuery {
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     spinner.color = [UIColor darkGrayColor];
