@@ -100,7 +100,9 @@
 -(void)locationControllerDidUpdateLocation:(CLLocation *)location{
 
     [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 50, 50) animated:YES];
-    self.mapView.camera.altitude = 250;
+//    self.mapView.camera.altitude = 250;
+    
+    self.mapView.camera.centerCoordinate = location.coordinate;
     CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:((TabBarViewController *)self.parentViewController).currentObjective.latitude longitude:((TabBarViewController *)self.parentViewController).currentObjective.longitude];
     [self calculateAngleToNewObjective:location objectiveLocation:locationPointer];
     self.currentUserLocation = location;
@@ -347,6 +349,12 @@
                                         NSLog(@"%@",response );
                                     }
                                 }];
+}
+
+-(void)userDidEnterObjectiveRegion:(CLRegion *)region{
+    
+    [self completeCurrentObjective];
+    
 }
 
 @end
