@@ -10,7 +10,7 @@
 #import "SummaryViewController.h"
 
 
-@interface PlayfieldViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate>
+@interface PlayfieldViewController () <MKMapViewDelegate, LocationControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITextField *maxDistanceTextField;
@@ -28,8 +28,7 @@
     [super viewDidLoad];
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setShowsUserLocation:YES];
-    self.mapView.delegate = self;
-    self.locationManager.delegate = self;
+    [self.mapView setDelegate:self];
     self.maxDistanceTextField.delegate = self;
     self.minDistanceTextField.delegate = self;
     
@@ -42,20 +41,11 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self locationSetUp];
-
-
+    [[LocationController sharedController]setDelegate:self];
+    [[[LocationController sharedController]locationManager]startUpdatingLocation];
+    
     self.mapView.delegate = self;
     
-    
-}
-
-- (void)locationSetUp {
-    
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters; // 10 m
-    [self.locationManager startUpdatingLocation];
     
 }
 
@@ -67,15 +57,10 @@
 
 -(void)locationControllerDidUpdateLocation:(CLLocation *)location
 {
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 1000, 1000) animated:YES];
     self.currentLat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
     self.currentLong = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
     self.currentUserLocation = location;
-    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 1000, 1000) animated:YES];
-
-    if (self.currentUserLocation) {
-//        [self.locationManager stopUpdatingLocation];
-    }
-
 }
 
 
