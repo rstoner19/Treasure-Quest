@@ -12,7 +12,6 @@
 
 @property(strong, nonatomic)NSString *questName;
 @property(strong, nonatomic)NSMutableArray *players;
-+ (void)parseQuery:(NSString *)questCode;
 
 
 @end
