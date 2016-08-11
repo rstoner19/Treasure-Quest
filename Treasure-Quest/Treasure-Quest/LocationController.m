@@ -8,6 +8,7 @@
 
 #import "LocationController.h"
 #import "MapViewController.h"
+@import Parse;
 
 @interface LocationController () <CLLocationManagerDelegate>
 
@@ -35,8 +36,8 @@
         _locationManager = [[CLLocationManager alloc]init];
         _locationManager.delegate = self;
         _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        _locationManager.distanceFilter = 1;
-        _locationManager.headingFilter = 1;
+        _locationManager.distanceFilter = 5;
+        _locationManager.headingFilter = 3;
         
     }
     
@@ -48,6 +49,13 @@
     
     [self.delegate locationControllerDidUpdateLocation:locations.lastObject];
     [self setLocation:locations.lastObject];
+    
+    // write user location to server
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint * _Nullable geoPoint, NSError * _Nullable error) {
+        [[PFUser currentUser] setObject:geoPoint forKey:@"userLocation"];
+        [[PFUser currentUser] saveInBackground];
+    }];
+    
 
 }
 
