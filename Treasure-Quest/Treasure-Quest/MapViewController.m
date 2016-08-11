@@ -34,7 +34,7 @@
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setShowsUserLocation:YES];
     [self.mapView setDelegate:self];
-    [self.mapView setZoomEnabled:NO];
+    [self.mapView setZoomEnabled:YES];
     [self.mapView setScrollEnabled:NO];
     [self.mapView setRotateEnabled:NO];
     [self.mapView setShowsBuildings:NO];
@@ -42,6 +42,8 @@
     [self.mapView setShowsPointsOfInterest:YES];
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
     self.mapView.camera.pitch = 80;
+    
+    self.parentViewController.parentViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(completeButtonSelected:)];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -105,14 +107,14 @@
 
 -(void)locationControllerDidUpdateHeading:(CLHeading *)heading {
     
-    NSLog(@"current device heading: %@", heading);
+//    NSLog(@"current device heading: %@", heading);
     self.mapView.camera.heading = heading.trueHeading;
     
     CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:((TabBarViewController *)self.parentViewController).currentObjective.latitude longitude:((TabBarViewController *)self.parentViewController).currentObjective.longitude];
     
-    NSLog(@"current objectives latitude from tabbar! = %f", ((TabBarViewController *)self.parentViewController).currentObjective.latitude);
+//    NSLog(@"current objectives latitude from tabbar! = %f", ((TabBarViewController *)self.parentViewController).currentObjective.latitude);
     
-    self.mapView.camera.pitch = 70;
+   
     self.mapView.camera.altitude = 250;
     self.currentHeading = heading.trueHeading;
     [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:locationPointer];
@@ -150,15 +152,45 @@
     float userLat = userLocation.coordinate.latitude;
     float userLong = userLocation.coordinate.longitude;
     
-    float objectiveLat = objectiveLocation.coordinate.latitude;
-    float objectiveLong = objectiveLocation.coordinate.longitude;
+//    float objectiveLat = objectiveLocation.coordinate.latitude;
+//    float objectiveLong = objectiveLocation.coordinate.longitude;
+//
+    
+    float objectiveLat = 47.618216495037395;
+    float objectiveLong = -122.35081493854524;
+    MKPointAnnotation *anno = [[MKPointAnnotation alloc]init];
+    
+    anno.coordinate = CLLocationCoordinate2DMake(objectiveLat, objectiveLong);
+    [self.mapView addAnnotation:anno];
     
     float deltaLong = objectiveLong - userLong;
     float y = sin(deltaLong) * cos(objectiveLat);
     float x = cos(userLat) * sin(objectiveLat) - sin(userLat) * cos(objectiveLat) * cos(deltaLong);
     float bearingInRadians = atan2f(y, x);
+    float degrees = bearingInRadians * 180 / M_PI;
+//    self.angleToNextObjective = fmod(((bearingInRadians * 180 / M_PI) + 180), 360);
     
-    self.angleToNextObjective = fabs(bearingInRadians * 180 / M_PI);
+    if (degrees < 0){
+        self.angleToNextObjective = fabs(degrees) + 90;
+    }
+    
+    else if (degrees > 90 && degrees < 180) {
+        
+        self.angleToNextObjective = 450-degrees;
+        
+    }
+    
+    else if (degrees > 0 && degrees < 90){
+        
+        self.angleToNextObjective = 90 - degrees;
+        
+    }
+    
+    else {
+        NSLog(@"you done fucked up");
+    }
+    
+    
     
 }
 
@@ -249,6 +281,7 @@
 - (IBAction)completeButtonSelected:(UIButton *)sender {
     
     [self completeCurrentObjective];
+    NSLog(@"button pressed!");
     
 }
 @end
