@@ -35,6 +35,12 @@
     NSLog(@"listview did load %@",((TabBarViewController *)self.parentViewController).currentQuest.name);
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+    
+}
+
 -(void) setup {
 
    self.objectivesDisplayed = [[NSMutableArray alloc]init];
@@ -54,16 +60,7 @@
                     NSLog(@"questname %@", quest.name);
 //                    
                     NSNumber *playerNumber = [NSNumber numberWithInt:(int)([quest.players indexOfObject:[PFUser currentUser].objectId])];
-//
-//                    NSArray
-//                    switch (playerNumber) {
-//                        case 0:
-//                            quest.objectives0
-//                            break;
-//                            
-//                        default:
-//                            break;
-//                    }
+
                     
                    for (Objective *objective in quest.objectives[playerNumber.intValue]){
                        
@@ -78,7 +75,7 @@
                     ((TabBarViewController *)self.parentViewController).currentQuest = quest;
                     ((TabBarViewController *)self.parentViewController).currentQuest.objectives = strongSelf.objectivesDisplayed;
                     ((TabBarViewController *)self.parentViewController).currentObjective = strongSelf.objectivesDisplayed[0];
-                    
+                    [self setupPushChannelForQuest];
                 }
             }];
         } else {
@@ -97,7 +94,8 @@
     objective = self.objectivesDisplayed[indexPath.row];
 //    [objective fetchIfNeeded];
 //    NSLog(@"Objective name: %@", [objective objectForKey:@"name"]);
-    cell.textLabel.text = objective.name;
+      cell.textLabel.text = objective.completed ? [NSString stringWithFormat:@"✓ %@",objective.name] :objective.name ;
+//    cell.textLabel.text = objective.name;
     return cell;
 
 }
@@ -108,7 +106,14 @@
     
 }
 
-
+- (void) setupPushChannelForQuest {
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    
+    [currentInstallation addUniqueObject:[[PFUser currentUser] objectForKey:@"currentQuestId"] forKey:@"channels"];
+    [currentInstallation saveInBackground];
+    NSLog(@"Setting Up Channels: %@",[PFInstallation currentInstallation].channels);
+    
+}
 
 
 @end
