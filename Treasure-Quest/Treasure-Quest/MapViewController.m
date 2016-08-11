@@ -29,24 +29,16 @@
 - (void)viewDidLoad {
 
     [super viewDidLoad];
-
-    //    NSLog(@"mapview view did load %@",((TabBarViewController *)self.parentViewController).currentQuest.name);
-    //    NSLog(@"string value? %@",((TabBarViewController *)self.parentViewController).mystring);
     [self.mapView.layer setCornerRadius:20.0];
     [self.mapView setShowsUserLocation:YES];
     [self.mapView setDelegate:self];
     [self.mapView setZoomEnabled:NO];
     [self.mapView setScrollEnabled:NO];
     [self.mapView setRotateEnabled:NO];
-    [self.mapView setShowsBuildings:NO];
+    [self.mapView setShowsBuildings:YES];
     [self.mapView setPitchEnabled:YES];
     [self.mapView setShowsPointsOfInterest:YES];
-    [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
-//    [self.mapView setUserTrackingMode:MKUserTrackingModeNone];
 
-    self.mapView.camera.pitch = 80;
-//    self.mapView.camera.altitude = 250;
-    
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"XYZ" style:UIBarButtonSystemItemStop target:self action:@selector(completeButtonSelected:)];
 
     self.navigationItem.rightBarButtonItem = anotherButton;
@@ -59,9 +51,8 @@
     [[LocationController sharedController]setDelegate:self];
     [[[LocationController sharedController]locationManager]startUpdatingLocation];
     [[[LocationController sharedController] locationManager]startUpdatingHeading];
-    //    ProgressListViewController *progressListVC = (ProgressListViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
-    //    self.tabbar.currentQuest = progressListVC.currentQuest;
     [self setupObjectiveAnnotations];
+    self.mapView.camera.altitude = 250;
     
 }
 
@@ -94,20 +85,17 @@
     ((TabBarViewController *)self.parentViewController).currentObjective = current;
 }
 
--(void)setRegionForCoordinate:(MKCoordinateRegion)region {
 
-    [self.mapView setRegion:region animated:YES];
-    NSLog(@"region is %@", region);
-
-}
 
 -(void)locationControllerDidUpdateLocation:(CLLocation *)location{
 
-//    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 25, 25) animated:NO];
-    
+    [self.mapView setVisibleMapRect:MKMapRectMake(0, 0, 25, 25) animated:YES];
+
     [self.mapView setCenterCoordinate:location.coordinate animated:YES];
-//    self.mapView.camera.altitude = 150;
-    self.mapView.camera.pitch = 80;
+    self.mapView.camera.heading = self.currentHeading;
+    self.mapView.camera.pitch = 60;
+    self.mapView.camera.altitude = 250;
+    NSLog(@"you done moved");
 //    self.mapView.camera.centerCoordinate = location.coordinate;
     CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:((TabBarViewController *)self.parentViewController).currentObjective.latitude longitude:((TabBarViewController *)self.parentViewController).currentObjective.longitude];
     [self calculateAngleToNewObjective:location objectiveLocation:locationPointer];
@@ -119,15 +107,12 @@
 
 -(void)locationControllerDidUpdateHeading:(CLHeading *)heading {
 
-//    NSLog(@"current device heading: %@", heading);
     self.mapView.camera.heading = heading.trueHeading;
-    self.mapView.camera.pitch = 80;
-    self.mapView.camera.altitude = 0;
-    [self.mapView setCenterCoordinate:self.currentUserLocation.coordinate animated:YES];
+    self.mapView.camera.pitch = 60;
+    self.mapView.camera.altitude = 250;
 
     CLLocation *locationPointer = [[CLLocation alloc]initWithLatitude:((TabBarViewController *)self.parentViewController).currentObjective.latitude longitude:((TabBarViewController *)self.parentViewController).currentObjective.longitude];
 
-//    NSLog(@"current objectives latitude from tabbar! = %f", ((TabBarViewController *)self.parentViewController).currentObjective.latitude);
     self.currentHeading = heading.trueHeading;
     [self calculateAngleToNewObjective:self.currentUserLocation objectiveLocation:locationPointer];
 
@@ -180,80 +165,21 @@
 
 -(void) calculateAngleToNewObjective:(CLLocation *)userLocation objectiveLocation: (CLLocation *)objectiveLocation {
 
-    //OLD CODE
-//    float userLat = userLocation.coordinate.latitude;
-//    float userLong = userLocation.coordinate.longitude;
-//
-//    float objectiveLat = objectiveLocation.coordinate.latitude;
-//    float objectiveLong = objectiveLocation.coordinate.longitude;
-//
-    
-    //NEW CODE
     float userLatRadians = degreesToRadians(userLocation.coordinate.latitude);
     float userLongRadians = degreesToRadians(userLocation.coordinate.longitude);
     
     float objectiveLatRadians = degreesToRadians(objectiveLocation.coordinate.latitude);
     float objectiveLongRadians = degreesToRadians(objectiveLocation.coordinate.longitude);
 
-    //Intersection @ 2nd and broad
-//    float objectiveLat = 47.618216495037395;
-//    float objectiveLong = -122.35081493854524;
-    
-    //Space Needle
-//    float objectiveLat = 47.62042219645017;
-//    float objectiveLong = -122.34931290149687;
-    
-    // South of Home
-//    float objectiveLat = 47.640048839626715;
-//    float objectiveLong = -122.40581631660461;
-    
-    // West of Home
-//    float objectiveLat =  47.64596900612188;
-//    float objectiveLong = -122.41194784641266;
-
-    // North of Home
-//    float objectiveLat =  47.647194158250265;
-//    float objectiveLong = -122.40559637546538;
-  
-    // East of Home
-//    float objectiveLat =  47.64595816393936;
-//    float objectiveLong = -122.4032950401306;
-    
-//    float objectiveLatRadians = degreesToRadians(objectiveLat);
-//    float objectiveLongRadians = degreesToRadians(objectiveLong);
-   
-//    MKPointAnnotation *anno = [[MKPointAnnotation alloc]init];
-//
-//    anno.coordinate = CLLocationCoordinate2DMake(objectiveLat, objectiveLong);
-//    [self.mapView addAnnotation:anno];
-
     float deltaLong = objectiveLongRadians - userLongRadians;
     float y = sin(deltaLong) * cos(objectiveLatRadians);
     float x = cos(userLatRadians) * sin(objectiveLatRadians) - sin(userLatRadians) * cos(objectiveLatRadians) * cos(deltaLong);
     float bearingInRadians = atan2f(y, x);
-//    float degrees = fmod(((bearingInRadians * 180 / M_PI) + 360), 360);
     self.angleToNextObjective = fmod(((bearingInRadians * 180 / M_PI) + 360), 360);
-
-    
-//    NSLog(@"Degrees: %@ vs: degree: %@", degrees, degree);
-    
-//    float degree = radiansToDegrees(atan2(sin(objectiveLongRadians-userLongRadians)*cos(objectiveLatRadians), cos(userLatRadians)*sin(objectiveLatRadians)-sin(userLatRadians)*cos(objectiveLatRadians)*cos(objectiveLongRadians-userLongRadians)));
-//
-//    
-//    if (degree >= 0) {
-//        self.angleToNextObjective = degree;
-//    } else {
-//        self.angleToNextObjective = 360 + degree;
-//    }
-    
-//    NSLog(@"Degrees: %f vs: degree: %f", degrees, self.angleToNextObjective);
-
-
 }
 
 -(MKPinAnnotationView*)changeUserAnnotationColor: (MKPinAnnotationView *)userPin {
     //TODO: adjust opacity based on accuracy percentage
-    //float difference = fabs(self.currentHeading - self.angleToNextObjective);
 
     if (self.currentHeading <= self.angleToNextObjective + 10 && self.currentHeading >= self.angleToNextObjective - 10) {
 
@@ -280,7 +206,7 @@
 -(void)completeCurrentObjective {
     NSUInteger index = 0;
     ((TabBarViewController *)self.parentViewController).currentObjective.completed = YES;
-    //    [self.currentObjective save];
+//    [((TabBarViewController *)self.parentViewController).currentObjective save];
 
     NSArray *objectives = [[NSArray alloc]init];
     objectives = ((TabBarViewController *)self.parentViewController).currentQuest.objectives;
@@ -295,6 +221,7 @@
 
     if (index == ((TabBarViewController *)self.parentViewController).currentQuest.objectives.count){
         NSLog(@"end of the line");
+        [self WinnerFound];
         return;
     }
 
@@ -309,7 +236,12 @@
 }
 
 -(void) setUpRegion: (Objective *)objective {
-
+    
+    CLLocationManager *manager = [[LocationController sharedController]locationManager];
+    
+    for (CLRegion *monitored in [manager monitoredRegions])
+        [manager stopMonitoringForRegion:monitored];
+    
     objective.range = @50;
     NSLog(@"Dis mah range bruh: %@", objective.range);
 
@@ -331,7 +263,6 @@
     MKCircleRenderer *circleRender = [[MKCircleRenderer alloc]initWithOverlay:overlay];
     circleRender.strokeColor = [UIColor blueColor];
     circleRender.lineWidth = 1;
-
     circleRender.fillColor = [UIColor redColor];
     circleRender.alpha = 0.25;
 
@@ -361,6 +292,13 @@
     
     [self completeCurrentObjective];
     
+}
+
+-(void)WinnerFound{
+    
+    NSString *message = [NSString stringWithFormat:@"%@ has completed the quest!", [PFUser currentUser].username];
+    [self questPushNotification:message];
+
 }
 
 @end
