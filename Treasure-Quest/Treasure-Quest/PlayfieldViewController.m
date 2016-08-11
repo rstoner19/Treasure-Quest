@@ -61,6 +61,7 @@
         [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(location.coordinate, 1000, 1000) animated:YES];
 
     }
+    self.count += 1;
     self.currentLat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
     self.currentLong = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
     self.currentUserLocation = location;

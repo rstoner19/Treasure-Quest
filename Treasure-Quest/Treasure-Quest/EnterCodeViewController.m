@@ -57,7 +57,6 @@
                         self.questName = quest.name;
                         self.players = quest.players;
                         
-                         //********** NEED TO ADD A CHECK TO MAKE SURE EXCESS USERS DON'T JOIN **********//
                         if (![self.players containsObject:[PFUser currentUser].objectId]) {
                             if (self.players.count < quest.maxplayers.intValue) {
                                 [self.players addObject:[PFUser currentUser].objectId];
