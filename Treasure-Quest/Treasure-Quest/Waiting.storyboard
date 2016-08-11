@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A270f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11191" systemVersion="16A270f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="NO">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <deployment version="2352" identifier="iOS"/>
+        <development version="7000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11156"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -177,7 +178,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="poB-Ga-GvV" firstAttribute="leading" secondItem="8Wz-Je-s4x" secondAttribute="leading" id="0ec-lH-7si"/>
                             <constraint firstItem="Ded-OQ-P0B" firstAttribute="top" secondItem="qXI-ae-TFa" secondAttribute="bottom" constant="75" id="4mc-tm-dIo"/>
@@ -287,7 +288,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="L6j-uH-4vw" firstAttribute="top" secondItem="Nl9-OU-9sk" secondAttribute="bottom" id="6PK-xN-SJi"/>
                             <constraint firstItem="Eqe-bK-gA8" firstAttribute="centerX" secondItem="FHi-gM-Ftb" secondAttribute="centerX" id="Ddy-DY-Zsg"/>
@@ -339,7 +340,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlO-xx-qAA">
                                 <rect key="frame" x="238" y="140" width="124" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <color key="textColor" red="1" green="0.96422511339187622" blue="0.00037132872967049479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.99999380111694336" green="0.97213864326477051" blue="0.040730684995651245" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Unique Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLs-we-B4f">
@@ -354,14 +355,14 @@
                                 <rect key="frame" x="237" y="354" width="126" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Join Game!">
-                                    <color key="titleColor" red="1" green="0.96422511339187622" blue="0.00037132872967049479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.99999380111694336" green="0.97213864326477051" blue="0.040730684995651245" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="joinButtonSelected:" destination="bFj-So-Eea" eventType="touchUpInside" id="Lzc-VP-9ow"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="WLs-we-B4f" firstAttribute="centerY" secondItem="Iar-Vh-E6F" secondAttribute="centerY" id="0Ae-he-zLe"/>
                             <constraint firstItem="WLs-we-B4f" firstAttribute="centerX" secondItem="Iar-Vh-E6F" secondAttribute="centerX" id="Ewq-T6-6TK"/>
